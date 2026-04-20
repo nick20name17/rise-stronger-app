@@ -3,7 +3,7 @@
 # Usage: ./validate-html.sh [file.html ...]
 # If no files given, validates all .html files in current directory
 
-set -euo pipefail
+set -uo pipefail
 
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
@@ -33,8 +33,8 @@ for file in "${files[@]}"; do
 
   # ── 1. Self-contained check: no external CSS/JS file references ──
   # Allow CDN links (https://) but block local file refs
-  local_css=$(grep -nE '<link[^>]+rel="stylesheet"[^>]+href="(?!https?://)' "$file" 2>/dev/null || true)
-  local_js=$(grep -nE '<script[^>]+src="(?!https?://)' "$file" 2>/dev/null || true)
+  local_css=$(perl -ne 'print "$.:$_" if /<link[^>]+rel="stylesheet"[^>]+href="(?!https?:\/\/)/' "$file" 2>/dev/null || true)
+  local_js=$(perl -ne 'print "$.:$_" if /<script[^>]+src="(?!https?:\/\/)/' "$file" 2>/dev/null || true)
 
   if [ -n "$local_css" ]; then
     echo -e "${RED}  ✗ External local CSS file detected:${NC}"
@@ -49,7 +49,7 @@ for file in "${files[@]}"; do
   fi
 
   # ── 2. Extract all data-comment values and check for duplicates ──
-  mapfile -t dc_values < <(grep -oP 'data-comment="[^"]*"' "$file" | sed 's/data-comment="//;s/"//' | sort)
+  mapfile -t dc_values < <(grep -oE 'data-comment="[^"]*"' "$file" | sed 's/data-comment="//;s/"//' | sort)
 
   if [ ${#dc_values[@]} -eq 0 ]; then
     echo -e "${RED}  ✗ No data-comment attributes found at all${NC}"
@@ -69,7 +69,7 @@ for file in "${files[@]}"; do
     fi
 
     # Check for empty values
-    empty_count=$(grep -c 'data-comment=""' "$file" 2>/dev/null || echo 0)
+    empty_count=$(grep -c 'data-comment=""' "$file" 2>/dev/null) || true
     if [ "$empty_count" -gt 0 ]; then
       echo -e "${RED}  ✗ Found ${empty_count} empty data-comment=\"\" attributes${NC}"
       ((file_errors++))
@@ -83,7 +83,7 @@ for file in "${files[@]}"; do
 
   for tag in h1 h2 h3 h4 h5 h6 button img nav header footer main section; do
     # Find tags of this type without data-comment
-    count_without=$(grep -cP "<${tag}[\s>](?![^>]*data-comment)" "$file" 2>/dev/null || echo 0)
+    count_without=$(perl -0777 -ne "\$c++ while /<${tag}[\\s>](?![^>]*?data-comment)/g; print \$c+0" "$file" 2>/dev/null) || true
     if [ "$count_without" -gt 0 ]; then
       missing_tags+=("${tag}(${count_without})")
     fi
@@ -96,8 +96,8 @@ for file in "${files[@]}"; do
   fi
 
   # ── 4. Check for Google Fonts preconnect ──
-  has_gfonts=$(grep -c "fonts.googleapis.com/css" "$file" 2>/dev/null || echo 0)
-  has_preconnect=$(grep -c 'rel="preconnect"' "$file" 2>/dev/null || echo 0)
+  has_gfonts=$(grep -c "fonts.googleapis.com/css" "$file" 2>/dev/null) || true
+  has_preconnect=$(grep -c 'rel="preconnect"' "$file" 2>/dev/null) || true
 
   if [ "$has_gfonts" -gt 0 ] && [ "$has_preconnect" -eq 0 ]; then
     echo -e "${YELLOW}  ⚠ Google Fonts used without preconnect hints${NC}"
@@ -105,11 +105,11 @@ for file in "${files[@]}"; do
   fi
 
   # ── 5. Check basic structure ──
-  has_doctype=$(grep -c '<!DOCTYPE html>' "$file" 2>/dev/null || echo 0)
-  has_charset=$(grep -c 'charset="UTF-8"' "$file" 2>/dev/null || echo 0)
-  has_viewport=$(grep -c 'name="viewport"' "$file" 2>/dev/null || echo 0)
-  has_title=$(grep -cP '<title>.+</title>' "$file" 2>/dev/null || echo 0)
-  has_root_vars=$(grep -c ':root' "$file" 2>/dev/null || echo 0)
+  has_doctype=$(grep -ci '<!DOCTYPE html>' "$file" 2>/dev/null) || true
+  has_charset=$(grep -ci 'charset="UTF-8"' "$file" 2>/dev/null) || true
+  has_viewport=$(grep -c 'name="viewport"' "$file" 2>/dev/null) || true
+  has_title=$(grep -cE '<title>.+</title>' "$file" 2>/dev/null) || true
+  has_root_vars=$(grep -c ':root' "$file" 2>/dev/null) || true
 
   if [ "$has_doctype" -eq 0 ]; then
     echo -e "${RED}  ✗ Missing <!DOCTYPE html>${NC}"
@@ -133,19 +133,19 @@ for file in "${files[@]}"; do
   fi
 
   # ── 6. Check for SPA views consistency ──
-  view_count=$(grep -cP 'class="view' "$file" 2>/dev/null || echo 0)
+  view_count=$(grep -c 'class="view' "$file" 2>/dev/null) || true
   if [ "$view_count" -gt 1 ]; then
     echo -e "  ℹ SPA detected: ${view_count} views"
 
     # Check each view has data-comment
-    views_without_dc=$(grep -cP 'class="view[^"]*"(?![^>]*data-comment)' "$file" 2>/dev/null || echo 0)
+    views_without_dc=$(perl -0777 -ne '$c++ while /class="view[^"]*"(?![^>]*?data-comment)/g; print $c+0' "$file" 2>/dev/null) || true
     if [ "$views_without_dc" -gt 0 ]; then
       echo -e "${RED}  ✗ ${views_without_dc} view(s) missing data-comment${NC}"
       ((file_errors++))
     fi
 
     # Check navigate function exists
-    has_navigate=$(grep -c 'function navigate' "$file" 2>/dev/null || echo 0)
+    has_navigate=$(grep -c 'function navigate' "$file" 2>/dev/null) || true
     if [ "$has_navigate" -eq 0 ]; then
       echo -e "${YELLOW}  ⚠ SPA views found but no navigate() function${NC}"
       ((file_warnings++))

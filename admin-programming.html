@@ -126,6 +126,24 @@
       .rssc-admin-wordmark__text { font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: -0.015em; }
       .rssc-admin-page-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: #171717; white-space: nowrap; }
       .rssc-admin-sidebar-footer { display: flex; flex-direction: column; gap: 6px; }
+      .rssc-search-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border:1px solid #e8e8e3;border-radius:12px;box-shadow:0 4px 6px -2px rgba(23,23,23,.06),0 12px 24px -4px rgba(23,23,23,.12);overflow:hidden;min-width:320px;z-index:60;}
+      .rssc-search-dd-section{display:flex;flex-direction:column;border-bottom:1px solid #f1f1ee;}
+      .rssc-search-dd-section:last-child{border-bottom:none;}
+      .rssc-search-dd-section-head{display:flex;align-items:center;gap:6px;padding:8px 14px 6px;}
+      .rssc-search-dd-section-label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8c8a80;flex:1;}
+      .rssc-search-dd-clear{appearance:none;border:none;background:transparent;font-size:11px;font-weight:500;color:#3d5afe;cursor:pointer;padding:0;font-family:inherit;}
+      .rssc-search-dd-clear:hover{color:#2f4af6;}
+      .rssc-search-dd-row{appearance:none;border:none;background:transparent;width:100%;display:flex;align-items:center;gap:10px;padding:9px 14px;text-align:left;cursor:pointer;font-family:inherit;transition:background 80ms;text-decoration:none;color:inherit;}
+      .rssc-search-dd-row:hover{background:#f8f8f6;}
+      .rssc-search-dd-row-title{font-size:13px;font-weight:500;color:#171717;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .rssc-search-dd-row-meta{font-size:12px;color:#8c8a80;white-space:nowrap;flex-shrink:0;}
+      .rssc-search-dd-footer{border-top:1px solid #f1f1ee;padding:6px 8px;}
+      .rssc-search-dd-see-all{appearance:none;border:none;background:transparent;width:100%;display:flex;align-items:center;gap:8px;padding:8px;text-align:left;cursor:pointer;font-family:inherit;font-size:13px;color:#4b4a45;border-radius:8px;transition:background 80ms;}
+      .rssc-search-dd-see-all:hover{background:#f1f1ee;color:#171717;}
+      .rssc-search-dd-see-all strong{color:#171717;font-weight:600;}
+      .rssc-search-dd-empty{padding:20px 16px;font-size:13px;color:#8c8a80;text-align:center;}
+      .rssc-search-dd-empty strong{color:#4b4a45;font-weight:500;}
+      .rssc-search-highlight{background:#fef3c7;color:inherit;border-radius:2px;padding:0 1px;}
       .rssc-admin-search { position: relative; width: 280px; flex-shrink: 0; }
       .rssc-admin-notifications { position: relative; flex-shrink: 0; }
       .rssc-admin-icon-btn { appearance: none; background: transparent; border: none; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #4b4a45; flex-shrink: 0; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), color 120ms cubic-bezier(0.2, 0, 0, 1); position: relative; }
@@ -369,13 +387,13 @@
             <span class="rssc-admin-page-title" data-comment="admin-page-title">Programming</span>
           </div>
           <div class="rssc-app-header__trailing">
-            <div class="rssc-admin-search" data-comment="admin-search">
+            <div class="rssc-admin-search" id="admin-search-wrap" data-comment="admin-search">
               <div class="rssc-field-root rssc-input-root rssc-input-root--full-width">
                 <div class="rssc-input-shell rssc-input-shell--sm">
                   <span class="rssc-input-affix" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.25"/><path d="m16 16 4 4"/></svg></span>
                   <input id="admin-search-input" class="rssc-input-element rssc-input-element--sm" type="text" placeholder="Search members, classes, payments…" autocomplete="off" data-comment="admin-search-input" />
                 </div>
-              </div>
+              </div><div class="rssc-search-dropdown" id="admin-search-dropdown" role="listbox" aria-label="Search suggestions" style="display:none" data-comment="admin-search-dropdown"></div>
             </div>
             <div class="rssc-admin-notifications" id="admin-notifications-wrap" data-comment="admin-notifications-wrap">
               <button class="rssc-admin-icon-btn" id="admin-notifications-btn" aria-label="Notifications" aria-haspopup="dialog" type="button" data-comment="admin-notifications-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg><span class="rssc-admin-icon-btn-badge" id="admin-notif-badge" aria-hidden="true" data-comment="admin-notif-badge"></span></button>
@@ -1146,7 +1164,56 @@
         });
         uiStore.subscribe(() => { renderDrawer(); renderNotifications(); renderAccountMenu(); });
         renderDrawer(); renderNotifications(); renderAccountMenu();
-      })();
+        // ─── Search dropdown (in-memory store for recent searches) ─────
+        (function initSearchDropdown(){
+          const input=document.getElementById("admin-search-input");
+          const wrap=document.getElementById("admin-search-wrap");
+          const dropdown=document.getElementById("admin-search-dropdown");
+          if(!input||!wrap||!dropdown)return;
+          function el2(tag,attrs,children){const n=document.createElement(tag);if(attrs)for(const k in attrs){if(k==="className")n.className=attrs[k];else if(k==="textContent")n.textContent=attrs[k];else if(attrs[k]!=null)n.setAttribute(k,attrs[k]);}if(children)for(const c of children)if(c)n.appendChild(c);return n;}
+          const MEMBERS_LITE=[
+            {id:"1",name:"Jordan Mitchell",email:"jordan.m@email.com",type:"Regular",status:"Active",flags:["at-risk"]},
+            {id:"2",name:"Sarah Chen",email:"sarah.c@email.com",type:"Regular",status:"Active",flags:["postpartum","new"]},
+            {id:"3",name:"Marcus Webb",email:"marcus.w@email.com",type:"Regular",status:"Active",flags:["payment-failed"]},
+            {id:"4",name:"Priya Nair",email:"priya.n@email.com",type:"Student",status:"Active",flags:["new"]},
+            {id:"5",name:"Tom Bracken",email:"tom.b@email.com",type:"Regular",status:"On hold",flags:[]},
+            {id:"6",name:"Elena Vasquez",email:"elena.v@email.com",type:"Regular",status:"Active",flags:["pregnant"]},
+            {id:"7",name:"James Okafor",email:"james.o@email.com",type:"Senior",status:"Active",flags:[]},
+            {id:"8",name:"Mia Thornton",email:"mia.t@email.com",type:"Regular",status:"Active",flags:["injured"]},
+            {id:"9",name:"Raj Patel",email:"raj.p@email.com",type:"Open gym",status:"Active",flags:[]},
+            {id:"10",name:"Caitlin Burns",email:"caitlin.b@email.com",type:"Regular",status:"Cancelled",flags:[]},
+            {id:"11",name:"Mike Ruiz",email:"mike.r@email.com",type:"Regular",status:"Active",flags:[]},
+            {id:"12",name:"Aoife Kelly",email:"aoife.k@email.com",type:"Student",status:"Active",flags:["new"]},
+          ];
+          const CLASS_RESULTS=[
+            {id:"c1",type:"class",title:"CrossFit · 06:00",meta:"Mike R. · 8/12",href:"admin-classes.html",keywords:["crossfit","06:00","mike","class"]},
+            {id:"c2",type:"class",title:"CrossFit · 09:15",meta:"Sarah T. · Full",href:"admin-classes.html",keywords:["crossfit","09:15","sarah","class","full"]},
+            {id:"c3",type:"class",title:"Open Gym · 12:00",meta:"Mike R. · 4/12",href:"admin-classes.html",keywords:["open gym","12:00","mike","class"]},
+            {id:"c4",type:"class",title:"CrossFit · 17:30",meta:"Bronwyn K. · 10/12",href:"admin-classes.html",keywords:["crossfit","17:30","bronwyn","class"]},
+          ];
+          const MEMBER_RESULTS=MEMBERS_LITE.map((m)=>({id:"member-"+m.id,type:"member",title:m.name,meta:m.type+" · "+m.status,href:"admin-member-profile.html",keywords:[m.name,m.email,m.type.toLowerCase(),m.status.toLowerCase()].concat(m.flags)}));
+          const PAYMENTS_LITE=[
+            {id:"payment-marcus",title:"Marcus Webb · Payment failed",meta:"Apr 10, 2026 · CA$130.00",kws:["marcus","webb","payment","billing","failed"]},
+            {id:"payment-tom",title:"Tom Bracken · Hold ending soon",meta:"May 6, 2026 · CA$130.00",kws:["tom","bracken","hold","billing"]},
+            {id:"payment-sarah",title:"Sarah Chen · Due this week",meta:"Apr 15, 2026 · CA$130.00",kws:["sarah","chen","payment","billing"]},
+            {id:"payment-jordan",title:"Jordan Mitchell · Scheduled",meta:"May 1, 2026 · CA$130.00",kws:["jordan","mitchell","payment","billing"]},
+          ];
+          const PAYMENT_RESULTS=PAYMENTS_LITE.map((p)=>({id:p.id,type:"payment",title:p.title,meta:p.meta,href:"admin-billing.html",keywords:p.kws.concat(["payment","billing","stripe"])}));
+          const SEARCH_INDEX=MEMBER_RESULTS.concat(CLASS_RESULTS,PAYMENT_RESULTS);
+          function doSearch(q){const t=q.toLowerCase().trim();if(!t)return[];return SEARCH_INDEX.filter((it)=>it.keywords.some((k)=>(k||"").toLowerCase().includes(t)));}
+          const sdStore={history:[],listeners:new Set()};
+          function pushHistory(q){sdStore.history=[q].concat(sdStore.history.filter((x)=>x!==q)).slice(0,5);if(dropdown.style.display==="block")render();}
+          function highlightNodes(text,q){const qq=q.toLowerCase();const lower=text.toLowerCase();const idx=lower.indexOf(qq);if(idx===-1)return[document.createTextNode(text)];return[document.createTextNode(text.slice(0,idx)),el2("mark",{className:"rssc-search-highlight",textContent:text.slice(idx,idx+q.length)}),document.createTextNode(text.slice(idx+q.length))];}
+          function sectionHead(label,onClear){const head=el2("div",{className:"rssc-search-dd-section-head","data-comment":"admin-search-dd-"+label.toLowerCase()+"-head"},[el2("span",{className:"rssc-search-dd-section-label",textContent:label})]);if(onClear){const btn=el2("button",{type:"button",className:"rssc-search-dd-clear","data-comment":"admin-search-dd-clear",textContent:"Clear"});btn.addEventListener("click",(e)=>{e.stopPropagation();onClear();});head.appendChild(btn);}return head;}
+          function historyRow(q){const row=el2("button",{type:"button",className:"rssc-search-dd-row",role:"option","data-comment":"admin-search-dd-history-"+encodeURIComponent(q)},[el2("span",{className:"rssc-search-dd-row-title",textContent:q})]);row.addEventListener("click",()=>{input.value=q;render();});return row;}
+          function resultRow(item,query){const titleSpan=el2("span",{className:"rssc-search-dd-row-title"},highlightNodes(item.title,query));const children=[titleSpan];if(item.meta)children.push(el2("span",{className:"rssc-search-dd-row-meta",textContent:item.meta}));const a=el2("a",{className:"rssc-search-dd-row",href:item.href,role:"option","data-comment":"admin-search-dd-result-"+item.id},children);a.addEventListener("click",()=>pushHistory(query));return a;}
+          function renderSection(label,items,query){const section=el2("div",{className:"rssc-search-dd-section","data-comment":"admin-search-dd-section-"+label.toLowerCase()},[sectionHead(label)]);items.slice(0,4).forEach((it)=>section.appendChild(resultRow(it,query)));return section;}
+          function render(){const q=input.value;const trimmed=q.trim();const results=doSearch(trimmed);const members=results.filter((r)=>r.type==="member");const classes=results.filter((r)=>r.type==="class");const payments=results.filter((r)=>r.type==="payment");const showHistory=!trimmed&&sdStore.history.length>0;dropdown.replaceChildren();if(!trimmed&&!showHistory){dropdown.style.display="none";return;}if(showHistory){const head=sectionHead("Recent",()=>{sdStore.history=[];render();});const section=el2("div",{className:"rssc-search-dd-section","data-comment":"admin-search-dd-section-recent"},[head]);sdStore.history.forEach((h)=>section.appendChild(historyRow(h)));dropdown.appendChild(section);}if(results.length>0){if(members.length)dropdown.appendChild(renderSection("Members",members,trimmed));if(classes.length)dropdown.appendChild(renderSection("Classes",classes,trimmed));if(payments.length)dropdown.appendChild(renderSection("Payments",payments,trimmed));const footer=el2("div",{className:"rssc-search-dd-footer","data-comment":"admin-search-dd-footer"});const seeAll=el2("button",{type:"button",className:"rssc-search-dd-see-all","data-comment":"admin-search-dd-see-all"});seeAll.appendChild(document.createTextNode('See all results for "'));seeAll.appendChild(el2("strong",{textContent:trimmed}));seeAll.appendChild(document.createTextNode('"'));seeAll.addEventListener("click",()=>{pushHistory(trimmed);window.location.href="admin-search.html?q="+encodeURIComponent(trimmed);});footer.appendChild(seeAll);dropdown.appendChild(footer);}else if(trimmed){const empty=el2("div",{className:"rssc-search-dd-empty","data-comment":"admin-search-dd-empty"});empty.appendChild(document.createTextNode('No results for "'));empty.appendChild(el2("strong",{textContent:trimmed}));empty.appendChild(document.createTextNode('"'));dropdown.appendChild(empty);}dropdown.style.display="block";}
+          input.addEventListener("focus",render);
+          input.addEventListener("input",render);
+          input.addEventListener("keydown",(e)=>{if(e.key==="Escape"){dropdown.style.display="none";input.blur();}else if(e.key==="Enter"){const q=input.value.trim();if(!q)return;pushHistory(q);window.location.href="admin-search.html?q="+encodeURIComponent(q);}});
+          document.addEventListener("mousedown",(e)=>{if(!wrap.contains(e.target))dropdown.style.display="none";});
+        })();      })();
     </script>
   </body>
 </html>

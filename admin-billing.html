@@ -139,6 +139,36 @@
       .rssc-billing-amount{font-size:14px;font-weight:600;color:#171717;font-variant-numeric:tabular-nums;}
       .rssc-billing-date{font-size:13px;color:#4b4a45;}
 
+      /* Billing drawer */
+      .rssc-billing-drawer-overlay{position:fixed;inset:0;background:rgba(23,23,23,.45);z-index:100;display:none;animation:rssc-modal-fade-in 160ms cubic-bezier(0.2,0,0,1) both;}
+      .rssc-billing-drawer-overlay[data-open="true"]{display:block;}
+      @keyframes rssc-modal-fade-in{from{opacity:0;}to{opacity:1;}}
+      .rssc-billing-drawer{position:fixed;top:0;right:0;bottom:0;width:480px;max-width:calc(100vw - 40px);background:#fff;border-left:1px solid #e8e8e3;z-index:101;display:none;flex-direction:column;transform:translateX(100%);transition:transform 240ms cubic-bezier(0.2,0,0,1);box-shadow:-4px 0 24px rgba(23,23,23,.08);}
+      .rssc-billing-drawer[data-open="true"]{display:flex;transform:translateX(0);}
+      .rssc-billing-drawer-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-billing-drawer-heading{display:flex;flex-direction:column;gap:4px;}
+      .rssc-billing-drawer-title{font-size:18px;font-weight:600;color:#171717;line-height:24px;letter-spacing:-.01em;}
+      .rssc-billing-drawer-subtitle{font-size:13px;color:#8c8a80;}
+      .rssc-billing-drawer-close{appearance:none;background:transparent;border:none;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8c8a80;flex-shrink:0;transition:background 120ms,color 120ms;}
+      .rssc-billing-drawer-close:hover{background:#f1f1ee;color:#171717;}
+      .rssc-billing-drawer-body{padding:20px 24px;display:flex;flex-direction:column;gap:16px;overflow-y:auto;flex:1;}
+      .rssc-billing-drawer-section{display:flex;flex-direction:column;gap:8px;}
+      .rssc-billing-drawer-section-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8c8a80;}
+      .rssc-billing-drawer-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+      .rssc-billing-drawer-field{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid #f1f1ee;border-radius:10px;background:#fcfcfb;}
+      .rssc-billing-drawer-field-label{font-size:11px;color:#8c8a80;}
+      .rssc-billing-drawer-field-value{font-size:14px;font-weight:500;color:#171717;}
+      .rssc-billing-drawer-summary{padding:12px;background:#fcfcfb;border:1px solid #f1f1ee;border-radius:10px;font-size:13px;line-height:19px;color:#4b4a45;}
+      .rssc-billing-drawer-next{padding:12px 14px;background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;display:flex;flex-direction:column;gap:4px;}
+      .rssc-billing-drawer-next-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#3d5afe;}
+      .rssc-billing-drawer-next-text{font-size:13px;line-height:18px;color:#171717;}
+      .rssc-billing-timeline{display:flex;flex-direction:column;}
+      .rssc-billing-timeline-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f3;}
+      .rssc-billing-timeline-row:last-child{border-bottom:none;}
+      .rssc-billing-timeline-date{font-size:12px;color:#8c8a80;min-width:56px;flex-shrink:0;}
+      .rssc-billing-timeline-text{flex:1;font-size:13px;color:#4b4a45;line-height:18px;}
+      .rssc-billing-drawer-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-shrink:0;}
+
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:767px){.rssc-app-shell{grid-template-columns:1fr;}.rssc-app-shell__sidebar{display:none;}.rssc-app-header{padding:0 16px;}.rssc-page-layout{padding:20px 16px;}.rssc-admin-menu-btn{display:flex;}.rssc-admin-search{display:none;}}
     </style>
@@ -272,6 +302,53 @@
       </div>
     </div>
 
+    <!-- Billing drawer -->
+    <div class="rssc-billing-drawer-overlay" id="billing-drawer-overlay" aria-hidden="true" data-comment="billing-drawer-overlay"></div>
+    <aside class="rssc-billing-drawer" id="billing-drawer" role="dialog" aria-modal="true" aria-label="Account details" data-comment="billing-drawer">
+      <div class="rssc-billing-drawer-header" data-comment="billing-drawer-header">
+        <div class="rssc-billing-drawer-heading" data-comment="billing-drawer-heading">
+          <span class="rssc-billing-drawer-title" id="drawer-member" data-comment="billing-drawer-title">—</span>
+          <span class="rssc-billing-drawer-subtitle" id="drawer-plan" data-comment="billing-drawer-subtitle">—</span>
+        </div>
+        <button class="rssc-billing-drawer-close" id="billing-drawer-close" aria-label="Close" type="button" data-comment="billing-drawer-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      </div>
+      <div class="rssc-billing-drawer-body" data-comment="billing-drawer-body">
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-meta-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-meta-label">At a glance</span>
+          <div class="rssc-billing-drawer-field-grid" data-comment="billing-drawer-field-grid">
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-status"><span class="rssc-billing-drawer-field-label">Status</span><span id="drawer-status" data-comment="billing-drawer-status-value"><span class="rssc-badge rssc-badge--neutral"><span>—</span></span></span></div>
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-amount"><span class="rssc-billing-drawer-field-label">Amount</span><span class="rssc-billing-drawer-field-value" id="drawer-amount" data-comment="billing-drawer-amount">—</span></div>
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-next"><span class="rssc-billing-drawer-field-label">Next charge</span><span class="rssc-billing-drawer-field-value" id="drawer-next-charge" data-comment="billing-drawer-next-charge">—</span></div>
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-qb"><span class="rssc-billing-drawer-field-label">QuickBooks</span><span id="drawer-qb" data-comment="billing-drawer-qb-value"><span class="rssc-badge rssc-badge--neutral"><span>—</span></span></span></div>
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-owner"><span class="rssc-billing-drawer-field-label">Owner</span><span class="rssc-billing-drawer-field-value" id="drawer-owner" data-comment="billing-drawer-owner">—</span></div>
+            <div class="rssc-billing-drawer-field" data-comment="billing-drawer-field-stripe"><span class="rssc-billing-drawer-field-label">Stripe customer</span><span class="rssc-billing-drawer-field-value" id="drawer-stripe" data-comment="billing-drawer-stripe">—</span></div>
+          </div>
+        </div>
+
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-summary-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-summary-label">Summary</span>
+          <div class="rssc-billing-drawer-summary" id="drawer-summary" data-comment="billing-drawer-summary">—</div>
+        </div>
+
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-next-action-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-next-action-label">Next action</span>
+          <div class="rssc-billing-drawer-next" data-comment="billing-drawer-next-card">
+            <span class="rssc-billing-drawer-next-label" data-comment="billing-drawer-next-card-label">Up next</span>
+            <span class="rssc-billing-drawer-next-text" id="drawer-next-action" data-comment="billing-drawer-next-action-text">—</span>
+          </div>
+        </div>
+
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-timeline-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-timeline-label">Timeline</span>
+          <div class="rssc-billing-timeline" id="drawer-timeline" data-comment="billing-drawer-timeline"></div>
+        </div>
+      </div>
+      <div class="rssc-billing-drawer-footer" data-comment="billing-drawer-footer">
+        <a id="drawer-member-link" href="admin-member-profile.html" class="rssc-button rssc-button--secondary rssc-button--sm" data-comment="billing-drawer-member-link"><span class="rssc-button__label">Open member</span></a>
+        <button type="button" class="rssc-button rssc-button--sm" id="drawer-retry-btn" data-comment="billing-drawer-retry-btn"><span class="rssc-button__label">Retry charge</span></button>
+      </div>
+    </aside>
+
     <script>
       (function(){
         const SVG_NS="http://www.w3.org/2000/svg";
@@ -284,18 +361,18 @@
         function createStore(i){let s=structuredClone(i);const ls=new Set();return{get:()=>s,set(u){s=typeof u==="function"?u(s):{...s,...u};ls.forEach((f)=>f(s));},subscribe(f){ls.add(f);return()=>ls.delete(f);}};}
 
         const ACCOUNTS=[
-          {id:"billing-marcus-webb",member:"Marcus Webb",plan:"Regular membership",amount:130,statusLabel:"Payment failed",statusVariant:"danger",nextCharge:"Apr 10, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"Katie",group:"action-queue"},
-          {id:"billing-tom-bracken",member:"Tom Bracken",plan:"Regular membership",amount:130,statusLabel:"Hold ending soon",statusVariant:"warning",nextCharge:"May 6, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Katie",group:"action-queue"},
-          {id:"billing-mia-thornton",member:"Mia Thornton",plan:"Regular membership",amount:130,statusLabel:"Card update needed",statusVariant:"warning",nextCharge:"Apr 18, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"System",group:"action-queue"},
-          {id:"billing-sarah-chen",member:"Sarah Chen",plan:"Regular membership",amount:130,statusLabel:"Due this week",statusVariant:"info",nextCharge:"Apr 15, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"System",group:"upcoming"},
-          {id:"billing-priya-nair",member:"Priya Nair",plan:"Student membership",amount:85,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"Apr 20, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-aoife-kelly",member:"Aoife Kelly",plan:"Student membership",amount:85,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"Apr 28, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-jordan-mitchell",member:"Jordan Mitchell",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-elena-vasquez",member:"Elena Vasquez",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-james-okafor",member:"James Okafor",plan:"Senior membership",amount:100,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-raj-patel",member:"Raj Patel",plan:"Open gym membership",amount:60,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-mike-ruiz",member:"Mike Ruiz",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all"},
-          {id:"billing-caitlin-burns",member:"Caitlin Burns",plan:"Regular membership",amount:0,statusLabel:"Cancelled",statusVariant:"neutral",nextCharge:"—",qbLabel:"Synced",qbVariant:"success",owner:"Katie",group:"all"},
+          {id:"billing-marcus-webb",member:"Marcus Webb",plan:"Regular membership",amount:130,statusLabel:"Payment failed",statusVariant:"danger",nextCharge:"Apr 10, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"Katie",group:"action-queue",stripeId:"cus_rssc_1003",summary:"Card declined on the Apr 1 renewal and the retry window lands before the weekend.",nextAction:"Get an updated payment method before the Apr 10 retry runs.",timeline:[{date:"Apr 8",text:"Reminder email queued with a direct Stripe update link."},{date:"Apr 2",text:"Katie logged follow-up after the first decline."},{date:"Apr 1",text:"Auto-charge failed with a card declined response."}]},
+          {id:"billing-tom-bracken",member:"Tom Bracken",plan:"Regular membership",amount:130,statusLabel:"Hold ending soon",statusVariant:"warning",nextCharge:"May 6, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Katie",group:"action-queue",stripeId:"cus_rssc_1005",summary:"Hold ends May 5, so billing should restart only after Katie confirms the member is coming back.",nextAction:"Reach out this week and either resume billing or extend the hold.",timeline:[{date:"Apr 8",text:"Return reminder added to Katie's follow-up queue."},{date:"Mar 29",text:"Membership placed on hold for work travel until May."},{date:"Mar 1",text:"Last successful recurring payment collected."}]},
+          {id:"billing-mia-thornton",member:"Mia Thornton",plan:"Regular membership",amount:130,statusLabel:"Card update needed",statusVariant:"warning",nextCharge:"Apr 18, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"System",group:"action-queue",stripeId:"cus_rssc_1008",summary:"Payment method expires before the next renewal, so the system has already queued a card update request.",nextAction:"Confirm the member updates the card before Apr 18.",timeline:[{date:"Apr 8",text:"Card expiry alert triggered from Stripe billing data."},{date:"Apr 8",text:"Member update link sent automatically by email."},{date:"Mar 18",text:"Last monthly renewal processed successfully."}]},
+          {id:"billing-sarah-chen",member:"Sarah Chen",plan:"Regular membership",amount:130,statusLabel:"Due this week",statusVariant:"info",nextCharge:"Apr 15, 2026",qbLabel:"Pending export",qbVariant:"warning",owner:"System",group:"upcoming",stripeId:"cus_rssc_1002",summary:"First full renewal after onboarding. No manual action unless the payment method changes.",nextAction:"Watch the Apr 15 renewal and let automation do the work.",timeline:[{date:"Apr 7",text:"Upcoming charge reminder will send 48 hours before renewal."},{date:"Mar 15",text:"Starter month payment captured successfully."},{date:"Mar 27",text:"Member created with recurring billing enabled."}]},
+          {id:"billing-priya-nair",member:"Priya Nair",plan:"Student membership",amount:85,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"Apr 20, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1004",summary:"Recurring billing is healthy and the next renewal sits outside the near-term action window.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 1",text:"Charge schedule confirmed for the Apr 20 renewal."},{date:"Mar 20",text:"Recurring student membership renewed successfully."},{date:"Feb 20",text:"Initial payment method captured in Stripe."}]},
+          {id:"billing-aoife-kelly",member:"Aoife Kelly",plan:"Student membership",amount:85,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"Apr 28, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1012",summary:"Newer student account with a clean billing history so far.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 3",text:"Next recurring payment queued for Apr 28."},{date:"Mar 28",text:"Latest student membership renewal succeeded."},{date:"Feb 28",text:"Recurring billing profile created."}]},
+          {id:"billing-jordan-mitchell",member:"Jordan Mitchell",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1001",summary:"Billing is healthy even though attendance needs attention on the member side.",nextAction:"No billing action needed.",timeline:[{date:"Apr 1",text:"Monthly charge captured successfully."},{date:"Mar 1",text:"Recurring billing renewed."},{date:"Feb 1",text:"Recurring billing renewed."}]},
+          {id:"billing-elena-vasquez",member:"Elena Vasquez",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1006",summary:"Stable recurring account with no finance-side friction.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 1",text:"Monthly charge captured successfully."},{date:"Mar 1",text:"Recurring renewal completed."},{date:"Feb 1",text:"Recurring renewal completed."}]},
+          {id:"billing-james-okafor",member:"James Okafor",plan:"Senior membership",amount:100,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1007",summary:"Long-running membership with a predictable monthly cadence.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 1",text:"Senior membership renewal succeeded."},{date:"Mar 1",text:"Senior membership renewal succeeded."},{date:"Feb 1",text:"Senior membership renewal succeeded."}]},
+          {id:"billing-raj-patel",member:"Raj Patel",plan:"Open gym membership",amount:60,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1009",summary:"Lean open-gym plan with a clean recurring history.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 1",text:"Open gym renewal captured successfully."},{date:"Mar 1",text:"Open gym renewal captured successfully."},{date:"Feb 1",text:"Open gym renewal captured successfully."}]},
+          {id:"billing-mike-ruiz",member:"Mike Ruiz",plan:"Regular membership",amount:130,statusLabel:"Scheduled",statusVariant:"success",nextCharge:"May 1, 2026",qbLabel:"Synced",qbVariant:"success",owner:"Stripe",group:"all",stripeId:"cus_rssc_1011",summary:"Stable regular membership with no billing exceptions.",nextAction:"No follow-up needed.",timeline:[{date:"Apr 1",text:"Regular renewal succeeded."},{date:"Mar 1",text:"Regular renewal succeeded."},{date:"Feb 1",text:"Regular renewal succeeded."}]},
+          {id:"billing-caitlin-burns",member:"Caitlin Burns",plan:"Regular membership",amount:0,statusLabel:"Cancelled",statusVariant:"neutral",nextCharge:"—",qbLabel:"Synced",qbVariant:"success",owner:"Katie",group:"all",stripeId:"cus_rssc_1010",summary:"Membership closed after the member moved away; kept for history and export continuity.",nextAction:"No billing action needed.",timeline:[{date:"Feb 28",text:"Membership cancelled by Katie after member conversation."},{date:"Feb 14",text:"Final attended class logged."},{date:"Feb 1",text:"Final recurring payment collected."}]},
         ];
 
         const store=createStore({activeTab:"action-queue"});
@@ -314,7 +391,7 @@
           const tbody=document.getElementById("billing-tbody");
           tbody.replaceChildren(...rows.map((a)=>{
             const dc="billing-row-"+a.id;
-            const tr=el("tr",{"data-comment":dc});
+            const tr=el("tr",{"data-comment":dc,"data-account-id":a.id});
             tr.appendChild(el("td",{"data-comment":dc+"-member-cell"},[el("div",{className:"rssc-billing-name-cell"},[
               el("span",{className:"rssc-billing-member-name",textContent:a.member}),
               el("span",{className:"rssc-billing-plan",textContent:a.plan}),
@@ -324,9 +401,49 @@
             tr.appendChild(el("td",{"data-comment":dc+"-next-cell"},[el("span",{className:"rssc-billing-date",textContent:a.nextCharge})]));
             tr.appendChild(el("td",{"data-comment":dc+"-qb-cell"},[el("span",{className:"rssc-badge rssc-badge--"+a.qbVariant},[el("span",{textContent:a.qbLabel})])]));
             tr.appendChild(el("td",{"data-comment":dc+"-owner-cell"},[el("span",{className:"rssc-billing-date",textContent:a.owner})]));
+            tr.addEventListener("click",()=>openDrawer(a.id));
             return tr;
           }));
         }
+
+        // ── Drawer ──
+        function openDrawer(accountId){
+          const a=ACCOUNTS.find((x)=>x.id===accountId);
+          if(!a)return;
+          document.getElementById("drawer-member").textContent=a.member;
+          document.getElementById("drawer-plan").textContent=a.plan;
+          document.getElementById("drawer-amount").textContent=a.amount>0?fmtCad(a.amount):"—";
+          document.getElementById("drawer-next-charge").textContent=a.nextCharge;
+          document.getElementById("drawer-owner").textContent=a.owner;
+          document.getElementById("drawer-stripe").textContent=a.stripeId;
+          document.getElementById("drawer-summary").textContent=a.summary;
+          document.getElementById("drawer-next-action").textContent=a.nextAction;
+          document.getElementById("drawer-status").replaceChildren(
+            el("span",{className:"rssc-badge rssc-badge--"+a.statusVariant},[el("span",{textContent:a.statusLabel})]),
+          );
+          document.getElementById("drawer-qb").replaceChildren(
+            el("span",{className:"rssc-badge rssc-badge--"+a.qbVariant},[el("span",{textContent:a.qbLabel})]),
+          );
+          document.getElementById("drawer-timeline").replaceChildren(
+            ...a.timeline.map((t,i)=>el("div",{className:"rssc-billing-timeline-row","data-comment":"billing-drawer-timeline-row-"+(i+1)},[
+              el("span",{className:"rssc-billing-timeline-date",textContent:t.date}),
+              el("span",{className:"rssc-billing-timeline-text",textContent:t.text}),
+            ])),
+          );
+          document.getElementById("billing-drawer-overlay").setAttribute("data-open","true");
+          document.getElementById("billing-drawer").setAttribute("data-open","true");
+          document.body.style.overflow="hidden";
+        }
+        function closeDrawer(){
+          document.getElementById("billing-drawer-overlay").setAttribute("data-open","false");
+          document.getElementById("billing-drawer").setAttribute("data-open","false");
+          document.body.style.overflow="";
+        }
+        document.getElementById("billing-drawer-overlay").addEventListener("click",closeDrawer);
+        document.getElementById("billing-drawer-close").addEventListener("click",closeDrawer);
+        document.addEventListener("keydown",function(e){
+          if(e.key==="Escape"&&document.getElementById("billing-drawer").getAttribute("data-open")==="true"){closeDrawer();}
+        });
 
         document.querySelectorAll("[data-tab]").forEach((btn)=>{
           btn.addEventListener("click",()=>store.set({activeTab:btn.getAttribute("data-tab")}));

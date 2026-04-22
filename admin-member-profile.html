@@ -190,7 +190,30 @@
       .rssc-profile-note-meta{font-size:11px;color:#8c8a80;}
       .rssc-profile-note-text{font-size:13px;color:#4b4a45;line-height:18px;}
 
+      /* Modal */
+      .rssc-modal-overlay{position:fixed;inset:0;background:rgba(23,23,23,.45);z-index:100;display:none;align-items:center;justify-content:center;padding:24px 16px;animation:rssc-modal-fade-in 160ms cubic-bezier(0.2,0,0,1) both;}
+      .rssc-modal-overlay[data-open="true"]{display:flex;}
+      @keyframes rssc-modal-fade-in{from{opacity:0;}to{opacity:1;}}
+      .rssc-modal-dialog{width:100%;max-width:480px;background:#fff;border:1px solid #e8e8e3;border-radius:16px;box-shadow:0 2px 6px rgba(23,23,23,.06),0 10px 28px rgba(23,23,23,.12);display:flex;flex-direction:column;max-height:calc(100dvh - 48px);overflow:hidden;animation:rssc-modal-slide-up 200ms cubic-bezier(0.2,0,0,1) both;}
+      @keyframes rssc-modal-slide-up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+      .rssc-modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-modal-title{font-size:16px;font-weight:600;line-height:24px;letter-spacing:-.01em;color:#171717;}
+      .rssc-modal-close{appearance:none;background:transparent;border:none;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8c8a80;flex-shrink:0;transition:background 120ms,color 120ms;}
+      .rssc-modal-close:hover{background:#f1f1ee;color:#171717;}
+      .rssc-modal-body{padding:24px;display:flex;flex-direction:column;gap:16px;overflow-y:auto;flex:1;}
+      .rssc-modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+      .rssc-modal-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-modal-intro{margin:0;font-size:13px;line-height:20px;color:#4b4a45;}
+      .rssc-modal-section-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8c8a80;}
+      .rssc-select-native{appearance:none;-webkit-appearance:none;width:100%;min-height:40px;padding:0 36px 0 12px;border-radius:12px;border:1px solid #e8e8e3;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238c8a80' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>") no-repeat right 12px center;color:#171717;font-family:inherit;font-size:14px;line-height:20px;cursor:pointer;transition:border-color 120ms,box-shadow 120ms;}
+      .rssc-select-native:hover{border-color:#ddddd6;}
+      .rssc-select-native:focus-visible{outline:none;border-color:#3d5afe;box-shadow:var(--rssc-focus-shadow);}
+      .rssc-field-message{color:#8c8a80;font-size:12px;line-height:16px;}
+      .rssc-button--submit-danger{background:#dc2626;color:#fff;border-color:transparent;}
+      .rssc-button--submit-danger:hover:not(:disabled){background:#b91c1c;}
+
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
+      @media (max-width:479px){.rssc-modal-row{grid-template-columns:1fr;}}
       @media (max-width:767px){
         .rssc-app-shell{grid-template-columns:1fr;}
         .rssc-app-shell__sidebar{display:none;}
@@ -377,6 +400,83 @@
       </div>
     </div>
 
+    <!-- Edit Member Modal -->
+    <div class="rssc-modal-overlay" id="edit-modal" role="presentation" data-comment="edit-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-title" data-comment="edit-modal-dialog">
+        <div class="rssc-modal-header" data-comment="edit-modal-header">
+          <span class="rssc-modal-title" id="edit-title" data-comment="edit-modal-title">Edit member</span>
+          <button class="rssc-modal-close" id="edit-close" aria-label="Close" type="button" data-comment="edit-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="edit-form" novalidate data-comment="edit-modal-form">
+          <div class="rssc-modal-body">
+            <div class="rssc-modal-row" data-comment="edit-modal-name-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-first-name-field"><label class="rssc-field-label" for="edit-first-name" data-comment="edit-first-name-label">First name</label><div class="rssc-input-shell"><input id="edit-first-name" class="rssc-input-element" type="text" value="Jordan" data-comment="edit-first-name-input" /></div></div>
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-last-name-field"><label class="rssc-field-label" for="edit-last-name" data-comment="edit-last-name-label">Last name</label><div class="rssc-input-shell"><input id="edit-last-name" class="rssc-input-element" type="text" value="Mitchell" data-comment="edit-last-name-input" /></div></div>
+            </div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-email-field"><label class="rssc-field-label" for="edit-email" data-comment="edit-email-label">Email</label><div class="rssc-input-shell"><input id="edit-email" class="rssc-input-element" type="email" value="jordan.m@email.com" data-comment="edit-email-input" /></div></div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-phone-field"><label class="rssc-field-label" for="edit-phone" data-comment="edit-phone-label">Phone</label><div class="rssc-input-shell"><input id="edit-phone" class="rssc-input-element" type="tel" value="+1 555 234 5678" data-comment="edit-phone-input" /></div></div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-type-field"><label class="rssc-field-label" for="edit-type" data-comment="edit-type-label">Membership type</label><select id="edit-type" class="rssc-select-native" data-comment="edit-type-select"><option value="regular" selected>Regular</option><option value="senior">Senior</option><option value="student">Student</option><option value="open-gym">Open gym</option></select></div>
+            <div class="rssc-modal-section-label" data-comment="edit-emerg-label">Emergency contact</div>
+            <div class="rssc-modal-row" data-comment="edit-emerg-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-emerg-name-field"><label class="rssc-field-label" for="edit-emerg-name" data-comment="edit-emerg-name-label">Name</label><div class="rssc-input-shell"><input id="edit-emerg-name" class="rssc-input-element" type="text" value="Mary Mitchell" data-comment="edit-emerg-name-input" /></div></div>
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-emerg-relation-field"><label class="rssc-field-label" for="edit-emerg-relation" data-comment="edit-emerg-relation-label">Relation</label><div class="rssc-input-shell"><input id="edit-emerg-relation" class="rssc-input-element" type="text" value="Spouse" data-comment="edit-emerg-relation-input" /></div></div>
+            </div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="edit-emerg-phone-field"><label class="rssc-field-label" for="edit-emerg-phone" data-comment="edit-emerg-phone-label">Phone</label><div class="rssc-input-shell"><input id="edit-emerg-phone" class="rssc-input-element" type="tel" value="+1 555 234 9999" data-comment="edit-emerg-phone-input" /></div></div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="edit-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="edit-cancel" data-comment="edit-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="edit-submit" data-comment="edit-modal-submit"><span class="rssc-button__label" id="edit-submit-label">Save changes</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Put on Hold Modal -->
+    <div class="rssc-modal-overlay" id="hold-modal" role="presentation" data-comment="hold-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="hold-title" data-comment="hold-modal-dialog">
+        <div class="rssc-modal-header" data-comment="hold-modal-header">
+          <span class="rssc-modal-title" id="hold-title" data-comment="hold-modal-title">Put on hold</span>
+          <button class="rssc-modal-close" id="hold-close" aria-label="Close" type="button" data-comment="hold-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="hold-form" novalidate data-comment="hold-modal-form">
+          <div class="rssc-modal-body">
+            <p class="rssc-modal-intro" data-comment="hold-modal-intro">Pause membership access for Jordan Mitchell and capture the hold details the team needs for follow-up.</p>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="hold-reason-field"><label class="rssc-field-label" for="hold-reason" data-comment="hold-reason-label">Reason</label><select id="hold-reason" class="rssc-select-native" data-comment="hold-reason-select"><option value="" selected>Select reason</option><option value="travel">Travel</option><option value="injury">Injury</option><option value="medical">Medical</option><option value="financial">Financial</option><option value="other">Other</option></select><div class="rssc-field-message" data-comment="hold-reason-helper">Required for structured hold tracking</div></div>
+            <div class="rssc-modal-row" data-comment="hold-dates-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="hold-return-field"><label class="rssc-field-label" for="hold-return" data-comment="hold-return-label">Return date</label><div class="rssc-input-shell"><input id="hold-return" class="rssc-input-element" type="date" required data-comment="hold-return-input" /></div><div class="rssc-field-message" data-comment="hold-return-helper">Expected return to training</div></div>
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="hold-followup-field"><label class="rssc-field-label" for="hold-followup" data-comment="hold-followup-label">Follow-up date</label><div class="rssc-input-shell"><input id="hold-followup" class="rssc-input-element" type="date" required data-comment="hold-followup-input" /></div><div class="rssc-field-message" data-comment="hold-followup-helper">Required by MVP hold workflow</div></div>
+            </div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="hold-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="hold-cancel" data-comment="hold-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="hold-submit" disabled data-comment="hold-modal-submit"><span class="rssc-button__label" id="hold-submit-label">Put member on hold</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Cancel Membership Modal -->
+    <div class="rssc-modal-overlay" id="cancel-modal" role="presentation" data-comment="cancel-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cancel-title" data-comment="cancel-modal-dialog">
+        <div class="rssc-modal-header" data-comment="cancel-modal-header">
+          <span class="rssc-modal-title" id="cancel-title" data-comment="cancel-modal-title">Cancel membership</span>
+          <button class="rssc-modal-close" id="cancel-close" aria-label="Close" type="button" data-comment="cancel-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="cancel-form" novalidate data-comment="cancel-modal-form">
+          <div class="rssc-modal-body">
+            <p class="rssc-modal-intro" data-comment="cancel-modal-intro">You're cancelling <strong>Jordan Mitchell</strong>'s membership. This removes billing access and sets a follow-up flag for re-engagement outreach.</p>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="cancel-reason-field"><label class="rssc-field-label" for="cancel-reason" data-comment="cancel-reason-label">Cancellation reason</label><select id="cancel-reason" class="rssc-select-native" required data-comment="cancel-reason-select"><option value="" selected>Select reason</option><option value="moving">Moving away</option><option value="financial">Financial</option><option value="injury">Injury / health</option><option value="life">Life change</option><option value="pause">Taking a break</option><option value="unhappy">Dissatisfied</option><option value="other">Other</option></select><div class="rssc-field-message" data-comment="cancel-reason-helper">Required — captured for reporting and AI outreach</div></div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="cancel-followup-field"><label class="rssc-field-label" for="cancel-followup" data-comment="cancel-followup-label">Re-engagement follow-up date</label><div class="rssc-input-shell"><input id="cancel-followup" class="rssc-input-element" type="date" required data-comment="cancel-followup-input" /></div><div class="rssc-field-message" data-comment="cancel-followup-helper">Default 60 days — system will flag this member for outreach</div></div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="cancel-note-field"><label class="rssc-field-label" for="cancel-note" data-comment="cancel-note-label">Internal note</label><div class="rssc-textarea-shell"><textarea id="cancel-note" class="rssc-textarea-element" rows="3" placeholder="Any context from the conversation with the member…" data-comment="cancel-note-input"></textarea></div><div class="rssc-field-message" data-comment="cancel-note-helper">Optional — visible to admins only</div></div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="cancel-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="cancel-keep" data-comment="cancel-modal-keep"><span class="rssc-button__label">Keep member</span></button>
+            <button type="submit" class="rssc-button rssc-button--submit-danger rssc-button--sm" id="cancel-submit" disabled data-comment="cancel-modal-submit"><span class="rssc-button__label" id="cancel-submit-label">Cancel membership</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script>
       (function(){
         const SVG_NS="http://www.w3.org/2000/svg";
@@ -409,6 +509,88 @@
           noteSave.disabled=true;
           noteSaveLabel.textContent="Saved";
           setTimeout(()=>{noteSaveLabel.textContent="Save note";},2000);
+        });
+
+        // ── Header action → modal wiring ──
+        function setupModal(btnId, modalId, submitId, submitLabelId, submitText, shouldValidate) {
+          const overlay = document.getElementById(modalId);
+          function open() {
+            overlay.setAttribute("data-open", "true");
+            document.body.style.overflow = "hidden";
+          }
+          function close() {
+            overlay.setAttribute("data-open", "false");
+            document.body.style.overflow = "";
+          }
+          if (btnId) document.getElementById(btnId).addEventListener("click", open);
+          overlay.addEventListener("click", function(e){ if(e.target === overlay) close(); });
+          return { open, close };
+        }
+
+        const editModal = setupModal("profile-edit-btn", "edit-modal");
+        document.getElementById("edit-close").addEventListener("click", editModal.close);
+        document.getElementById("edit-cancel").addEventListener("click", editModal.close);
+        document.getElementById("edit-form").addEventListener("submit", function(e){
+          e.preventDefault();
+          const btn = document.getElementById("edit-submit");
+          const lbl = document.getElementById("edit-submit-label");
+          btn.disabled = true; lbl.textContent = "Saving…";
+          setTimeout(function(){ btn.disabled = false; lbl.textContent = "Save changes"; editModal.close(); }, 700);
+        });
+
+        const holdModal = setupModal("profile-hold-btn", "hold-modal");
+        document.getElementById("hold-close").addEventListener("click", holdModal.close);
+        document.getElementById("hold-cancel").addEventListener("click", holdModal.close);
+        const holdReason = document.getElementById("hold-reason");
+        const holdReturn = document.getElementById("hold-return");
+        const holdFollowup = document.getElementById("hold-followup");
+        const holdSubmit = document.getElementById("hold-submit");
+        function syncHoldSubmit(){
+          holdSubmit.disabled = !(holdReason.value && holdReturn.value && holdFollowup.value);
+        }
+        [holdReason, holdReturn, holdFollowup].forEach(i => i.addEventListener("input", syncHoldSubmit));
+        [holdReason, holdReturn, holdFollowup].forEach(i => i.addEventListener("change", syncHoldSubmit));
+        document.getElementById("hold-form").addEventListener("submit", function(e){
+          e.preventDefault();
+          const lbl = document.getElementById("hold-submit-label");
+          holdSubmit.disabled = true; lbl.textContent = "Saving…";
+          setTimeout(function(){ lbl.textContent = "Put member on hold"; holdModal.close(); syncHoldSubmit(); }, 700);
+        });
+
+        const cancelModal = setupModal("profile-cancel-btn", "cancel-modal");
+        document.getElementById("cancel-close").addEventListener("click", cancelModal.close);
+        document.getElementById("cancel-keep").addEventListener("click", cancelModal.close);
+        // Default follow-up = 60 days from today
+        (function(){
+          const d = new Date(); d.setDate(d.getDate() + 60);
+          document.getElementById("cancel-followup").value = d.toISOString().split("T")[0];
+        })();
+        const cancelReason = document.getElementById("cancel-reason");
+        const cancelFollowup = document.getElementById("cancel-followup");
+        const cancelSubmit = document.getElementById("cancel-submit");
+        function syncCancelSubmit(){
+          cancelSubmit.disabled = !(cancelReason.value && cancelFollowup.value);
+        }
+        cancelReason.addEventListener("change", syncCancelSubmit);
+        cancelFollowup.addEventListener("input", syncCancelSubmit);
+        syncCancelSubmit();
+        document.getElementById("cancel-form").addEventListener("submit", function(e){
+          e.preventDefault();
+          const lbl = document.getElementById("cancel-submit-label");
+          cancelSubmit.disabled = true; lbl.textContent = "Cancelling…";
+          setTimeout(function(){ lbl.textContent = "Cancel membership"; cancelModal.close(); syncCancelSubmit(); }, 700);
+        });
+
+        // Escape closes any open modal
+        document.addEventListener("keydown", function(e){
+          if (e.key !== "Escape") return;
+          ["edit-modal","hold-modal","cancel-modal"].forEach(id => {
+            const m = document.getElementById(id);
+            if (m.getAttribute("data-open") === "true") {
+              m.setAttribute("data-open","false");
+              document.body.style.overflow = "";
+            }
+          });
         });
 
         // ── AdminShell ──

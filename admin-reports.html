@@ -140,6 +140,30 @@
       .rssc-kpi-label{font-size:13px;color:#4b4a45;}
       .rssc-kpi-value{font-size:14px;font-weight:600;color:#171717;font-variant-numeric:tabular-nums;}
 
+      /* Trigger cards */
+      .rssc-trigger-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+      @media (max-width:1023px){.rssc-trigger-grid{grid-template-columns:1fr;}}
+      .rssc-trigger-card{display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid #e8e8e3;border-radius:14px;padding:16px;cursor:pointer;transition:border-color 120ms,box-shadow 120ms;}
+      .rssc-trigger-card:hover{border-color:#c7d2fe;box-shadow:0 2px 8px rgba(61,90,254,.08);}
+      .rssc-trigger-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+      .rssc-trigger-label{font-size:11px;font-weight:600;color:#8c8a80;text-transform:uppercase;letter-spacing:.06em;}
+      .rssc-trigger-heading{display:flex;align-items:baseline;gap:10px;}
+      .rssc-trigger-title{font-size:14px;font-weight:600;color:#171717;}
+      .rssc-trigger-value{font-size:22px;font-weight:700;color:#171717;letter-spacing:-.02em;}
+      .rssc-trigger-desc{font-size:12px;color:#8c8a80;line-height:17px;}
+      .rssc-trigger-preview{display:flex;flex-direction:column;gap:4px;padding-top:10px;border-top:1px solid #f1f1ee;}
+      .rssc-trigger-preview-row{display:flex;flex-direction:column;gap:1px;}
+      .rssc-trigger-preview-name{font-size:13px;font-weight:500;color:#171717;}
+      .rssc-trigger-preview-note{font-size:11px;color:#8c8a80;line-height:15px;}
+      .rssc-trigger-actions{display:flex;gap:6px;flex-wrap:wrap;padding-top:8px;border-top:1px solid #f1f1ee;}
+      .rssc-trigger-action-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid #e8e8e3;border-radius:99px;font-size:11px;font-weight:500;color:#4b4a45;background:#fcfcfb;}
+
+      /* Report tabs */
+      .rssc-tabs{display:inline-flex;align-items:center;gap:6px;padding:4px;border-radius:999px;background:#fcfcfb;border:1px solid #e8e8e3;}
+      .rssc-tabs__item{appearance:none;border:0;background:transparent;color:#4b4a45;min-height:32px;padding:0 12px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:500;line-height:20px;transition:background 120ms,color 120ms;}
+      .rssc-tabs__item:hover:not([data-active="true"]){background:#f1f1ee;}
+      .rssc-tabs__item[data-active="true"]{background:#eef2ff;color:#171717;}
+
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:767px){.rssc-app-shell{grid-template-columns:1fr;}.rssc-app-shell__sidebar{display:none;}.rssc-app-header{padding:0 16px;}.rssc-page-layout{padding:20px 16px;}.rssc-admin-menu-btn{display:flex;}.rssc-admin-search{display:none;}}
     </style>
@@ -220,6 +244,77 @@
                 <div class="rssc-page-header__description" data-comment="reports-description">Key metrics for attendance, retention, and financial health.</div>
               </div>
               <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" data-comment="reports-export-btn"><span class="rssc-button__label">Export CSV</span></button>
+            </div>
+
+            <div class="rssc-tabs" style="align-self:flex-start;" data-comment="reports-tabs">
+              <button type="button" class="rssc-tabs__item" data-active="true" data-comment="reports-tab-attendance">Attendance</button>
+              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-retention">Retention</button>
+              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-financial">Financial</button>
+              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-operations">Operations</button>
+            </div>
+
+            <div class="rssc-trigger-grid" data-comment="reports-triggers">
+              <div class="rssc-trigger-card" data-comment="reports-trigger-at-risk">
+                <div class="rssc-trigger-top" data-comment="reports-trigger-at-risk-top">
+                  <span class="rssc-trigger-label" data-comment="reports-trigger-at-risk-label">Retention queue</span>
+                  <span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-at-risk-priority"><span>Act now</span></span>
+                </div>
+                <div class="rssc-trigger-heading" data-comment="reports-trigger-at-risk-heading">
+                  <span class="rssc-trigger-title" data-comment="reports-trigger-at-risk-title">At-risk</span>
+                  <span class="rssc-trigger-value" data-comment="reports-trigger-at-risk-value">8</span>
+                </div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-at-risk-desc">Attendance dropped, churn likely.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-at-risk-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-at-risk-preview-1"><span class="rssc-trigger-preview-name">Jordan Mitchell</span><span class="rssc-trigger-preview-note">Attendance dropped below 2 visits / week</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-at-risk-preview-2"><span class="rssc-trigger-preview-name">Natalie Brooks</span><span class="rssc-trigger-preview-note">Still active, but attendance rhythm is softening</span></div>
+                </div>
+                <div class="rssc-trigger-actions" data-comment="reports-trigger-at-risk-actions">
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-1">Call list</span>
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-2">Message</span>
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-3">Schedule follow-up</span>
+                </div>
+              </div>
+
+              <div class="rssc-trigger-card" data-comment="reports-trigger-hold-returns">
+                <div class="rssc-trigger-top" data-comment="reports-trigger-hold-returns-top">
+                  <span class="rssc-trigger-label" data-comment="reports-trigger-hold-returns-label">Return queue</span>
+                  <span class="rssc-badge rssc-badge--success" data-comment="reports-trigger-hold-returns-priority"><span>This week</span></span>
+                </div>
+                <div class="rssc-trigger-heading" data-comment="reports-trigger-hold-returns-heading">
+                  <span class="rssc-trigger-title" data-comment="reports-trigger-hold-returns-title">Hold returns</span>
+                  <span class="rssc-trigger-value" data-comment="reports-trigger-hold-returns-value">5</span>
+                </div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-hold-returns-desc">Holds ending, no outreach yet.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-hold-returns-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-preview-1"><span class="rssc-trigger-preview-name">Tom Bracken</span><span class="rssc-trigger-preview-note">Return date in 4 days and no outreach logged</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-preview-2"><span class="rssc-trigger-preview-name">Erica James</span><span class="rssc-trigger-preview-note">Hold approval needs restart reminder</span></div>
+                </div>
+                <div class="rssc-trigger-actions" data-comment="reports-trigger-hold-returns-actions">
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-1">Check in</span>
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-2">Offer return</span>
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-3">Book first class</span>
+                </div>
+              </div>
+
+              <div class="rssc-trigger-card" data-comment="reports-trigger-morning-dip">
+                <div class="rssc-trigger-top" data-comment="reports-trigger-morning-dip-top">
+                  <span class="rssc-trigger-label" data-comment="reports-trigger-morning-dip-label">Schedule signal</span>
+                  <span class="rssc-badge rssc-badge--danger" data-comment="reports-trigger-morning-dip-priority"><span>Investigate</span></span>
+                </div>
+                <div class="rssc-trigger-heading" data-comment="reports-trigger-morning-dip-heading">
+                  <span class="rssc-trigger-title" data-comment="reports-trigger-morning-dip-title">Morning dip</span>
+                  <span class="rssc-trigger-value" data-comment="reports-trigger-morning-dip-value">-14%</span>
+                </div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-morning-dip-desc">06:00 bookings down vs last month.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-morning-dip-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-morning-dip-preview-1"><span class="rssc-trigger-preview-name">Mon 06:00 CrossFit</span><span class="rssc-trigger-preview-note">8/12 booked (down from average 11/12)</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-morning-dip-preview-2"><span class="rssc-trigger-preview-name">Fri 06:00 CrossFit</span><span class="rssc-trigger-preview-note">7/12 booked trending below baseline</span></div>
+                </div>
+                <div class="rssc-trigger-actions" data-comment="reports-trigger-morning-dip-actions">
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-1">Re-survey</span>
+                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-2">Trial new time</span>
+                </div>
+              </div>
             </div>
 
             <div class="rssc-reports-stats" data-comment="reports-kpi-grid">

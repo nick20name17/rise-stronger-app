@@ -164,6 +164,50 @@
       .rssc-tabs__item:hover:not([data-active="true"]){background:#f1f1ee;}
       .rssc-tabs__item[data-active="true"]{background:#eef2ff;color:#171717;}
 
+      /* Report filters + action queue */
+      .rssc-reports-filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+      .rssc-reports-filters .rssc-select-native{min-height:32px;padding:0 32px 0 12px;font-size:12px;line-height:16px;border-radius:10px;width:auto;min-width:160px;}
+      .rssc-reports-saved-chips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+      .rssc-reports-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 10px;border:1px solid #c7d2fe;background:#eef2ff;color:#3d5afe;border-radius:999px;font-size:12px;font-weight:500;cursor:pointer;}
+      .rssc-reports-chip:hover{background:#ddde6ff;}
+      .rssc-reports-chip__x{appearance:none;border:none;background:rgba(61,90,254,0.12);color:#3d5afe;border-radius:999px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+      .rssc-reports-chip__x:hover{background:rgba(61,90,254,.22);}
+
+      .rssc-queue-card{background:#fff;border:1px solid #e8e8e3;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(23,23,23,.04),0 6px 18px rgba(23,23,23,.04);}
+      .rssc-queue-head{padding:16px 20px;border-bottom:1px solid #f1f1ee;display:flex;flex-direction:column;gap:2px;}
+      .rssc-queue-title{font-size:16px;font-weight:600;color:#171717;line-height:24px;}
+      .rssc-queue-desc{font-size:12px;color:#8c8a80;line-height:16px;}
+      .rssc-queue-scroll{max-height:540px;overflow-y:auto;overflow-x:auto;}
+      .rssc-queue-table{width:100%;border-collapse:collapse;}
+      .rssc-queue-table thead th{height:40px;padding:0 16px;text-align:left;background:#fcfcfb;border-bottom:1px solid #e8e8e3;color:#8c8a80;font-size:12px;font-weight:500;letter-spacing:.01em;white-space:nowrap;position:sticky;top:0;z-index:1;}
+      .rssc-queue-table tbody tr{border-bottom:1px solid #f1f1ee;cursor:pointer;transition:background 120ms;}
+      .rssc-queue-table tbody tr:last-child{border-bottom:none;}
+      .rssc-queue-table tbody tr:hover{background:#f7f7f5;}
+      .rssc-queue-table tbody td{padding:12px 16px;vertical-align:top;}
+      .rssc-queue-cell-title{font-size:14px;font-weight:500;color:#171717;display:block;}
+      .rssc-queue-cell-subtitle{font-size:12px;color:#8c8a80;display:block;margin-top:1px;}
+      .rssc-queue-cell-metric{font-size:13px;font-weight:500;color:#171717;display:block;}
+      .rssc-queue-cell-signal{font-size:12px;color:#8c8a80;display:block;margin-top:1px;max-width:360px;}
+      .rssc-queue-cell-next{font-size:13px;color:#4b4a45;display:block;max-width:320px;}
+      .rssc-queue-cell-next-meta{font-size:11px;color:#8c8a80;display:block;margin-top:1px;}
+      .rssc-queue-footer{padding:12px 16px;border-top:1px solid #f1f1ee;font-size:12px;color:#8c8a80;}
+      .rssc-queue-empty{padding:48px 24px;text-align:center;color:#8c8a80;font-size:14px;}
+
+      /* Modal */
+      .rssc-modal-overlay{position:fixed;inset:0;background:rgba(23,23,23,.45);z-index:110;display:none;align-items:center;justify-content:center;padding:24px 16px;}
+      .rssc-modal-overlay[data-open="true"]{display:flex;}
+      .rssc-modal-dialog{width:100%;max-width:480px;background:#fff;border:1px solid #e8e8e3;border-radius:16px;box-shadow:0 2px 6px rgba(23,23,23,.06),0 10px 28px rgba(23,23,23,.12);display:flex;flex-direction:column;max-height:calc(100dvh - 48px);overflow:hidden;}
+      .rssc-modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-modal-title{font-size:16px;font-weight:600;line-height:24px;letter-spacing:-.01em;color:#171717;}
+      .rssc-modal-close{appearance:none;background:transparent;border:none;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8c8a80;transition:background 120ms,color 120ms;}
+      .rssc-modal-close:hover{background:#f1f1ee;color:#171717;}
+      .rssc-modal-body{padding:24px;display:flex;flex-direction:column;gap:16px;overflow-y:auto;flex:1;}
+      .rssc-modal-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-wrap:wrap;}
+      .rssc-action-modal-section{display:flex;flex-direction:column;gap:4px;}
+      .rssc-action-modal-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8c8a80;}
+      .rssc-action-modal-text{font-size:13px;color:#4b4a45;line-height:19px;}
+      .rssc-action-modal-signal{padding:12px;background:#fcfcfb;border:1px solid #f1f1ee;border-radius:10px;font-size:13px;color:#4b4a45;line-height:19px;}
+
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:767px){.rssc-app-shell{grid-template-columns:1fr;}.rssc-app-shell__sidebar{display:none;}.rssc-app-header{padding:0 16px;}.rssc-page-layout{padding:20px 16px;}.rssc-admin-menu-btn{display:flex;}.rssc-admin-search{display:none;}}
     </style>
@@ -414,6 +458,28 @@
               </div>
             </div>
 
+            <div class="rssc-reports-filters" data-comment="reports-filters">
+              <select id="reports-range" class="rssc-select-native" data-comment="reports-filter-range"><option value="7d">Last 7 days</option><option value="30d" selected>Last 30 days</option><option value="90d">Last 90 days</option></select>
+              <select id="reports-primary" class="rssc-select-native" data-comment="reports-filter-primary"><option value="">All</option></select>
+              <select id="reports-secondary" class="rssc-select-native" data-comment="reports-filter-secondary"><option value="">All</option></select>
+              <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="reports-save-filter-btn" data-comment="reports-save-filter-btn"><span class="rssc-button__label">Save filter</span></button>
+              <div class="rssc-reports-saved-chips" id="reports-saved-chips" data-comment="reports-saved-chips"></div>
+            </div>
+
+            <div class="rssc-queue-card" data-comment="reports-queue-card">
+              <div class="rssc-queue-head" data-comment="reports-queue-head">
+                <span class="rssc-queue-title" id="reports-queue-title" data-comment="reports-queue-title">Action queue</span>
+                <span class="rssc-queue-desc" id="reports-queue-desc" data-comment="reports-queue-desc">—</span>
+              </div>
+              <div class="rssc-queue-scroll" data-comment="reports-queue-scroll">
+                <table class="rssc-queue-table" data-comment="reports-queue-table">
+                  <thead><tr data-comment="reports-queue-thead"><th data-comment="reports-queue-th-member">Member</th><th id="reports-queue-th-metric" data-comment="reports-queue-th-metric">Signal</th><th data-comment="reports-queue-th-state">State</th><th id="reports-queue-th-next" data-comment="reports-queue-th-next">Next step</th></tr></thead>
+                  <tbody id="reports-queue-tbody" data-comment="reports-queue-tbody"></tbody>
+                </table>
+              </div>
+              <div class="rssc-queue-footer" id="reports-queue-footer" data-comment="reports-queue-footer">0 items in view</div>
+            </div>
+
             <div class="rssc-reports-stats" data-comment="reports-kpi-grid">
               <div class="rssc-card" data-comment="reports-kpi-mrr">
                 <div class="rssc-card__title" data-comment="reports-kpi-mrr-title">MRR</div>
@@ -489,6 +555,49 @@
       </div>
     </div>
 
+    <!-- Reports action modal -->
+    <div class="rssc-modal-overlay" id="action-modal" role="presentation" data-comment="reports-action-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="action-modal-title" data-comment="reports-action-modal-dialog">
+        <div class="rssc-modal-header" data-comment="reports-action-modal-header">
+          <span class="rssc-modal-title" id="action-modal-title" data-comment="reports-action-modal-title">—</span>
+          <button class="rssc-modal-close" id="action-modal-close" aria-label="Close" type="button" data-comment="reports-action-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <div class="rssc-modal-body" data-comment="reports-action-modal-body">
+          <span id="action-modal-subtitle" class="rssc-action-modal-text" data-comment="reports-action-modal-subtitle">—</span>
+          <div class="rssc-action-modal-section" data-comment="reports-action-modal-signal-section">
+            <span class="rssc-action-modal-label" data-comment="reports-action-modal-signal-label">Signal</span>
+            <div class="rssc-action-modal-signal" id="action-modal-signal" data-comment="reports-action-modal-signal">—</div>
+          </div>
+          <div class="rssc-action-modal-section" data-comment="reports-action-modal-next-section">
+            <span class="rssc-action-modal-label" data-comment="reports-action-modal-next-label">Next step</span>
+            <span class="rssc-action-modal-text" id="action-modal-next" data-comment="reports-action-modal-next">—</span>
+            <span class="rssc-action-modal-text" id="action-modal-next-meta" style="color:#8c8a80;font-size:12px;" data-comment="reports-action-modal-next-meta">—</span>
+          </div>
+        </div>
+        <div class="rssc-modal-footer" id="action-modal-footer" data-comment="reports-action-modal-footer"></div>
+      </div>
+    </div>
+
+    <!-- Save filter modal -->
+    <div class="rssc-modal-overlay" id="save-filter-modal" role="presentation" data-comment="reports-save-filter-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="save-filter-title" data-comment="reports-save-filter-modal-dialog">
+        <div class="rssc-modal-header" data-comment="reports-save-filter-modal-header">
+          <span class="rssc-modal-title" id="save-filter-title" data-comment="reports-save-filter-modal-title">Save filter set</span>
+          <button class="rssc-modal-close" id="save-filter-close" aria-label="Close" type="button" data-comment="reports-save-filter-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="save-filter-form" novalidate data-comment="reports-save-filter-modal-form">
+          <div class="rssc-modal-body">
+            <span class="rssc-action-modal-text" data-comment="reports-save-filter-modal-intro">Name this combination of range and filters so you can jump back to it in one click.</span>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="reports-save-filter-name-field"><label class="rssc-field-label" for="save-filter-name" data-comment="reports-save-filter-name-label">Name</label><div class="rssc-input-shell"><input id="save-filter-name" class="rssc-input-element" type="text" placeholder="At-risk CrossFit · 30 days" required data-comment="reports-save-filter-name-input" /></div></div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="reports-save-filter-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="save-filter-cancel" data-comment="reports-save-filter-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="save-filter-submit" disabled data-comment="reports-save-filter-modal-submit"><span class="rssc-button__label">Save</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script>
       (function(){
         const SVG_NS="http://www.w3.org/2000/svg";
@@ -500,14 +609,237 @@
         function svgRect(a){const r=document.createElementNS(SVG_NS,"rect");for(const k in a)r.setAttribute(k,a[k]);return r;}
         function createStore(i){let s=structuredClone(i);const ls=new Set();return{get:()=>s,set(u){s=typeof u==="function"?u(s):{...s,...u};ls.forEach((f)=>f(s));},subscribe(f){ls.add(f);return()=>ls.delete(f);}};}
 
-        // Report tabs
+        function createStore(i){let s=structuredClone(i);const ls=new Set();return{get:()=>s,set(u){s=typeof u==="function"?u(s):{...s,...u};ls.forEach((f)=>f(s));},subscribe(f){ls.add(f);return()=>ls.delete(f);}};}
+
+        // Report definitions — mirrors admin/reports/page.tsx REPORTS
+        const REPORTS={
+          attendance:{
+            queueTitle:"Attendance action queue",
+            queueDescription:"Open issues that need retention, return, or schedule follow-up.",
+            metricColumnLabel:"Attendance signal",
+            nextStepColumnLabel:"Recommended follow-up",
+            primaryOptions:[{value:"crossfit",label:"CrossFit"},{value:"open-gym",label:"Open Gym"},{value:"foundations",label:"Foundations"}],
+            secondaryOptions:[{value:"at-risk",label:"At risk"},{value:"watch",label:"Watch"},{value:"healthy",label:"Healthy"}],
+            footerLabel:"attendance records in view",
+            rows:[
+              {id:"attendance-jordan",title:"Jordan Mitchell",subtitle:"Regular membership · usually books 06:00 CrossFit",metric:"2 visits in 14 days",signal:"Was averaging 4.2 visits / week over the prior 60 days",state:"At risk",stateVariant:"warning",nextStep:"Katie to call before Thursday 06:00 class",nextStepMeta:"Mention missed morning rhythm and invite him into Friday's class.",range:"30d",primaryFilter:"crossfit",secondaryFilter:"at-risk",actions:["Call","Message","Schedule"]},
+              {id:"attendance-sarah",title:"Sarah Chen",subtitle:"Foundations · postpartum flag · 3rd class this cycle",metric:"Steady at 2 visits / week",signal:"Good early consistency for a new member under 10 classes",state:"Healthy",stateVariant:"success",nextStep:"Coach to reinforce milestone after next class",nextStepMeta:"Prompt a small recognition at class 5.",range:"30d",primaryFilter:"foundations",secondaryFilter:"healthy",actions:["Coach note","Recognize"]},
+              {id:"attendance-tom",title:"Tom Bracken",subtitle:"Open Gym hold ends May 5",metric:"0 visits while on hold",signal:"Return date is 4 days away and no outreach has been logged",state:"Watch",stateVariant:"info",nextStep:"Send resume check-in and confirm billing restart",nextStepMeta:"If no reply, queue a manual follow-up for Katie.",range:"7d",primaryFilter:"open-gym",secondaryFilter:"watch",actions:["Check in","Book return","Follow up"]},
+              {id:"attendance-natalie",title:"Natalie Brooks",subtitle:"CrossFit · postpartum flag · booked into Friday",metric:"3 visits this week",signal:"Intensity is increasing but class cadence still looks sustainable",state:"Watch",stateVariant:"info",nextStep:"Coach note only",nextStepMeta:"Brief coach to keep scaling cues visible in roster.",range:"7d",primaryFilter:"crossfit",secondaryFilter:"watch",actions:["Coach note","Follow up"]},
+              {id:"attendance-owen",title:"Owen Parker",subtitle:"CrossFit evenings · 17:30 anchor class",metric:"1 late cancellation in 30 days",signal:"Attendance is flat but no downward trend yet",state:"Healthy",stateVariant:"success",nextStep:"No action",nextStepMeta:"Keep in standard weekly scan only.",range:"90d",primaryFilter:"crossfit",secondaryFilter:"healthy",actions:["Review history"]},
+            ],
+          },
+          revenue:{
+            queueTitle:"Revenue action queue",
+            queueDescription:"Billing issues and membership changes that need a decision or conversation.",
+            metricColumnLabel:"Revenue signal",
+            nextStepColumnLabel:"Billing action",
+            primaryOptions:[{value:"memberships",label:"Memberships"},{value:"holds",label:"Holds"},{value:"failed-payments",label:"Failed payments"}],
+            secondaryOptions:[{value:"open",label:"Open"},{value:"pending",label:"Pending"},{value:"resolved",label:"Resolved"}],
+            footerLabel:"billing records in view",
+            rows:[
+              {id:"revenue-marcus",title:"Marcus Webb",subtitle:"Regular membership · Stripe retry on Apr 9",metric:"$185 payment failed",signal:"Card declined twice in this billing cycle",state:"Open",stateVariant:"danger",nextStep:"Call and confirm replacement card before retry",nextStepMeta:"If unresolved by noon, pause class booking access.",range:"7d",primaryFilter:"failed-payments",secondaryFilter:"open",actions:["Call","Retry","Pause access"]},
+              {id:"revenue-erica",title:"Erica James",subtitle:"Student membership requested hold for exam period",metric:"$0 billed while hold is active",signal:"Hold starts Apr 12 and ends Apr 30",state:"Pending",stateVariant:"warning",nextStep:"Approve hold and set restart reminder",nextStepMeta:"Make sure follow-up date is captured at save.",range:"30d",primaryFilter:"holds",secondaryFilter:"pending",actions:["Approve","Set restart"]},
+              {id:"revenue-alan",title:"Alan Rivera",subtitle:"Senior membership cancelled after pricing conversation",metric:"-$135 MRR",signal:"Cancellation recorded with 'schedule conflict' reason",state:"Open",stateVariant:"warning",nextStep:"Queue 60-day win-back reminder",nextStepMeta:"Add note about preferred 12:00 Open Gym time slot.",range:"30d",primaryFilter:"memberships",secondaryFilter:"open",actions:["Talk to member","Set follow-up"]},
+              {id:"revenue-lisa",title:"Lisa Turner",subtitle:"Regular membership upgraded from student tier",metric:"+$42 MRR",signal:"Upgrade completed and synced to QuickBooks",state:"Resolved",stateVariant:"success",nextStep:"No action",nextStepMeta:"Keep in monthly pricing-change review.",range:"90d",primaryFilter:"memberships",secondaryFilter:"resolved",actions:["Review monthly"]},
+            ],
+          },
+          performance:{
+            queueTitle:"Performance action queue",
+            queueDescription:"Score and movement signals that deserve recognition or coaching follow-up.",
+            metricColumnLabel:"Performance signal",
+            nextStepColumnLabel:"Coach or member action",
+            primaryOptions:[{value:"barbell",label:"Barbell"},{value:"gymnastics",label:"Gymnastics"},{value:"conditioning",label:"Conditioning"}],
+            secondaryOptions:[{value:"pr",label:"New PR"},{value:"streak",label:"Streak"},{value:"benchmark-gap",label:"Benchmark gap"}],
+            footerLabel:"performance records in view",
+            rows:[
+              {id:"performance-jenna",title:"Jenna Lee",subtitle:"Back squat · strength block 2",metric:"New 5RM at 185 lb",signal:"Up 10 lb from the previous cycle",state:"New PR",stateVariant:"success",nextStep:"Surface in member recognition list",nextStepMeta:"Good candidate for Instagram milestone content.",range:"7d",primaryFilter:"barbell",secondaryFilter:"pr",actions:["Recognize","Share"]},
+              {id:"performance-jordan-clean",title:"Jordan Mitchell",subtitle:"Power clean benchmark not logged this block",metric:"Last result is 143 days old",signal:"Movement library continuity is intact but comparison is stale",state:"Benchmark gap",stateVariant:"warning",nextStep:"Prompt coach to capture a new score this month",nextStepMeta:"Use next power-focused class to close the gap.",range:"30d",primaryFilter:"barbell",secondaryFilter:"benchmark-gap",actions:["Prompt coach","Capture score"]},
+              {id:"performance-chloe",title:"Chloe Singh",subtitle:"Attendance and score streak across conditioning pieces",metric:"8 logged results in a row",signal:"Consistency is up even though absolute times are flat",state:"Streak",stateVariant:"info",nextStep:"Celebrate streak in Katie follow-up list",nextStepMeta:"Positive reinforcement fits her current goal-setting plan.",range:"30d",primaryFilter:"conditioning",secondaryFilter:"streak",actions:["Recognize","Follow up"]},
+              {id:"performance-owen-pullups",title:"Owen Parker",subtitle:"Strict pull-up progression",metric:"No progression update in 6 weeks",signal:"Coach notes mention grip fatigue but nothing is structured yet",state:"Benchmark gap",stateVariant:"warning",nextStep:"Add a progression marker after next skill session",nextStepMeta:"Preps the ground for future progression tracking.",range:"90d",primaryFilter:"gymnastics",secondaryFilter:"benchmark-gap",actions:["Prompt coach","Review progression"]},
+            ],
+          },
+          followups:{
+            queueTitle:"Follow-up queue",
+            queueDescription:"A unified place for the outreach, recognition, and win-back work Katie should move this week.",
+            metricColumnLabel:"Why it surfaced",
+            nextStepColumnLabel:"Next owner action",
+            primaryOptions:[{value:"retention",label:"Retention"},{value:"milestones",label:"Milestones"},{value:"billing",label:"Billing"}],
+            secondaryOptions:[{value:"katie",label:"Katie"},{value:"coach",label:"Coach"},{value:"system",label:"System"}],
+            footerLabel:"follow-up items in view",
+            rows:[
+              {id:"followup-jordan",title:"Jordan Mitchell",subtitle:"Retention queue",metric:"Attendance dropped below 2 / week",signal:"Previous high-consistency member now trending away",state:"Katie",stateVariant:"warning",nextStep:"Phone call today",nextStepMeta:"Use missed morning classes as the conversation opener.",range:"7d",primaryFilter:"retention",secondaryFilter:"katie",actions:["Call","Message","Schedule"]},
+              {id:"followup-sarah",title:"Sarah Chen",subtitle:"Milestones queue",metric:"5th class coming up tomorrow",signal:"Postpartum and new-member context makes recognition more meaningful",state:"Coach",stateVariant:"info",nextStep:"Coach shout-out in class",nextStepMeta:"Keep it warm and lightweight, not ceremonial.",range:"7d",primaryFilter:"milestones",secondaryFilter:"coach",actions:["Coach handoff","Message"]},
+              {id:"followup-marcus",title:"Marcus Webb",subtitle:"Billing queue",metric:"Stripe retry pending",signal:"Failed payment is blocking a clean renewal",state:"Katie",stateVariant:"danger",nextStep:"Confirm new card before tomorrow's retry",nextStepMeta:"Escalate access pause only if contact attempt fails.",range:"7d",primaryFilter:"billing",secondaryFilter:"katie",actions:["Call","Retry plan"]},
+              {id:"followup-tom",title:"Tom Bracken",subtitle:"Retention queue",metric:"60-day post-cancel follow-up is due",signal:"Reason logged as schedule conflict, not dissatisfaction",state:"System",stateVariant:"neutral",nextStep:"Send reactivation prompt draft to Katie",nextStepMeta:"Offer Open Gym timing as the easiest re-entry point.",range:"30d",primaryFilter:"retention",secondaryFilter:"system",actions:["Send draft","Offer return"]},
+            ],
+          },
+        };
+
+        // ── In-memory store (replaces localStorage for saved filter sets) ──
+        const store=createStore({
+          report:"attendance",
+          range:"30d",
+          primary:"",
+          secondary:"",
+          saved:[], // {id,name,reportId,range,primary,secondary}
+        });
+
+        // Report tabs — swap trigger panels AND update filter/queue state
         document.querySelectorAll("[data-report-tab]").forEach(function(btn){
           btn.addEventListener("click",function(){
             const tab=btn.getAttribute("data-report-tab");
             document.querySelectorAll("[data-report-tab]").forEach((b)=>b.setAttribute("data-active",b.getAttribute("data-report-tab")===tab?"true":"false"));
             document.querySelectorAll("[data-report-panel]").forEach((p)=>{p.style.display=p.getAttribute("data-report-panel")===tab?"grid":"none";});
+            store.set({report:tab,primary:"",secondary:""});
           });
         });
+
+        // Filter dropdowns
+        function populateFilterSelects(){
+          const s=store.get();
+          const def=REPORTS[s.report];
+          const primary=document.getElementById("reports-primary");
+          const secondary=document.getElementById("reports-secondary");
+          const primPh=(def.primaryOptions[0]&&def.primaryOptions[0].label)?"All":"All";
+          // Use placeholder labels from React: primaryFilterPlaceholder (inline hardcoded variants)
+          const primPlaceholders={attendance:"All class types",revenue:"All revenue lines",performance:"All movement groups",followups:"All queues"};
+          const secPlaceholders={attendance:"All risk levels",revenue:"All statuses",performance:"All signal types",followups:"All owners"};
+          primary.replaceChildren(
+            el("option",{value:"",textContent:primPlaceholders[s.report]}),
+            ...def.primaryOptions.map((o)=>el("option",{value:o.value,textContent:o.label})),
+          );
+          secondary.replaceChildren(
+            el("option",{value:"",textContent:secPlaceholders[s.report]}),
+            ...def.secondaryOptions.map((o)=>el("option",{value:o.value,textContent:o.label})),
+          );
+          primary.value=s.primary||"";
+          secondary.value=s.secondary||"";
+          document.getElementById("reports-range").value=s.range;
+          document.getElementById("reports-queue-th-metric").textContent=def.metricColumnLabel;
+          document.getElementById("reports-queue-th-next").textContent=def.nextStepColumnLabel;
+          document.getElementById("reports-queue-title").textContent=def.queueTitle;
+          document.getElementById("reports-queue-desc").textContent=def.queueDescription;
+        }
+
+        document.getElementById("reports-range").addEventListener("change",(e)=>store.set({range:e.target.value}));
+        document.getElementById("reports-primary").addEventListener("change",(e)=>store.set({primary:e.target.value}));
+        document.getElementById("reports-secondary").addEventListener("change",(e)=>store.set({secondary:e.target.value}));
+
+        // Render queue table
+        function renderQueue(){
+          const s=store.get();
+          const def=REPORTS[s.report];
+          const rows=def.rows.filter((r)=>{
+            if(s.range&&r.range!==s.range)return false;
+            if(s.primary&&r.primaryFilter!==s.primary)return false;
+            if(s.secondary&&r.secondaryFilter!==s.secondary)return false;
+            return true;
+          });
+          const tbody=document.getElementById("reports-queue-tbody");
+          if(rows.length===0){
+            const emptyMsg={attendance:"Try widening the date range or clearing segment filters.",revenue:"No billing records match this view.",performance:"No performance records match this view.",followups:"No follow-ups match this view."}[s.report];
+            tbody.replaceChildren(el("tr",{"data-comment":"reports-queue-empty-row"},[el("td",{colspan:"4"},[el("div",{className:"rssc-queue-empty","data-comment":"reports-queue-empty",textContent:emptyMsg})])]));
+          } else {
+            tbody.replaceChildren(...rows.map((r)=>{
+              const dc="reports-queue-row-"+r.id;
+              const tr=el("tr",{"data-comment":dc,"data-row-id":r.id});
+              tr.appendChild(el("td",{"data-comment":dc+"-member"},[
+                el("span",{className:"rssc-queue-cell-title",textContent:r.title}),
+                el("span",{className:"rssc-queue-cell-subtitle",textContent:r.subtitle}),
+              ]));
+              tr.appendChild(el("td",{"data-comment":dc+"-metric"},[
+                el("span",{className:"rssc-queue-cell-metric",textContent:r.metric}),
+                el("span",{className:"rssc-queue-cell-signal",textContent:r.signal}),
+              ]));
+              tr.appendChild(el("td",{"data-comment":dc+"-state"},[el("span",{className:"rssc-badge rssc-badge--"+r.stateVariant},[el("span",{textContent:r.state})])]));
+              tr.appendChild(el("td",{"data-comment":dc+"-next"},[
+                el("span",{className:"rssc-queue-cell-next",textContent:r.nextStep}),
+                el("span",{className:"rssc-queue-cell-next-meta",textContent:r.nextStepMeta}),
+              ]));
+              tr.addEventListener("click",()=>openActionModal(r));
+              return tr;
+            }));
+          }
+          document.getElementById("reports-queue-footer").textContent=rows.length+" "+def.footerLabel;
+        }
+
+        // Saved filter chips
+        function renderSavedChips(){
+          const s=store.get();
+          const list=s.saved.filter((f)=>f.reportId===s.report);
+          const wrap=document.getElementById("reports-saved-chips");
+          wrap.replaceChildren(...list.map((f,i)=>{
+            const chip=el("span",{className:"rssc-reports-chip","data-comment":"reports-chip-"+f.id,title:"Apply filter set"});
+            chip.appendChild(document.createTextNode(f.name));
+            const xBtn=el("button",{type:"button",className:"rssc-reports-chip__x","aria-label":"Remove filter","data-comment":"reports-chip-"+f.id+"-remove",textContent:"×"});
+            xBtn.addEventListener("click",(e)=>{
+              e.stopPropagation();
+              store.set((prev)=>({...prev,saved:prev.saved.filter((x)=>x.id!==f.id)}));
+            });
+            chip.appendChild(xBtn);
+            chip.addEventListener("click",()=>{
+              store.set({range:f.range,primary:f.primary,secondary:f.secondary});
+            });
+            return chip;
+          }));
+        }
+
+        // Save filter modal
+        const saveFilterModal=document.getElementById("save-filter-modal");
+        const saveFilterInput=document.getElementById("save-filter-name");
+        const saveFilterSubmit=document.getElementById("save-filter-submit");
+        document.getElementById("reports-save-filter-btn").addEventListener("click",()=>{
+          saveFilterInput.value="";saveFilterSubmit.disabled=true;
+          saveFilterModal.setAttribute("data-open","true");document.body.style.overflow="hidden";
+          setTimeout(()=>saveFilterInput.focus(),50);
+        });
+        function closeSaveFilterModal(){saveFilterModal.setAttribute("data-open","false");document.body.style.overflow="";}
+        document.getElementById("save-filter-close").addEventListener("click",closeSaveFilterModal);
+        document.getElementById("save-filter-cancel").addEventListener("click",closeSaveFilterModal);
+        saveFilterModal.addEventListener("click",(e)=>{if(e.target===saveFilterModal)closeSaveFilterModal();});
+        saveFilterInput.addEventListener("input",()=>{saveFilterSubmit.disabled=!saveFilterInput.value.trim();});
+        document.getElementById("save-filter-form").addEventListener("submit",(e)=>{
+          e.preventDefault();
+          const s=store.get();
+          const name=saveFilterInput.value.trim();
+          if(!name)return;
+          const item={id:"filter-"+Date.now(),name,reportId:s.report,range:s.range,primary:s.primary,secondary:s.secondary};
+          store.set((prev)=>({...prev,saved:[...prev.saved,item]}));
+          closeSaveFilterModal();
+        });
+
+        // Action modal
+        const actionModal=document.getElementById("action-modal");
+        function openActionModal(row){
+          document.getElementById("action-modal-title").textContent=row.title;
+          document.getElementById("action-modal-subtitle").textContent=row.subtitle;
+          document.getElementById("action-modal-signal").textContent=row.signal;
+          document.getElementById("action-modal-next").textContent=row.nextStep;
+          document.getElementById("action-modal-next-meta").textContent=row.nextStepMeta;
+          const footer=document.getElementById("action-modal-footer");
+          const closeBtn=el("button",{type:"button",className:"rssc-button rssc-button--secondary rssc-button--sm","data-comment":"reports-action-modal-close-btn"},[el("span",{className:"rssc-button__label",textContent:"Close"})]);
+          closeBtn.addEventListener("click",closeActionModal);
+          const actionBtns=row.actions.map((a,i)=>{
+            const b=el("button",{type:"button",className:"rssc-button rssc-button--sm","data-comment":"reports-action-modal-action-"+(i+1)},[el("span",{className:"rssc-button__label",textContent:a})]);
+            b.addEventListener("click",closeActionModal);
+            return b;
+          });
+          footer.replaceChildren(closeBtn,...actionBtns);
+          actionModal.setAttribute("data-open","true");document.body.style.overflow="hidden";
+        }
+        function closeActionModal(){actionModal.setAttribute("data-open","false");document.body.style.overflow="";}
+        document.getElementById("action-modal-close").addEventListener("click",closeActionModal);
+        actionModal.addEventListener("click",(e)=>{if(e.target===actionModal)closeActionModal();});
+
+        document.addEventListener("keydown",(e)=>{
+          if(e.key!=="Escape")return;
+          if(actionModal.getAttribute("data-open")==="true"){closeActionModal();return;}
+          if(saveFilterModal.getAttribute("data-open")==="true"){closeSaveFilterModal();return;}
+        });
+
+        store.subscribe(()=>{populateFilterSelects();renderQueue();renderSavedChips();});
+        populateFilterSelects();renderQueue();renderSavedChips();
 
         const INITIAL_NOTIFICATIONS=[
           {id:"attendance-risk",title:"Jordan Mitchell is trending at risk",meta:"Attendance is down to 62%. Follow up before the next class.",time:"8m ago",href:"admin-member-profile.html",type:"member",tone:"warning",read:false},

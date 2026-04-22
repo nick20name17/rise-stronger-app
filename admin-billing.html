@@ -167,7 +167,35 @@
       .rssc-billing-timeline-row:last-child{border-bottom:none;}
       .rssc-billing-timeline-date{font-size:12px;color:#8c8a80;min-width:56px;flex-shrink:0;}
       .rssc-billing-timeline-text{flex:1;font-size:13px;color:#4b4a45;line-height:18px;}
-      .rssc-billing-drawer-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-billing-drawer-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-shrink:0;flex-wrap:wrap;}
+      .rssc-billing-entry{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f3;}
+      .rssc-billing-entry:last-child{border-bottom:none;}
+      .rssc-billing-entry-date{font-size:12px;color:#8c8a80;min-width:72px;flex-shrink:0;}
+      .rssc-billing-entry-body{flex:1;display:flex;flex-direction:column;gap:3px;}
+      .rssc-billing-entry-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+      .rssc-billing-entry-title{font-size:13px;font-weight:500;color:#171717;}
+      .rssc-billing-entry-amount{font-size:13px;font-weight:600;color:#171717;font-variant-numeric:tabular-nums;flex-shrink:0;}
+      .rssc-billing-entry-detail{font-size:12px;color:#6b6a63;line-height:17px;}
+      .rssc-billing-empty-note{padding:12px;background:#fcfcfb;border:1px dashed #e8e8e3;border-radius:10px;font-size:12px;color:#8c8a80;text-align:center;}
+      /* Action modals */
+      .rssc-modal-overlay{position:fixed;inset:0;background:rgba(23,23,23,.45);z-index:110;display:none;align-items:center;justify-content:center;padding:24px 16px;}
+      .rssc-modal-overlay[data-open="true"]{display:flex;}
+      .rssc-modal-dialog{width:100%;max-width:480px;background:#fff;border:1px solid #e8e8e3;border-radius:16px;box-shadow:0 2px 6px rgba(23,23,23,.06),0 10px 28px rgba(23,23,23,.12);display:flex;flex-direction:column;max-height:calc(100dvh - 48px);overflow:hidden;}
+      .rssc-modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-modal-title{font-size:16px;font-weight:600;line-height:24px;letter-spacing:-.01em;color:#171717;}
+      .rssc-modal-close{appearance:none;background:transparent;border:none;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8c8a80;transition:background 120ms,color 120ms;}
+      .rssc-modal-close:hover{background:#f1f1ee;color:#171717;}
+      .rssc-modal-body{padding:24px;display:flex;flex-direction:column;gap:16px;overflow-y:auto;flex:1;}
+      .rssc-modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+      .rssc-modal-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-modal-intro{margin:0;font-size:13px;line-height:20px;color:#4b4a45;}
+      .rssc-modal-btn-danger{appearance:none;border:none;background:#d14343;color:#fff;border-radius:999px;padding:0 16px;min-height:32px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background 120ms;}
+      .rssc-modal-btn-danger:hover{background:#ba3232;}
+      .rssc-select-native{appearance:none;-webkit-appearance:none;width:100%;min-height:40px;padding:0 36px 0 12px;border-radius:12px;border:1px solid #e8e8e3;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238c8a80' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>") no-repeat right 12px center;color:#171717;font-family:inherit;font-size:14px;line-height:20px;cursor:pointer;}
+      .rssc-select-native:focus-visible{outline:none;border-color:#3d5afe;box-shadow:var(--rssc-focus-shadow);}
+      .rssc-textarea-shell{display:flex;width:100%;min-height:88px;padding:10px 12px;border-radius:12px;border:1px solid #e8e8e3;background:#fff;}
+      .rssc-textarea-shell:focus-within{border-color:#3d5afe;box-shadow:var(--rssc-focus-shadow);}
+      .rssc-textarea-element{width:100%;border:0;outline:0;background:transparent;font-family:inherit;font-size:14px;line-height:20px;resize:vertical;}
 
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:767px){.rssc-app-shell{grid-template-columns:1fr;}.rssc-app-shell__sidebar{display:none;}.rssc-app-header{padding:0 16px;}.rssc-page-layout{padding:20px 16px;}.rssc-admin-menu-btn{display:flex;}.rssc-admin-search{display:none;}}
@@ -342,12 +370,88 @@
           <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-timeline-label">Timeline</span>
           <div class="rssc-billing-timeline" id="drawer-timeline" data-comment="billing-drawer-timeline"></div>
         </div>
+
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-history-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-history-label">Payment history</span>
+          <div id="drawer-history" data-comment="billing-drawer-history"></div>
+        </div>
+
+        <div class="rssc-billing-drawer-section" data-comment="billing-drawer-retry-section">
+          <span class="rssc-billing-drawer-section-label" data-comment="billing-drawer-retry-label">Retry log</span>
+          <div id="drawer-retries" data-comment="billing-drawer-retries"></div>
+        </div>
       </div>
       <div class="rssc-billing-drawer-footer" data-comment="billing-drawer-footer">
         <a id="drawer-member-link" href="admin-member-profile.html" class="rssc-button rssc-button--secondary rssc-button--sm" data-comment="billing-drawer-member-link"><span class="rssc-button__label">Open member</span></a>
-        <button type="button" class="rssc-button rssc-button--sm" id="drawer-retry-btn" data-comment="billing-drawer-retry-btn"><span class="rssc-button__label">Retry charge</span></button>
+        <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="drawer-hold-btn" data-comment="billing-drawer-hold-btn"><span class="rssc-button__label">Put on hold</span></button>
+        <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="drawer-resume-btn" style="display:none" data-comment="billing-drawer-resume-btn"><span class="rssc-button__label">Resume billing</span></button>
+        <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="drawer-cancel-btn" style="color:#dc2626;border-color:#fecaca;" data-comment="billing-drawer-cancel-btn"><span class="rssc-button__label">Cancel billing</span></button>
       </div>
     </aside>
+
+    <!-- Hold Modal -->
+    <div class="rssc-modal-overlay" id="hold-modal" role="presentation" data-comment="billing-hold-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="hold-title" data-comment="billing-hold-modal-dialog">
+        <div class="rssc-modal-header" data-comment="billing-hold-modal-header">
+          <span class="rssc-modal-title" id="hold-title" data-comment="billing-hold-modal-title">Put billing on hold</span>
+          <button class="rssc-modal-close" id="hold-close" aria-label="Close" type="button" data-comment="billing-hold-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="hold-form" novalidate data-comment="billing-hold-modal-form">
+          <div class="rssc-modal-body">
+            <p class="rssc-modal-intro" data-comment="billing-hold-modal-intro">Pause recurring billing for this account. Existing renewals will be blocked until billing resumes.</p>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="billing-hold-reason-field"><label class="rssc-field-label" for="hold-reason" data-comment="billing-hold-reason-label">Reason</label><select id="hold-reason" class="rssc-select-native" required data-comment="billing-hold-reason-select"><option value="" selected>Select reason</option><option value="travel">Travel</option><option value="injury">Injury</option><option value="medical">Medical</option><option value="financial">Financial</option><option value="other">Other</option></select></div>
+            <div class="rssc-modal-row" data-comment="billing-hold-dates-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="billing-hold-effective-field"><label class="rssc-field-label" for="hold-effective" data-comment="billing-hold-effective-label">Effective from</label><div class="rssc-input-shell"><input id="hold-effective" class="rssc-input-element" type="date" required data-comment="billing-hold-effective-input" /></div></div>
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="billing-hold-followup-field"><label class="rssc-field-label" for="hold-followup" data-comment="billing-hold-followup-label">Follow-up date</label><div class="rssc-input-shell"><input id="hold-followup" class="rssc-input-element" type="date" required data-comment="billing-hold-followup-input" /></div></div>
+            </div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="billing-hold-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="hold-cancel" data-comment="billing-hold-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="hold-submit" disabled data-comment="billing-hold-modal-submit"><span class="rssc-button__label">Put on hold</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div class="rssc-modal-overlay" id="resume-modal" role="presentation" data-comment="billing-resume-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="resume-title" data-comment="billing-resume-modal-dialog">
+        <div class="rssc-modal-header" data-comment="billing-resume-modal-header">
+          <span class="rssc-modal-title" id="resume-title" data-comment="billing-resume-modal-title">Resume billing</span>
+          <button class="rssc-modal-close" id="resume-close" aria-label="Close" type="button" data-comment="billing-resume-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="resume-form" novalidate data-comment="billing-resume-modal-form">
+          <div class="rssc-modal-body">
+            <p class="rssc-modal-intro" data-comment="billing-resume-modal-intro">Restart recurring billing for this account. Next charge will run on the chosen date.</p>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="billing-resume-date-field"><label class="rssc-field-label" for="resume-date" data-comment="billing-resume-date-label">Resume from</label><div class="rssc-input-shell"><input id="resume-date" class="rssc-input-element" type="date" required data-comment="billing-resume-date-input" /></div></div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="billing-resume-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="resume-cancel" data-comment="billing-resume-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="resume-submit" disabled data-comment="billing-resume-modal-submit"><span class="rssc-button__label">Resume billing</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Cancel Billing Modal -->
+    <div class="rssc-modal-overlay" id="cancel-modal" role="presentation" data-comment="billing-cancel-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cancel-title" data-comment="billing-cancel-modal-dialog">
+        <div class="rssc-modal-header" data-comment="billing-cancel-modal-header">
+          <span class="rssc-modal-title" id="cancel-title" data-comment="billing-cancel-modal-title">Cancel billing</span>
+          <button class="rssc-modal-close" id="cancel-close" aria-label="Close" type="button" data-comment="billing-cancel-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="cancel-form" novalidate data-comment="billing-cancel-modal-form">
+          <div class="rssc-modal-body">
+            <p class="rssc-modal-intro" data-comment="billing-cancel-modal-intro">Stop all recurring charges for this account. No further renewals will run.</p>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="billing-cancel-note-field"><label class="rssc-field-label" for="cancel-note" data-comment="billing-cancel-note-label">Note (optional)</label><div class="rssc-textarea-shell"><textarea id="cancel-note" class="rssc-textarea-element" rows="3" placeholder="Context for QuickBooks and reporting…" data-comment="billing-cancel-note-input"></textarea></div></div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="billing-cancel-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="cancel-keep" data-comment="billing-cancel-modal-keep"><span class="rssc-button__label">Keep billing</span></button>
+            <button type="submit" class="rssc-modal-btn-danger" id="cancel-submit" data-comment="billing-cancel-modal-submit">Cancel billing</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <script>
       (function(){
@@ -407,9 +511,40 @@
         }
 
         // ── Drawer ──
+        const PAYMENT_HISTORY={
+          "billing-marcus-webb":[
+            {date:"Apr 1, 2026",title:"Recurring charge attempted",detail:"Monthly membership renewal tried automatically in Stripe.",amount:130,stateLabel:"Failed",stateVariant:"danger"},
+            {date:"Mar 1, 2026",title:"Recurring charge collected",detail:"Visa ending in 4242 charged successfully.",amount:130,stateLabel:"Paid",stateVariant:"success"},
+            {date:"Feb 1, 2026",title:"Recurring charge collected",detail:"Monthly membership renewal.",amount:130,stateLabel:"Paid",stateVariant:"success"},
+          ],
+          "billing-tom-bracken":[
+            {date:"Mar 1, 2026",title:"Recurring charge collected",detail:"Final payment before the travel hold started.",amount:130,stateLabel:"Paid",stateVariant:"success"},
+            {date:"Apr 1, 2026",title:"Billing paused",detail:"Hold blocked the scheduled renewal for April.",amount:0,stateLabel:"Paused",stateVariant:"neutral"},
+          ],
+          "billing-mia-thornton":[
+            {date:"Apr 18, 2026",title:"Upcoming renewal",detail:"System is waiting for a fresh payment method before renewal.",amount:130,stateLabel:"Scheduled",stateVariant:"info"},
+            {date:"Mar 18, 2026",title:"Recurring charge collected",detail:"Mastercard renewal completed without issue.",amount:130,stateLabel:"Paid",stateVariant:"success"},
+          ],
+          "billing-sarah-chen":[
+            {date:"Apr 15, 2026",title:"Upcoming renewal",detail:"First full recurring month after onboarding.",amount:130,stateLabel:"Scheduled",stateVariant:"info"},
+            {date:"Mar 15, 2026",title:"Starter month collected",detail:"Initial recurring payment captured.",amount:130,stateLabel:"Paid",stateVariant:"success"},
+          ],
+        };
+        const RETRY_LOG={
+          "billing-marcus-webb":[
+            {date:"Apr 2, 2026",attemptLabel:"Auto retry scheduled",detail:"Stripe scheduled a smart retry for Apr 10 based on prior success windows.",outcomeLabel:"Waiting",outcomeVariant:"warning"},
+          ],
+          "billing-mia-thornton":[
+            {date:"Apr 8, 2026",attemptLabel:"Pre-failure outreach",detail:"Not a charge attempt yet. Waiting on a card update before the renewal date.",outcomeLabel:"Blocked",outcomeVariant:"warning"},
+          ],
+        };
+
+        let currentAccountId=null;
+
         function openDrawer(accountId){
           const a=ACCOUNTS.find((x)=>x.id===accountId);
           if(!a)return;
+          currentAccountId=accountId;
           document.getElementById("drawer-member").textContent=a.member;
           document.getElementById("drawer-plan").textContent=a.plan;
           document.getElementById("drawer-amount").textContent=a.amount>0?fmtCad(a.amount):"—";
@@ -430,6 +565,56 @@
               el("span",{className:"rssc-billing-timeline-text",textContent:t.text}),
             ])),
           );
+          // Payment history
+          const hist=PAYMENT_HISTORY[accountId]||[];
+          const histEl=document.getElementById("drawer-history");
+          if(hist.length===0){
+            histEl.replaceChildren(el("div",{className:"rssc-billing-empty-note","data-comment":"billing-drawer-history-empty",textContent:"No payment history yet."}));
+          } else {
+            histEl.replaceChildren(...hist.map((p,i)=>{
+              const dc="billing-drawer-history-"+(i+1);
+              const top=el("div",{className:"rssc-billing-entry-top"},[
+                el("span",{className:"rssc-billing-entry-title",textContent:p.title}),
+                el("span",{className:"rssc-badge rssc-badge--"+p.stateVariant},[el("span",{textContent:p.stateLabel})]),
+              ]);
+              const body=el("div",{className:"rssc-billing-entry-body","data-comment":dc+"-body"},[
+                top,
+                el("span",{className:"rssc-billing-entry-detail",textContent:p.detail}),
+                p.amount>0?el("span",{className:"rssc-billing-entry-amount",textContent:fmtCad(p.amount)}):null,
+              ]);
+              return el("div",{className:"rssc-billing-entry","data-comment":dc},[
+                el("span",{className:"rssc-billing-entry-date",textContent:p.date}),
+                body,
+              ]);
+            }));
+          }
+          // Retry log
+          const retries=RETRY_LOG[accountId]||[];
+          const retriesEl=document.getElementById("drawer-retries");
+          if(retries.length===0){
+            retriesEl.replaceChildren(el("div",{className:"rssc-billing-empty-note","data-comment":"billing-drawer-retries-empty",textContent:"No retry attempts recorded."}));
+          } else {
+            retriesEl.replaceChildren(...retries.map((r,i)=>{
+              const dc="billing-drawer-retry-"+(i+1);
+              return el("div",{className:"rssc-billing-entry","data-comment":dc},[
+                el("span",{className:"rssc-billing-entry-date",textContent:r.date}),
+                el("div",{className:"rssc-billing-entry-body"},[
+                  el("div",{className:"rssc-billing-entry-top"},[
+                    el("span",{className:"rssc-billing-entry-title",textContent:r.attemptLabel}),
+                    el("span",{className:"rssc-badge rssc-badge--"+r.outcomeVariant},[el("span",{textContent:r.outcomeLabel})]),
+                  ]),
+                  el("span",{className:"rssc-billing-entry-detail",textContent:r.detail}),
+                ]),
+              ]);
+            }));
+          }
+          // Show/hide Hold vs Resume based on status
+          const isOnHold=a.statusLabel.toLowerCase().includes("hold");
+          document.getElementById("drawer-hold-btn").style.display=isOnHold?"none":"inline-flex";
+          document.getElementById("drawer-resume-btn").style.display=isOnHold?"inline-flex":"none";
+          const isCancelled=a.statusLabel.toLowerCase().includes("cancel");
+          document.getElementById("drawer-cancel-btn").style.display=isCancelled?"none":"inline-flex";
+
           document.getElementById("billing-drawer-overlay").setAttribute("data-open","true");
           document.getElementById("billing-drawer").setAttribute("data-open","true");
           document.body.style.overflow="hidden";
@@ -442,8 +627,44 @@
         document.getElementById("billing-drawer-overlay").addEventListener("click",closeDrawer);
         document.getElementById("billing-drawer-close").addEventListener("click",closeDrawer);
         document.addEventListener("keydown",function(e){
-          if(e.key==="Escape"&&document.getElementById("billing-drawer").getAttribute("data-open")==="true"){closeDrawer();}
+          if(e.key!=="Escape")return;
+          if(document.getElementById("hold-modal").getAttribute("data-open")==="true"){closeActionModal("hold-modal");return;}
+          if(document.getElementById("resume-modal").getAttribute("data-open")==="true"){closeActionModal("resume-modal");return;}
+          if(document.getElementById("cancel-modal").getAttribute("data-open")==="true"){closeActionModal("cancel-modal");return;}
+          if(document.getElementById("billing-drawer").getAttribute("data-open")==="true"){closeDrawer();}
         });
+
+        // Action modals
+        function openActionModal(id){document.getElementById(id).setAttribute("data-open","true");document.body.style.overflow="hidden";}
+        function closeActionModal(id){document.getElementById(id).setAttribute("data-open","false");document.body.style.overflow=document.getElementById("billing-drawer").getAttribute("data-open")==="true"?"hidden":"";}
+
+        document.getElementById("drawer-hold-btn").addEventListener("click",()=>openActionModal("hold-modal"));
+        document.getElementById("drawer-resume-btn").addEventListener("click",()=>openActionModal("resume-modal"));
+        document.getElementById("drawer-cancel-btn").addEventListener("click",()=>openActionModal("cancel-modal"));
+        ["hold","resume","cancel"].forEach((kind)=>{
+          const modalId=kind+"-modal";
+          const overlay=document.getElementById(modalId);
+          overlay.addEventListener("click",(e)=>{if(e.target===overlay)closeActionModal(modalId);});
+          document.getElementById(kind+"-close").addEventListener("click",()=>closeActionModal(modalId));
+        });
+        document.getElementById("hold-cancel").addEventListener("click",()=>closeActionModal("hold-modal"));
+        document.getElementById("resume-cancel").addEventListener("click",()=>closeActionModal("resume-modal"));
+        document.getElementById("cancel-keep").addEventListener("click",()=>closeActionModal("cancel-modal"));
+
+        const holdReason=document.getElementById("hold-reason");
+        const holdEffective=document.getElementById("hold-effective");
+        const holdFollowup=document.getElementById("hold-followup");
+        const holdSubmit=document.getElementById("hold-submit");
+        function syncHold(){holdSubmit.disabled=!(holdReason.value&&holdEffective.value&&holdFollowup.value);}
+        [holdReason,holdEffective,holdFollowup].forEach((i)=>{i.addEventListener("input",syncHold);i.addEventListener("change",syncHold);});
+        document.getElementById("hold-form").addEventListener("submit",(e)=>{e.preventDefault();closeActionModal("hold-modal");closeDrawer();});
+
+        const resumeDate=document.getElementById("resume-date");
+        const resumeSubmit=document.getElementById("resume-submit");
+        resumeDate.addEventListener("input",()=>{resumeSubmit.disabled=!resumeDate.value;});
+        document.getElementById("resume-form").addEventListener("submit",(e)=>{e.preventDefault();closeActionModal("resume-modal");closeDrawer();});
+
+        document.getElementById("cancel-form").addEventListener("submit",(e)=>{e.preventDefault();closeActionModal("cancel-modal");closeDrawer();});
 
         document.querySelectorAll("[data-tab]").forEach((btn)=>{
           btn.addEventListener("click",()=>store.set({activeTab:btn.getAttribute("data-tab")}));

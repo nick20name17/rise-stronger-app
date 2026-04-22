@@ -247,13 +247,13 @@
             </div>
 
             <div class="rssc-tabs" style="align-self:flex-start;" data-comment="reports-tabs">
-              <button type="button" class="rssc-tabs__item" data-active="true" data-comment="reports-tab-attendance">Attendance</button>
-              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-retention">Retention</button>
-              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-financial">Financial</button>
-              <button type="button" class="rssc-tabs__item" data-comment="reports-tab-operations">Operations</button>
+              <button type="button" class="rssc-tabs__item" data-report-tab="attendance" data-active="true" data-comment="reports-tab-attendance">Attendance</button>
+              <button type="button" class="rssc-tabs__item" data-report-tab="revenue" data-comment="reports-tab-revenue">Revenue</button>
+              <button type="button" class="rssc-tabs__item" data-report-tab="performance" data-comment="reports-tab-performance">Performance</button>
+              <button type="button" class="rssc-tabs__item" data-report-tab="followups" data-comment="reports-tab-followups">Follow-ups</button>
             </div>
 
-            <div class="rssc-trigger-grid" data-comment="reports-triggers">
+            <div class="rssc-trigger-grid" id="reports-triggers-attendance" data-report-panel="attendance" data-comment="reports-triggers">
               <div class="rssc-trigger-card" data-comment="reports-trigger-at-risk">
                 <div class="rssc-trigger-top" data-comment="reports-trigger-at-risk-top">
                   <span class="rssc-trigger-label" data-comment="reports-trigger-at-risk-label">Retention queue</span>
@@ -314,6 +314,103 @@
                   <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-1">Re-survey</span>
                   <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-2">Trial new time</span>
                 </div>
+              </div>
+            </div>
+
+            <div class="rssc-trigger-grid" id="reports-triggers-revenue" data-report-panel="revenue" style="display:none" data-comment="reports-triggers-revenue">
+              <div class="rssc-trigger-card" data-comment="reports-trigger-failed-payments">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-failed-payments-label">Billing recovery</span><span class="rssc-badge rssc-badge--danger" data-comment="reports-trigger-failed-payments-priority"><span>Act now</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-failed-payments-title">Failed payments</span><span class="rssc-trigger-value" data-comment="reports-trigger-failed-payments-value">4</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-failed-payments-desc">Members who need recovery before billing quietly slips.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-failed-payments-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-failed-payments-preview-1"><span class="rssc-trigger-preview-name">Marcus Webb</span><span class="rssc-trigger-preview-note">Retry due tomorrow and still unresolved</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-failed-payments-preview-2"><span class="rssc-trigger-preview-name">Billing queue</span><span class="rssc-trigger-preview-note">2 members need personal follow-up today</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-1">Call members</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-2">Retry plan</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-3">Pause access</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-cancels-pending">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-cancels-pending-label">Save or confirm</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-cancels-pending-priority"><span>This week</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-cancels-pending-title">Cancels pending</span><span class="rssc-trigger-value" data-comment="reports-trigger-cancels-pending-value">3</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-cancels-pending-desc">Cancellation requests that still need Katie's conversation and capture.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-cancels-pending-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-cancels-pending-preview-1"><span class="rssc-trigger-preview-name">Alan Rivera</span><span class="rssc-trigger-preview-note">Schedule conflict may still be recoverable</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-cancels-pending-preview-2"><span class="rssc-trigger-preview-name">Open requests</span><span class="rssc-trigger-preview-note">Make sure follow-up dates are not skipped</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-1">Talk to member</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-2">Offer solution</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-3">Log reason</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-mrr-health">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-mrr-health-label">Financial health</span><span class="rssc-badge rssc-badge--neutral" data-comment="reports-trigger-mrr-health-priority"><span>Watch closely</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-mrr-health-title">MRR health</span><span class="rssc-trigger-value" data-comment="reports-trigger-mrr-health-value">$29.4k</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-mrr-health-desc">Useful as a health signal only when it points toward a real retention or billing action.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-mrr-health-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-mrr-health-preview-1"><span class="rssc-trigger-preview-name">Down 1.8%</span><span class="rssc-trigger-preview-note">Look for churn and failed payments before broader changes</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-mrr-health-preview-2"><span class="rssc-trigger-preview-name">QuickBooks sync</span><span class="rssc-trigger-preview-note">Healthy, so signal likely reflects member movement</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-1">Review causes</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-2">Open cancels</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-3">Open billing queue</span></div>
+              </div>
+            </div>
+
+            <div class="rssc-trigger-grid" id="reports-triggers-performance" data-report-panel="performance" style="display:none" data-comment="reports-triggers-performance">
+              <div class="rssc-trigger-card" data-comment="reports-trigger-new-prs">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-new-prs-label">Celebrate</span><span class="rssc-badge rssc-badge--success" data-comment="reports-trigger-new-prs-priority"><span>Recognize</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-new-prs-title">New PRs</span><span class="rssc-trigger-value" data-comment="reports-trigger-new-prs-value">12</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-new-prs-desc">Members who hit personal records this week — worth a shout-out.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-new-prs-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-new-prs-preview-1"><span class="rssc-trigger-preview-name">Priya Nair</span><span class="rssc-trigger-preview-note">Back Squat PR · 67.5 kg (+5 kg)</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-new-prs-preview-2"><span class="rssc-trigger-preview-name">James Okafor</span><span class="rssc-trigger-preview-note">Deadlift PR · 142.5 kg (+2.5 kg)</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-new-prs-action-1">Post to board</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-new-prs-action-2">Message member</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-skill-gap">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-skill-gap-label">Coaching signal</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-skill-gap-priority"><span>Follow up</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-skill-gap-title">Skill gap</span><span class="rssc-trigger-value" data-comment="reports-trigger-skill-gap-value">6</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-skill-gap-desc">Members whose logged scores show stalling on key movements.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-skill-gap-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-skill-gap-preview-1"><span class="rssc-trigger-preview-name">Aoife Kelly</span><span class="rssc-trigger-preview-note">Pull-up progression stuck 4 weeks</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-skill-gap-preview-2"><span class="rssc-trigger-preview-name">Sarah Chen</span><span class="rssc-trigger-preview-note">Bar muscle-up blocked since return</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-skill-gap-action-1">Book 1:1</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-skill-gap-action-2">Scale regression</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-leaderboard-reach">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-leaderboard-reach-label">Engagement</span><span class="rssc-badge rssc-badge--info" data-comment="reports-trigger-leaderboard-reach-priority"><span>This week</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-leaderboard-reach-title">Leaderboard reach</span><span class="rssc-trigger-value" data-comment="reports-trigger-leaderboard-reach-value">74%</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-leaderboard-reach-desc">Members who opted-in and are logging scores regularly.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-leaderboard-reach-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-leaderboard-reach-preview-1"><span class="rssc-trigger-preview-name">26 of 35 opted in</span><span class="rssc-trigger-preview-note">Up from 68% last month</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-leaderboard-reach-action-1">Nudge opt-ins</span></div>
+              </div>
+            </div>
+
+            <div class="rssc-trigger-grid" id="reports-triggers-followups" data-report-panel="followups" style="display:none" data-comment="reports-triggers-followups">
+              <div class="rssc-trigger-card" data-comment="reports-trigger-check-ins-due">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-check-ins-due-label">Outreach</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-check-ins-due-priority"><span>Today</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-check-ins-due-title">Check-ins due</span><span class="rssc-trigger-value" data-comment="reports-trigger-check-ins-due-value">5</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-check-ins-due-desc">Scheduled member outreach that Katie needs to close today.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-check-ins-due-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-check-ins-due-preview-1"><span class="rssc-trigger-preview-name">Jordan Mitchell</span><span class="rssc-trigger-preview-note">At-risk follow-up · overdue 1 day</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-check-ins-due-preview-2"><span class="rssc-trigger-preview-name">Mia Thornton</span><span class="rssc-trigger-preview-note">Injury recheck scheduled for today</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-check-ins-due-action-1">Call list</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-check-ins-due-action-2">Mark done</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-hold-returns-followup">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-hold-returns-followup-label">Return queue</span><span class="rssc-badge rssc-badge--info" data-comment="reports-trigger-hold-returns-followup-priority"><span>This week</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-hold-returns-followup-title">Hold returns</span><span class="rssc-trigger-value" data-comment="reports-trigger-hold-returns-followup-value">2</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-hold-returns-followup-desc">Holds ending soon — confirm restart before billing resumes.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-hold-returns-followup-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-followup-preview-1"><span class="rssc-trigger-preview-name">Tom Bracken</span><span class="rssc-trigger-preview-note">Hold ends May 5 · restart not confirmed</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-followup-action-1">Call member</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-followup-action-2">Extend hold</span></div>
+              </div>
+              <div class="rssc-trigger-card" data-comment="reports-trigger-milestones">
+                <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-milestones-label">Milestone</span><span class="rssc-badge rssc-badge--success" data-comment="reports-trigger-milestones-priority"><span>Celebrate</span></span></div>
+                <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-milestones-title">Member milestones</span><span class="rssc-trigger-value" data-comment="reports-trigger-milestones-value">3</span></div>
+                <div class="rssc-trigger-desc" data-comment="reports-trigger-milestones-desc">Anniversaries and class-count milestones this week.</div>
+                <div class="rssc-trigger-preview" data-comment="reports-trigger-milestones-preview">
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-milestones-preview-1"><span class="rssc-trigger-preview-name">James Okafor</span><span class="rssc-trigger-preview-note">5 years with the gym</span></div>
+                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-milestones-preview-2"><span class="rssc-trigger-preview-name">Elena Vasquez</span><span class="rssc-trigger-preview-note">Hits 250 classes</span></div>
+                </div>
+                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-milestones-action-1">Send card</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-milestones-action-2">Post shout-out</span></div>
               </div>
             </div>
 
@@ -402,6 +499,15 @@
         function svgLine(x1,y1,x2,y2){const l=document.createElementNS(SVG_NS,"line");l.setAttribute("x1",x1);l.setAttribute("x2",x2);l.setAttribute("y1",y1);l.setAttribute("y2",y2);return l;}
         function svgRect(a){const r=document.createElementNS(SVG_NS,"rect");for(const k in a)r.setAttribute(k,a[k]);return r;}
         function createStore(i){let s=structuredClone(i);const ls=new Set();return{get:()=>s,set(u){s=typeof u==="function"?u(s):{...s,...u};ls.forEach((f)=>f(s));},subscribe(f){ls.add(f);return()=>ls.delete(f);}};}
+
+        // Report tabs
+        document.querySelectorAll("[data-report-tab]").forEach(function(btn){
+          btn.addEventListener("click",function(){
+            const tab=btn.getAttribute("data-report-tab");
+            document.querySelectorAll("[data-report-tab]").forEach((b)=>b.setAttribute("data-active",b.getAttribute("data-report-tab")===tab?"true":"false"));
+            document.querySelectorAll("[data-report-panel]").forEach((p)=>{p.style.display=p.getAttribute("data-report-panel")===tab?"grid":"none";});
+          });
+        });
 
         const INITIAL_NOTIFICATIONS=[
           {id:"attendance-risk",title:"Jordan Mitchell is trending at risk",meta:"Attendance is down to 62%. Follow up before the next class.",time:"8m ago",href:"admin-member-profile.html",type:"member",tone:"warning",read:false},

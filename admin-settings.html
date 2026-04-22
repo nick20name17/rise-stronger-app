@@ -177,6 +177,17 @@
       .rssc-settings-tab-panel { display: none; }
       .rssc-settings-tab-panel[data-active="true"] { display: flex; flex-direction: column; gap: 16px; }
 
+      /* Unsaved changes modal */
+      .rssc-modal-overlay{position:fixed;inset:0;background:rgba(23,23,23,.45);z-index:100;display:none;align-items:center;justify-content:center;padding:24px 16px;}
+      .rssc-modal-overlay[data-open="true"]{display:flex;}
+      .rssc-modal-dialog{width:100%;max-width:480px;background:#fff;border:1px solid #e8e8e3;border-radius:16px;box-shadow:0 2px 6px rgba(23,23,23,.06),0 10px 28px rgba(23,23,23,.12);display:flex;flex-direction:column;}
+      .rssc-modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid #f1f1ee;}
+      .rssc-modal-title{font-size:16px;font-weight:600;line-height:24px;letter-spacing:-.01em;color:#171717;}
+      .rssc-modal-body{padding:24px;display:flex;align-items:flex-start;gap:12px;}
+      .rssc-modal-intro{margin:0;font-size:13px;line-height:20px;color:#4b4a45;}
+      .rssc-modal-footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid #f1f1ee;flex-wrap:wrap;}
+      .rssc-unsaved-icon{width:40px;height:40px;border-radius:999px;background:#fff7e8;color:#c88719;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
       @media (max-width: 1279px) { .rssc-admin-search { width: 220px; } }
       @media (max-width: 767px) {
         .rssc-app-shell { grid-template-columns: 1fr; }
@@ -424,6 +435,26 @@
       </div>
     </div>
 
+    <!-- Unsaved changes modal -->
+    <div class="rssc-modal-overlay" id="unsaved-modal" role="presentation" data-comment="settings-unsaved-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="unsaved-title" data-comment="settings-unsaved-modal-dialog">
+        <div class="rssc-modal-header" data-comment="settings-unsaved-modal-header">
+          <span class="rssc-modal-title" id="unsaved-title" data-comment="settings-unsaved-modal-title">Unsaved changes</span>
+        </div>
+        <div class="rssc-modal-body" data-comment="settings-unsaved-modal-body">
+          <div class="rssc-unsaved-icon" aria-hidden="true" data-comment="settings-unsaved-modal-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <p class="rssc-modal-intro" data-comment="settings-unsaved-modal-intro">You have unsaved changes in Settings. Save them before leaving this screen, or discard them and continue.</p>
+        </div>
+        <div class="rssc-modal-footer" data-comment="settings-unsaved-modal-footer">
+          <button type="button" class="rssc-button rssc-button--ghost rssc-button--sm" id="unsaved-stay" data-comment="settings-unsaved-modal-stay"><span class="rssc-button__label">Stay here</span></button>
+          <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="unsaved-discard" data-comment="settings-unsaved-modal-discard"><span class="rssc-button__label">Discard</span></button>
+          <button type="button" class="rssc-button rssc-button--sm" id="unsaved-save" data-comment="settings-unsaved-modal-save"><span class="rssc-button__label" id="unsaved-save-label">Save and continue</span></button>
+        </div>
+      </div>
+    </div>
+
     <script>
       (function () {
         const SVG_NS = "http://www.w3.org/2000/svg";
@@ -435,21 +466,13 @@
         function svgRect(a) { const r = document.createElementNS(SVG_NS, "rect"); for (const k in a) r.setAttribute(k, a[k]); return r; }
         function createStore(i) { let s = structuredClone(i); const ls = new Set(); return { get: () => s, set(u) { s = typeof u === "function" ? u(s) : { ...s, ...u }; ls.forEach((f) => f(s)); }, subscribe(f) { ls.add(f); return () => ls.delete(f); } }; }
 
-        // Tab switching
-        document.querySelectorAll("[data-tab]").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            const tab = btn.getAttribute("data-tab");
-            document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("data-active", b === btn ? "true" : "false"));
-            document.querySelectorAll("[data-tab-panel]").forEach((p) => p.setAttribute("data-active", p.getAttribute("data-tab-panel") === tab ? "true" : "false"));
-          });
-        });
-
         // Simple unsaved-change tracking
         const form = document.getElementById("settings-form");
         const saveBtn = document.getElementById("settings-save-btn");
         const saveLabel = document.getElementById("settings-save-label");
         const statusBadge = document.getElementById("settings-status-badge");
         let dirty = false;
+        let pending = null; // {type:"tab"|"href",value}
 
         function markDirty() {
           if (dirty) return;
@@ -460,20 +483,100 @@
           statusBadge.className = "rssc-badge rssc-badge--warning";
           statusBadge.firstChild.textContent = "Unsaved changes";
         }
-        form.addEventListener("input", markDirty);
-        form.addEventListener("change", markDirty);
-        saveBtn.addEventListener("click", function () {
-          if (!dirty) return;
+        function clearDirty() {
+          dirty = false;
+          saveLabel.textContent = "Saved";
+          saveBtn.classList.add("rssc-button--secondary");
+          statusBadge.className = "rssc-badge rssc-badge--info";
+          statusBadge.firstChild.textContent = "MVP config";
+          saveBtn.disabled = true;
+        }
+        function saveNow(cb) {
           saveBtn.disabled = true;
           saveLabel.textContent = "Saving…";
           setTimeout(function () {
-            dirty = false;
-            saveLabel.textContent = "Saved";
-            saveBtn.classList.add("rssc-button--secondary");
-            statusBadge.className = "rssc-badge rssc-badge--info";
-            statusBadge.firstChild.textContent = "MVP config";
-            setTimeout(function () { saveLabel.textContent = "Save changes"; }, 1600);
+            clearDirty();
+            if (cb) cb();
+            setTimeout(function () { if (!dirty) saveLabel.textContent = "Save changes"; }, 1600);
           }, 420);
+        }
+
+        form.addEventListener("input", markDirty);
+        form.addEventListener("change", markDirty);
+        saveBtn.addEventListener("click", function () { if (dirty) saveNow(); });
+
+        // Tab switching with unsaved-change guard
+        function switchTab(tab) {
+          document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("data-active", b.getAttribute("data-tab") === tab ? "true" : "false"));
+          document.querySelectorAll("[data-tab-panel]").forEach((p) => p.setAttribute("data-active", p.getAttribute("data-tab-panel") === tab ? "true" : "false"));
+        }
+        document.querySelectorAll("[data-tab]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const tab = btn.getAttribute("data-tab");
+            if (dirty) {
+              pending = { type: "tab", value: tab };
+              openUnsaved();
+              return;
+            }
+            switchTab(tab);
+          });
+        });
+
+        // Intercept link clicks when dirty (sidebar, drawer, account menu, etc.)
+        document.addEventListener("click", function (e) {
+          if (!dirty) return;
+          if (e.defaultPrevented || e.button !== 0) return;
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          const link = e.target.closest && e.target.closest("a[href]");
+          if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+          const href = link.getAttribute("href");
+          if (!href || href.startsWith("#")) return;
+          // Same URL → ignore
+          if (link.href === window.location.href) return;
+          e.preventDefault();
+          pending = { type: "href", value: link.href };
+          openUnsaved();
+        }, true);
+
+        // Unsaved modal wiring
+        function openUnsaved() {
+          document.getElementById("unsaved-modal").setAttribute("data-open", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function closeUnsaved() {
+          document.getElementById("unsaved-modal").setAttribute("data-open", "false");
+          document.body.style.overflow = "";
+        }
+        function resolvePending() {
+          const p = pending;
+          pending = null;
+          if (!p) return;
+          if (p.type === "tab") switchTab(p.value);
+          else if (p.type === "href") window.location.assign(p.value);
+        }
+        document.getElementById("unsaved-stay").addEventListener("click", function () {
+          pending = null;
+          closeUnsaved();
+        });
+        document.getElementById("unsaved-discard").addEventListener("click", function () {
+          dirty = false;
+          clearDirty();
+          closeUnsaved();
+          resolvePending();
+        });
+        document.getElementById("unsaved-save").addEventListener("click", function () {
+          document.getElementById("unsaved-save-label").textContent = "Saving…";
+          saveNow(function () {
+            document.getElementById("unsaved-save-label").textContent = "Save and continue";
+            closeUnsaved();
+            resolvePending();
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && document.getElementById("unsaved-modal").getAttribute("data-open") === "true") {
+            pending = null;
+            closeUnsaved();
+          }
         });
 
         // ── AdminShell interactions ──

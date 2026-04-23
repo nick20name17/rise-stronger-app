@@ -1505,6 +1505,18 @@
     </div>
 
     <script>
+      // Route nav through parent viewer when iframed; else fall back.
+      window.navHref = function(href){
+        try {
+          if (window.parent !== window) {
+            window.parent.postMessage({ type: "FILE_NAV", href: href }, "*");
+            return;
+          }
+        } catch(e) {}
+        window.location.href = href;
+      };
+    </script>
+    <script>
       (function () {
         const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -1956,7 +1968,7 @@
               seeAll.appendChild(document.createTextNode('"'));
               seeAll.addEventListener("click", () => {
                 pushHistory(trimmed);
-                window.location.href = "admin-search.html?q=" + encodeURIComponent(trimmed);
+                navHref("admin-search.html?q=" + encodeURIComponent(trimmed));
               });
               footer.appendChild(seeAll);
               dropdown.appendChild(footer);
@@ -1979,7 +1991,7 @@
               const q = input.value.trim();
               if (!q) return;
               pushHistory(q);
-              window.location.href = "admin-search.html?q=" + encodeURIComponent(q);
+              navHref("admin-search.html?q=" + encodeURIComponent(q));
             }
           });
           document.addEventListener("mousedown", (e) => {

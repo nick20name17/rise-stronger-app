@@ -733,6 +733,18 @@
     </script>
 
     <script>
+      // Route nav through parent viewer via postMessage when iframed
+      window.navHref = function(href) {
+        try {
+          if (window.parent !== window) {
+            window.parent.postMessage({ type: "FILE_NAV", href: href }, "*");
+            return;
+          }
+        } catch(e) {}
+        window.location.href = href;
+      };
+    </script>
+    <script>
       // ─── MemberNav component ─────────────────────────────────────────────
       (function () {
         var NAV_ITEMS = [
@@ -763,7 +775,7 @@
           nav.innerHTML = NAV_ITEMS.map(function (item) {
             var active = item.id === activePage;
             return (
-              '<a href="' + item.href + '"' +
+              '<a href="' + item.href + '" onclick="window.navHref(this.href);return false;"' +
               ' class="rssc-m-nav-item' + (active ? " rssc-m-nav-item--active" : "") + '"' +
               (active ? ' aria-current="page"' : "") +
               ' data-comment="member-nav-' + item.id + '">' +

@@ -1356,6 +1356,17 @@
           },
         ];
 
+      // Route nav through parent viewer via postMessage when iframed
+      window.navHref = function(href) {
+        try {
+          if (window.parent !== window) {
+            window.parent.postMessage({ type: "FILE_NAV", href: href }, "*");
+            return;
+          }
+        } catch(e) {}
+        window.location.href = href;
+      };
+
         function renderMemberNav(activePage) {
           var nav = document.querySelector('[data-comment="member-nav"]');
           nav.innerHTML = NAV_ITEMS.map(function (item) {
@@ -1363,7 +1374,7 @@
             return (
               '<a href="' +
               item.href +
-              '" class="rssc-m-nav-item' +
+              '" onclick="window.navHref(this.href);return false;" class="rssc-m-nav-item' +
               (active ? " rssc-m-nav-item--active" : "") +
               '"' +
               (active ? ' aria-current="page"' : "") +

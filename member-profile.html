@@ -263,6 +263,101 @@
         text-align: right;
       }
 
+      .rssc-m-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .rssc-m-card-sub {
+        font-size: 12px;
+        color: #8c8a80;
+        line-height: 1.4;
+      }
+
+      .rssc-m-btn {
+        height: 34px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: none;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-btn--secondary {
+        background: #f0f0ec;
+        color: #4b4a45;
+      }
+
+      .rssc-m-btn--ghost {
+        background: transparent;
+        border: 1px solid #e8e8e3;
+        color: #4b4a45;
+      }
+
+      .rssc-m-btn-row {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .rssc-m-form-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .rssc-m-field-root {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .rssc-m-field-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b6963;
+      }
+
+      .rssc-m-field-input {
+        width: 100%;
+        height: 42px;
+        border: 1px solid #d9d9d4;
+        border-radius: 10px;
+        padding: 0 12px;
+        background: #fff;
+        color: #171717;
+        outline: none;
+        transition: border-color 0.12s, box-shadow 0.12s;
+      }
+
+      .rssc-m-field-input:focus {
+        border-color: #3d5afe;
+        box-shadow: 0 0 0 3px rgba(61, 90, 254, 0.1);
+      }
+
+      .rssc-m-field-error {
+        font-size: 11px;
+        color: #dc2626;
+      }
+
+      .rssc-m-inline-alert {
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #fecaca;
+        background: #fef2f2;
+        color: #b91c1c;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
       /* ─── Attendance stats grid ──────────────────────────────────────── */
       .rssc-m-profile-stats-grid {
         display: grid;
@@ -292,6 +387,34 @@
         color: #8c8a80;
         text-align: center;
         line-height: 1.3;
+      }
+
+      /* ─── Status summary ─────────────────────────────────────────────── */
+      .rssc-m-status-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .rssc-m-status-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rssc-m-status-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #8c8a80;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .rssc-m-status-value {
+        font-size: 13px;
+        color: #171717;
+        text-align: right;
       }
 
       /* ─── Self-select flags ──────────────────────────────────────────── */
@@ -375,31 +498,6 @@
         transform: translateX(18px);
       }
 
-      /* ─── Leaderboard opt-in card ────────────────────────────────────── */
-      .rssc-m-lb-toggle-card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .rssc-m-lb-toggle-info {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .rssc-m-lb-toggle-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: #171717;
-      }
-
-      .rssc-m-lb-toggle-sub {
-        font-size: 12px;
-        color: #8c8a80;
-      }
-
       /* ─── Membership note ────────────────────────────────────────────── */
       .rssc-m-membership-note {
         background: #f5f5f3;
@@ -459,14 +557,23 @@
           <div class="rssc-m-profile-hero" data-comment="profile-hero">
             <div
               class="rssc-m-profile-avatar"
+              id="profile-avatar"
               data-comment="profile-avatar"
             >
               SC
             </div>
-            <div class="rssc-m-profile-name" data-comment="profile-name">
+            <div
+              class="rssc-m-profile-name"
+              id="profile-name"
+              data-comment="profile-name"
+            >
               Sarah Chen
             </div>
-            <div class="rssc-m-profile-tier" data-comment="profile-tier">
+            <div
+              class="rssc-m-profile-tier"
+              id="profile-tier"
+              data-comment="profile-tier"
+            >
               Regular · Active
             </div>
           </div>
@@ -488,6 +595,7 @@
               >
                 <span
                   class="rssc-m-stat-value"
+                  id="profile-attendance-total-value"
                   data-comment="profile-attendance-total-value"
                   >7</span
                 >
@@ -503,6 +611,7 @@
               >
                 <span
                   class="rssc-m-stat-value"
+                  id="profile-attendance-month-value"
                   data-comment="profile-attendance-month-value"
                   >4</span
                 >
@@ -518,6 +627,7 @@
               >
                 <span
                   class="rssc-m-stat-value"
+                  id="profile-attendance-streak-value"
                   data-comment="profile-attendance-streak-value"
                   >3</span
                 >
@@ -528,6 +638,34 @@
                 >
               </div>
             </div>
+          </div>
+
+          <div data-comment="profile-status-section">
+            <div
+              class="rssc-m-section-title"
+              data-comment="profile-status-title"
+            >
+              Personal Status
+            </div>
+            <div
+              class="rssc-m-card"
+              id="profile-status-card"
+              data-comment="profile-status-card"
+            ></div>
+          </div>
+
+          <div data-comment="profile-personal-section">
+            <div
+              class="rssc-m-section-title"
+              data-comment="profile-personal-title"
+            >
+              Personal Info
+            </div>
+            <div
+              class="rssc-m-card"
+              id="profile-personal-card"
+              data-comment="profile-personal-card"
+            ></div>
           </div>
 
           <div data-comment="profile-flags-section">
@@ -706,99 +844,11 @@
             >
               Account
             </div>
-            <div class="rssc-m-card" data-comment="profile-account-card">
-              <div
-                class="rssc-m-profile-row"
-                data-comment="profile-account-email-row"
-              >
-                <span
-                  class="rssc-m-profile-label"
-                  data-comment="profile-account-email-label"
-                  >Email</span
-                >
-                <span
-                  class="rssc-m-profile-value"
-                  data-comment="profile-account-email-value"
-                  >member@member.com</span
-                >
-              </div>
-              <div
-                class="rssc-m-profile-row"
-                data-comment="profile-account-since-row"
-              >
-                <span
-                  class="rssc-m-profile-label"
-                  data-comment="profile-account-since-label"
-                  >Member since</span
-                >
-                <span
-                  class="rssc-m-profile-value"
-                  data-comment="profile-account-since-value"
-                  >January 2026</span
-                >
-              </div>
-              <div
-                class="rssc-m-profile-row"
-                data-comment="profile-account-tier-row"
-              >
-                <span
-                  class="rssc-m-profile-label"
-                  data-comment="profile-account-tier-label"
-                  >Membership</span
-                >
-                <span
-                  class="rssc-m-profile-value"
-                  data-comment="profile-account-tier-value"
-                  >Regular</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div data-comment="profile-lb-section">
             <div
-              class="rssc-m-section-title"
-              data-comment="profile-lb-title"
-            >
-              Leaderboard
-            </div>
-            <div
-              class="rssc-m-card rssc-m-lb-toggle-card"
-              data-comment="profile-lb-card"
-            >
-              <div
-                class="rssc-m-lb-toggle-info"
-                data-comment="profile-lb-info"
-              >
-                <span
-                  class="rssc-m-lb-toggle-title"
-                  data-comment="profile-lb-optin-title"
-                  >Show me on the leaderboard</span
-                >
-                <span
-                  class="rssc-m-lb-toggle-sub"
-                  id="lb-optin-sub"
-                  data-comment="profile-lb-optin-sub"
-                  >Your scores are visible to the gym</span
-                >
-              </div>
-              <label
-                class="rssc-m-toggle"
-                aria-label="Show on leaderboard"
-                data-comment="profile-lb-toggle"
-              >
-                <input
-                  type="checkbox"
-                  id="lb-optin-input"
-                  checked
-                  data-comment="profile-lb-toggle-input"
-                />
-                <span
-                  class="rssc-m-toggle-track"
-                  data-comment="profile-lb-toggle-track"
-                ></span>
-              </label>
-            </div>
+              class="rssc-m-card"
+              id="profile-account-card"
+              data-comment="profile-account-card"
+            ></div>
           </div>
 
           <div data-comment="profile-membership-section">
@@ -825,118 +875,7 @@
           class="rssc-m-bottomnav"
           aria-label="Main navigation"
           data-comment="member-nav"
-        >
-          <a
-            href="member.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-today"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M14.4 14.4 9.6 9.6" />
-              <path
-                d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"
-              />
-              <path d="m21.5 21.5-1.4-1.4" />
-              <path d="M3.9 3.9 2.5 2.5" />
-              <path
-                d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"
-              />
-            </svg>
-            <span class="rssc-m-nav-label">Today</span>
-          </a>
-          <a
-            href="member-scores.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-scores"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"
-              />
-              <path d="M11 12 5.12 2.2" />
-              <path d="m13 12 5.88-9.8" />
-              <path d="M8 7h8" />
-              <circle cx="12" cy="17" r="5" />
-              <path d="M12 18v-2h-.5" />
-            </svg>
-            <span class="rssc-m-nav-label">Scores</span>
-          </a>
-          <a
-            href="member-leaderboard.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-leaders"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-              <path d="M4 22h16" />
-              <path
-                d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
-              />
-              <path
-                d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
-              />
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-            </svg>
-            <span class="rssc-m-nav-label">Leaders</span>
-          </a>
-          <a
-            href="member-profile.html"
-            class="rssc-m-nav-item rssc-m-nav-item--active"
-            aria-current="page"
-            data-comment="member-nav-profile"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span class="rssc-m-nav-label">Profile</span>
-          </a>
-        </nav>
+        ></nav>
       </div>
     </div>
 
@@ -961,13 +900,107 @@
           };
         }
 
+        const FLAG_LABELS = {
+          pregnant: "Pregnant",
+          postpartum: "Postpartum",
+          injured: "Recovery mode",
+          "high-stress": "High stress",
+        };
+
+        const INITIAL_PERSONAL_INFO = {
+          name: "Sarah Chen",
+          email: "member@member.com",
+          phone: "(778) 555-0184",
+          emergencyContact: "David Chen · (778) 555-0191",
+        };
+
         const store = createStore({
+          personalInfo: INITIAL_PERSONAL_INFO,
+          personalDraft: INITIAL_PERSONAL_INFO,
+          personalErrors: {},
+          editingPersonalInfo: false,
+          attendance: {
+            total: 7,
+            month: 4,
+            streak: 3,
+          },
+          account: {
+            memberSince: "January 2026",
+            membership: "Regular",
+            homeGym: "Rise Stronger Kitsilano",
+            billing: "Active",
+          },
           activeFlags: new Set(["postpartum"]),
-          optedIn: true,
         });
 
+        const editableInputIds = [
+          "profile-personal-name-input",
+          "profile-personal-email-input",
+          "profile-personal-phone-input",
+          "profile-personal-emergency-input",
+        ];
+
+        const heroAvatar = document.getElementById("profile-avatar");
+        const heroName = document.getElementById("profile-name");
+        const heroTier = document.getElementById("profile-tier");
+        const attendanceTotal = document.getElementById(
+          "profile-attendance-total-value",
+        );
+        const attendanceMonth = document.getElementById(
+          "profile-attendance-month-value",
+        );
+        const attendanceStreak = document.getElementById(
+          "profile-attendance-streak-value",
+        );
+        const statusCard = document.getElementById("profile-status-card");
+        const personalCard = document.getElementById("profile-personal-card");
+        const accountCard = document.getElementById("profile-account-card");
+
+        let focusSnapshot = null;
+
+        function escapeHtml(value) {
+          return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        }
+
+        function getInitials(name) {
+          return name
+            .trim()
+            .split(/\s+/)
+            .slice(0, 2)
+            .map(function (part) {
+              return part.charAt(0).toUpperCase();
+            })
+            .join("");
+        }
+
+        function getCoachFlagsText(activeFlags) {
+          const labels = Array.from(activeFlags)
+            .map(function (id) {
+              return FLAG_LABELS[id];
+            })
+            .filter(Boolean);
+          return labels.length ? labels.join(", ") : "No flags set";
+        }
+
+        function validatePersonalInfo(draft) {
+          const errors = {};
+          if (!draft.name.trim()) errors.name = "Name is required.";
+          if (!draft.email.trim()) errors.email = "Email is required.";
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(draft.email))
+            errors.email = "Enter a valid email address.";
+          if (!draft.phone.trim()) errors.phone = "Phone is required.";
+          if (!draft.emergencyContact.trim())
+            errors.emergencyContact = "Emergency contact is required.";
+          return errors;
+        }
+
         function toggleFlag(id) {
-          store.set((s) => {
+          store.set(function (s) {
             const next = new Set(s.activeFlags);
             if (next.has(id)) next.delete(id);
             else next.add(id);
@@ -975,11 +1008,290 @@
           });
         }
 
-        function setOptedIn(v) {
-          store.set({ optedIn: v });
+        function startPersonalEdit() {
+          store.set(function (s) {
+            return {
+              ...s,
+              editingPersonalInfo: true,
+              personalDraft: { ...s.personalInfo },
+              personalErrors: {},
+            };
+          });
         }
 
-        // Flag checkboxes — sync store on change (visual state handled by CSS)
+        function cancelPersonalEdit() {
+          store.set(function (s) {
+            return {
+              ...s,
+              editingPersonalInfo: false,
+              personalDraft: { ...s.personalInfo },
+              personalErrors: {},
+            };
+          });
+        }
+
+        function updatePersonalDraft(field, value) {
+          store.set(function (s) {
+            return {
+              ...s,
+              personalDraft: {
+                ...s.personalDraft,
+                [field]: value,
+              },
+              personalErrors: {
+                ...s.personalErrors,
+                [field]: "",
+              },
+            };
+          });
+        }
+
+        function savePersonalInfo() {
+          const s = store.get();
+          const errors = validatePersonalInfo(s.personalDraft);
+          if (Object.keys(errors).length) {
+            store.set({ personalErrors: errors });
+            return;
+          }
+
+          store.set(function (state) {
+            return {
+              ...state,
+              personalInfo: { ...state.personalDraft },
+              editingPersonalInfo: false,
+              personalErrors: {},
+            };
+          });
+        }
+
+        function renderHero() {
+          const { personalInfo, account } = store.get();
+          heroAvatar.textContent = getInitials(personalInfo.name);
+          heroName.textContent = personalInfo.name;
+          heroTier.textContent = account.membership + " · Active";
+        }
+
+        function renderAttendance() {
+          const { attendance } = store.get();
+          attendanceTotal.textContent = attendance.total;
+          attendanceMonth.textContent = attendance.month;
+          attendanceStreak.textContent = attendance.streak;
+        }
+
+        function renderStatusSummary() {
+          const { activeFlags, attendance } = store.get();
+          const coachingFlags = getCoachFlagsText(activeFlags);
+          statusCard.innerHTML =
+            '<div class="rssc-m-status-list" data-comment="profile-status-list">' +
+            '<div class="rssc-m-status-row" data-comment="profile-status-coaching-row">' +
+            '<span class="rssc-m-status-label" data-comment="profile-status-coaching-label">Coach flags</span>' +
+            '<span class="rssc-m-status-value" data-comment="profile-status-coaching-value">' +
+            escapeHtml(coachingFlags) +
+            "</span>" +
+            "</div>" +
+            '<div class="rssc-m-status-row" data-comment="profile-status-rhythm-row">' +
+            '<span class="rssc-m-status-label" data-comment="profile-status-rhythm-label">Current rhythm</span>' +
+            '<span class="rssc-m-status-value" data-comment="profile-status-rhythm-value">' +
+            attendance.streak +
+            "-day streak · " +
+            attendance.month +
+            " check-ins this month" +
+            "</span>" +
+            "</div>" +
+            "</div>";
+        }
+
+        function renderProfileRow(label, value, baseComment) {
+          return (
+            '<div class="rssc-m-profile-row" data-comment="' +
+            baseComment +
+            '-row">' +
+            '<span class="rssc-m-profile-label" data-comment="' +
+            baseComment +
+            '-label">' +
+            escapeHtml(label) +
+            "</span>" +
+            '<span class="rssc-m-profile-value" data-comment="' +
+            baseComment +
+            '-value">' +
+            escapeHtml(value) +
+            "</span>" +
+            "</div>"
+          );
+        }
+
+        function renderField(label, field, value, error, inputId, baseComment) {
+          return (
+            '<label class="rssc-m-field-root" data-comment="' +
+            baseComment +
+            '-field">' +
+            '<span class="rssc-m-field-label" data-comment="' +
+            baseComment +
+            '-label">' +
+            escapeHtml(label) +
+            "</span>" +
+            '<input class="rssc-m-field-input" id="' +
+            inputId +
+            '" data-field="' +
+            field +
+            '" value="' +
+            escapeHtml(value) +
+            '" data-comment="' +
+            baseComment +
+            '-input" />' +
+            (error
+              ? '<span class="rssc-m-field-error" data-comment="' +
+                baseComment +
+                '-error">' +
+                escapeHtml(error) +
+                "</span>"
+              : "") +
+            "</label>"
+          );
+        }
+
+        function renderPersonalInfo() {
+          const { editingPersonalInfo, personalInfo, personalDraft, personalErrors } =
+            store.get();
+
+          if (!editingPersonalInfo) {
+            personalCard.innerHTML =
+              '<div class="rssc-m-card-head" data-comment="profile-personal-head">' +
+              '<div data-comment="profile-personal-copy">' +
+              '<div class="rssc-m-card-sub" data-comment="profile-personal-sub">Keep this current so coaches can contact you quickly.</div>' +
+              "</div>" +
+              '<button class="rssc-m-btn rssc-m-btn--ghost" data-action="start-edit" data-comment="profile-personal-edit-btn">Edit</button>' +
+              "</div>" +
+              renderProfileRow("Name", personalInfo.name, "profile-personal-name") +
+              renderProfileRow("Email", personalInfo.email, "profile-personal-email") +
+              renderProfileRow("Phone", personalInfo.phone, "profile-personal-phone") +
+              renderProfileRow(
+                "Emergency contact",
+                personalInfo.emergencyContact,
+                "profile-personal-emergency",
+              );
+            return;
+          }
+
+          const hasErrors = Object.values(personalErrors).some(Boolean);
+          personalCard.innerHTML =
+            '<div class="rssc-m-card-head" data-comment="profile-personal-edit-head">' +
+            '<div class="rssc-m-card-sub" data-comment="profile-personal-edit-sub">Update details for reminders, gym contact, and coach follow-up.</div>' +
+            "</div>" +
+            (hasErrors
+              ? '<div class="rssc-m-inline-alert" data-comment="profile-personal-error-alert">Please fix the highlighted fields before saving.</div>'
+              : "") +
+            '<div class="rssc-m-form-grid" data-comment="profile-personal-form">' +
+            renderField(
+              "Full name",
+              "name",
+              personalDraft.name,
+              personalErrors.name,
+              "profile-personal-name-input",
+              "profile-personal-name",
+            ) +
+            renderField(
+              "Email",
+              "email",
+              personalDraft.email,
+              personalErrors.email,
+              "profile-personal-email-input",
+              "profile-personal-email",
+            ) +
+            renderField(
+              "Phone",
+              "phone",
+              personalDraft.phone,
+              personalErrors.phone,
+              "profile-personal-phone-input",
+              "profile-personal-phone",
+            ) +
+            renderField(
+              "Emergency contact",
+              "emergencyContact",
+              personalDraft.emergencyContact,
+              personalErrors.emergencyContact,
+              "profile-personal-emergency-input",
+              "profile-personal-emergency",
+            ) +
+            "</div>" +
+            '<div class="rssc-m-btn-row" data-comment="profile-personal-actions">' +
+            '<button class="rssc-m-btn rssc-m-btn--secondary" data-action="cancel-edit" data-comment="profile-personal-cancel-btn">Cancel</button>' +
+            '<button class="rssc-m-btn" data-action="save-edit" data-comment="profile-personal-save-btn">Save</button>' +
+            "</div>";
+        }
+
+        function renderAccountInfo() {
+          const { account } = store.get();
+          accountCard.innerHTML =
+            '<div class="rssc-m-card-head" data-comment="profile-account-head">' +
+            '<div class="rssc-m-card-sub" data-comment="profile-account-sub">Basic account details and membership status.</div>' +
+            "</div>" +
+            renderProfileRow(
+              "Member since",
+              account.memberSince,
+              "profile-account-since",
+            ) +
+            renderProfileRow(
+              "Membership",
+              account.membership,
+              "profile-account-tier",
+            ) +
+            renderProfileRow(
+              "Home gym",
+              account.homeGym,
+              "profile-account-home-gym",
+            ) +
+            renderProfileRow(
+              "Billing",
+              account.billing,
+              "profile-account-billing",
+            );
+        }
+
+        function syncFlagInputs() {
+          const { activeFlags } = store.get();
+          document
+            .querySelectorAll("input[data-flag-id]")
+            .forEach(function (input) {
+              input.checked = activeFlags.has(input.getAttribute("data-flag-id"));
+            });
+        }
+
+        function snapshotFocus() {
+          const active = document.activeElement;
+          if (active && editableInputIds.includes(active.id)) {
+            focusSnapshot = {
+              id: active.id,
+              start: active.selectionStart,
+              end: active.selectionEnd,
+            };
+          } else {
+            focusSnapshot = null;
+          }
+        }
+
+        function restoreFocus() {
+          if (!focusSnapshot) return;
+          const node = document.getElementById(focusSnapshot.id);
+          if (!node) return;
+          node.focus();
+          try {
+            node.setSelectionRange(focusSnapshot.start, focusSnapshot.end);
+          } catch (_) {}
+        }
+
+        function renderAll() {
+          snapshotFocus();
+          renderHero();
+          renderAttendance();
+          renderStatusSummary();
+          renderPersonalInfo();
+          renderAccountInfo();
+          syncFlagInputs();
+          restoreFocus();
+        }
+
         document
           .querySelectorAll("input[data-flag-id]")
           .forEach(function (input) {
@@ -988,23 +1300,72 @@
             });
           });
 
-        // Leaderboard opt-in — update sub-text from store
-        const lbInput = document.getElementById("lb-optin-input");
-        const lbSub = document.getElementById("lb-optin-sub");
-
-        lbInput.addEventListener("change", function () {
-          setOptedIn(lbInput.checked);
+        personalCard.addEventListener("click", function (event) {
+          const actionNode = event.target.closest("[data-action]");
+          if (!actionNode) return;
+          const action = actionNode.getAttribute("data-action");
+          if (action === "start-edit") startPersonalEdit();
+          if (action === "cancel-edit") cancelPersonalEdit();
+          if (action === "save-edit") savePersonalInfo();
         });
 
-        function renderLbSub() {
-          const { optedIn } = store.get();
-          lbSub.textContent = optedIn
-            ? "Your scores are visible to the gym"
-            : "You're hidden from results";
+        personalCard.addEventListener("input", function (event) {
+          const field = event.target.getAttribute("data-field");
+          if (!field) return;
+          updatePersonalDraft(field, event.target.value);
+        });
+
+        store.subscribe(renderAll);
+        renderAll();
+      })();
+    </script>
+    <script>
+      // ─── MemberNav component ─────────────────────────────────────────────
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home", label: "Home", href: "member.html",
+            icon: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+          },
+          {
+            id: "classes", label: "Classes", href: "member-classes.html",
+            icon: `<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>`,
+          },
+          {
+            id: "goals", label: "Goals", href: "member-goals.html",
+            icon: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`,
+          },
+          {
+            id: "log", label: "Log", href: "member-scores.html",
+            icon: `<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>`,
+          },
+          {
+            id: "profile", label: "Profile", href: "member-profile.html",
+            icon: `<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' + item.href + '"' +
+              ' class="rssc-m-nav-item' + (active ? " rssc-m-nav-item--active" : "") + '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' + item.id + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+              ' stroke-width="' + (active ? "2.25" : "1.75") + '"' +
+              ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' + item.label + "</span>" +
+              "</a>"
+            );
+          }).join("");
         }
 
-        store.subscribe(renderLbSub);
-        renderLbSub();
+        renderMemberNav("profile");
       })();
     </script>
   </body>

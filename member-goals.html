@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise Stronger — Goals</title>
+
+    <style>
+      :root {
+        --rssc-color-bg-canvas: #f7f7f5;
+        --rssc-color-bg-surface: #ffffff;
+        --rssc-color-bg-muted: #f4f4f0;
+        --rssc-color-text-primary: #171717;
+        --rssc-color-text-secondary: #4b4a45;
+        --rssc-color-text-tertiary: #8c8a80;
+        --rssc-color-border-subtle: #e8e8e3;
+        --rssc-color-border-strong: #d8d8d1;
+        --rssc-color-accent: #3d5afe;
+        --rssc-color-accent-soft: #eef2ff;
+        --rssc-color-success: #347a48;
+        --rssc-color-success-soft: #edf8ef;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "General Sans", Inter, system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--rssc-color-text-primary);
+        background: var(--rssc-color-bg-canvas);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        margin: 0;
+      }
+
+      .rssc-m-root {
+        min-height: 100dvh;
+        background: #edede8;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .rssc-m-shell {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100dvh;
+        background: #fafaf8;
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media (min-width: 500px) {
+        .rssc-m-shell {
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.06),
+            0 8px 40px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .rssc-m-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 52px;
+        background: #fafaf8;
+        border-bottom: 1px solid #eaeae5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.015em;
+      }
+
+      .rssc-m-wordmark-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        background: #eef2ff;
+        color: #3347e6;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-topbar-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 18px 16px 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .rssc-m-page-header {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .rssc-m-page-title {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      .rssc-m-page-subtitle {
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-section-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #a8a59e;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 10px;
+      }
+
+      .rssc-m-card {
+        background: var(--rssc-color-bg-surface);
+        border: 1px solid #eaeae5;
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .rssc-m-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .rssc-m-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .rssc-m-card-sub {
+        margin-top: 4px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-card-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: var(--rssc-color-accent-soft);
+        color: var(--rssc-color-accent);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .rssc-m-goal-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .rssc-m-stat-chip {
+        padding: 12px;
+        border-radius: 14px;
+        background: var(--rssc-color-bg-muted);
+      }
+
+      .rssc-m-stat-chip-label {
+        font-size: 12px;
+        color: var(--rssc-color-text-tertiary);
+      }
+
+      .rssc-m-stat-chip-value {
+        margin-top: 4px;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .rssc-m-goal-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .rssc-m-goals-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .rssc-m-goal-item {
+        border: 1px solid var(--rssc-color-border-subtle);
+        border-radius: 16px;
+        padding: 14px;
+      }
+
+      .rssc-m-goal-item-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rssc-m-goal-item-title {
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .rssc-m-goal-item-note {
+        margin-top: 4px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-goal-item-target {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--rssc-color-text-secondary);
+        white-space: nowrap;
+      }
+
+      .rssc-m-progress-track {
+        margin-top: 14px;
+        height: 10px;
+        border-radius: 999px;
+        background: #ecece7;
+        overflow: hidden;
+      }
+
+      .rssc-m-progress-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4c63ff 0%, #3450ff 100%);
+      }
+
+      .rssc-m-goal-item-meta {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-goal-item-complete {
+        font-weight: 700;
+        color: var(--rssc-color-text-primary);
+      }
+
+      .rssc-m-card-divider {
+        height: 1px;
+        background: var(--rssc-color-border-subtle);
+        margin: 16px 0;
+      }
+
+      .rssc-m-subsection {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .rssc-m-subsection-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #a8a59e;
+      }
+
+      .rssc-m-related-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .rssc-m-related-card {
+        padding: 14px;
+        border: 1px solid var(--rssc-color-border-subtle);
+        border-radius: 16px;
+        background: #fff;
+      }
+
+      .rssc-m-related-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: var(--rssc-color-bg-muted);
+      }
+
+      .rssc-m-related-name {
+        font-weight: 700;
+      }
+
+      .rssc-m-related-copy {
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .rssc-m-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: var(--rssc-color-success-soft);
+        color: var(--rssc-color-success);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .rssc-m-scan-summary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .rssc-m-scan-metric {
+        padding: 12px;
+        border-radius: 16px;
+        background: var(--rssc-color-bg-muted);
+      }
+
+      .rssc-m-scan-metric-label {
+        font-size: 12px;
+        color: var(--rssc-color-text-tertiary);
+      }
+
+      .rssc-m-scan-metric-value {
+        margin-top: 4px;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .rssc-m-scan-metric-delta {
+        margin-top: 3px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .rssc-m-scan-metric-delta--up {
+        color: var(--rssc-color-success);
+      }
+
+      .rssc-m-scan-metric-delta--down {
+        color: #8f3c2d;
+      }
+
+      .rssc-m-trend-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .rssc-m-trend-card {
+        padding: 12px;
+        border: 1px solid var(--rssc-color-border-subtle);
+        border-radius: 16px;
+      }
+
+      .rssc-m-trend-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--rssc-color-text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .rssc-m-trend-svg {
+        width: 100%;
+        height: 72px;
+        margin-top: 10px;
+      }
+
+      .rssc-m-trend-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .rssc-m-history-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid var(--rssc-color-border-subtle);
+      }
+
+      .rssc-m-history-date {
+        font-weight: 700;
+      }
+
+      .rssc-m-history-copy {
+        margin-top: 2px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-history-stats {
+        display: flex;
+        gap: 10px;
+        margin-top: 6px;
+        color: var(--rssc-color-text-secondary);
+        font-size: 12px;
+        flex-wrap: wrap;
+      }
+
+      .rssc-m-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 12px;
+        background: var(--rssc-color-accent);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .rssc-m-btn--secondary {
+        background: transparent;
+        color: var(--rssc-color-text-secondary);
+        border: 1px solid var(--rssc-color-border-strong);
+      }
+
+      .rssc-m-empty-state {
+        padding: 18px 14px;
+        border-radius: 16px;
+        background: var(--rssc-color-bg-muted);
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-inline-alert {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid #efcfc7;
+        background: #fdf2ef;
+        color: #8f3c2d;
+        margin-bottom: 14px;
+      }
+
+      .rssc-m-skeleton {
+        background: linear-gradient(
+          90deg,
+          #ecece7 25%,
+          #f6f6f3 50%,
+          #ecece7 75%
+        );
+        background-size: 200% 100%;
+        animation: rssc-skeleton 1.4s ease-in-out infinite;
+        border-radius: 14px;
+      }
+
+      .rssc-m-skeleton-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .rssc-m-skeleton-line {
+        height: 14px;
+      }
+
+      .rssc-m-skeleton-line--lg {
+        height: 20px;
+      }
+
+      .rssc-m-skeleton-line--sm {
+        width: 52%;
+      }
+
+      @keyframes rssc-skeleton {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      .rssc-m-bottomnav {
+        position: sticky;
+        bottom: 0;
+        z-index: 20;
+        height: 64px;
+        background: #fafaf8;
+        border-top: 1px solid #eaeae5;
+        display: flex;
+        align-items: stretch;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        color: #a8a59e;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: color 0.12s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-nav-item--active {
+        color: #3d5afe;
+      }
+
+      .rssc-m-nav-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rssc-m-root">
+      <div class="rssc-m-shell">
+        <header class="rssc-m-topbar" data-comment="goals-topbar">
+          <div class="rssc-m-wordmark" data-comment="goals-topbar-brand">
+            <span class="rssc-m-wordmark-icon" data-comment="goals-topbar-brand-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M14.4 14.4 9.6 9.6" />
+                <path
+                  d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" />
+                <path d="m21.5 21.5-1.4-1.4" />
+                <path d="M3.9 3.9 2.5 2.5" />
+                <path
+                  d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" />
+              </svg>
+            </span>
+            <span data-comment="goals-topbar-brand-text">Rise Stronger</span>
+          </div>
+          <a
+            href="member-profile.html"
+            class="rssc-m-topbar-avatar"
+            data-comment="goals-topbar-avatar"
+            >SC</a
+          >
+        </header>
+
+        <main class="rssc-m-content" data-comment="goals-content">
+          <div class="rssc-m-page-header" data-comment="goals-page-header">
+            <h1 class="rssc-m-page-title" data-comment="goals-page-title">Goals</h1>
+            <p class="rssc-m-page-subtitle" data-comment="goals-page-subtitle">
+              Follow training progress, body changes, and the milestones already earned.
+            </p>
+          </div>
+
+          <section data-comment="goals-section">
+            <div style="margin-bottom: 16px;" data-comment="goals-top-completed">
+              <div id="goals-top-completed" data-comment="goals-top-completed-content"></div>
+            </div>
+            <div class="rssc-m-section-title" data-comment="goals-section-title">Your Goals</div>
+            <div data-comment="goals-card">
+              <div id="goals-card-content" data-comment="goals-card-content"></div>
+            </div>
+          </section>
+
+          <section data-comment="scan-section">
+            <div class="rssc-m-section-title" data-comment="scan-section-title">Scan Results</div>
+            <div
+              class="rssc-m-card"
+              data-component="card"
+              data-comment="scan-card">
+              <div id="scan-card-content" data-comment="scan-card-content"></div>
+            </div>
+          </section>
+        </main>
+
+        <nav class="rssc-m-bottomnav" data-comment="member-nav"></nav>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        function createStore(initialState) {
+          let state = structuredClone(initialState);
+          const listeners = new Set();
+          return {
+            get: function () {
+              return state;
+            },
+            set: function (updater) {
+              state =
+                typeof updater === "function"
+                  ? updater(state)
+                  : { ...state, ...updater };
+              listeners.forEach(function (listener) {
+                listener(state);
+              });
+            },
+            subscribe: function (listener) {
+              listeners.add(listener);
+              return function () {
+                listeners.delete(listener);
+              };
+            },
+          };
+        }
+
+        const store = createStore({
+          isLoadingGoals: true,
+          isLoadingScans: true,
+          scanError: "",
+          goals: [
+            {
+              id: 1,
+              name: "Deadlift",
+              current: 67.5,
+              start: 55,
+              target: 80,
+              unit: "kg",
+              cadence: "Strength cycle target for August",
+              monthlyChange: "+2.5 kg this month",
+            },
+            {
+              id: 2,
+              name: "5 km Run",
+              current: 29.7,
+              start: 34.8,
+              target: 25,
+              unit: "time",
+              cadence: "Aerobic pace goal for summer",
+              monthlyChange: "1 run/week streak",
+            },
+          ],
+          relatedMovementGoals: [
+            {
+              id: 1,
+              name: "Front squat",
+              progress: "+5 kg since January",
+            },
+            {
+              id: 2,
+              name: "Strict pull-up",
+              progress: "3 unbroken reps now",
+            },
+          ],
+          relatedBodyGoals: [
+            {
+              id: 1,
+              name: "Body fat",
+              progress: "26.4% to 23.1%",
+            },
+            {
+              id: 2,
+              name: "Lean mass",
+              progress: "+3.1 kg across 4 scans",
+            },
+          ],
+          completedMilestones: [
+            { id: 1, label: "Back squat 60 kg" },
+            { id: 2, label: "First pain-free 5 km" },
+            { id: 3, label: "Waist under 76 cm" },
+          ],
+          scanSessions: [
+            {
+              id: 101,
+              date: "2025-01-16",
+              label: "Jan 16, 2025",
+              location: "InBody studio check",
+              bodyFat: 26.4,
+              leanMass: 43.2,
+              weight: 68.1,
+              waist: 81,
+              hips: 97,
+              thigh: 57,
+              highlights: [
+                { id: 1, label: "Baseline scan", value: "Starting point" },
+                { id: 2, label: "Coach note", value: "Focus on strength first" },
+              ],
+            },
+            {
+              id: 102,
+              date: "2025-04-28",
+              label: "Apr 28, 2025",
+              location: "InBody studio check",
+              bodyFat: 25.2,
+              leanMass: 44.0,
+              weight: 68.6,
+              waist: 79,
+              hips: 96,
+              thigh: 57,
+              highlights: [
+                { id: 1, label: "Body fat", value: "-1.2%" },
+                { id: 2, label: "Lean mass", value: "+0.8 kg" },
+              ],
+            },
+            {
+              id: 103,
+              date: "2025-08-19",
+              label: "Aug 19, 2025",
+              location: "Quarterly scan",
+              bodyFat: 24.5,
+              leanMass: 44.8,
+              weight: 69.1,
+              waist: 78,
+              hips: 95,
+              thigh: 56,
+              highlights: [
+                { id: 1, label: "Waist", value: "-1 cm" },
+                { id: 2, label: "Lean mass", value: "+0.8 kg" },
+              ],
+            },
+            {
+              id: 104,
+              date: "2025-12-11",
+              label: "Dec 11, 2025",
+              location: "Quarterly scan",
+              bodyFat: 23.8,
+              leanMass: 45.7,
+              weight: 69.4,
+              waist: 77,
+              hips: 95,
+              thigh: 56,
+              highlights: [
+                { id: 1, label: "Body fat", value: "-0.7%" },
+                { id: 2, label: "Lean mass", value: "+0.9 kg" },
+              ],
+            },
+            {
+              id: 105,
+              date: "2026-04-08",
+              label: "Apr 8, 2026",
+              location: "Quarterly scan",
+              bodyFat: 23.1,
+              leanMass: 46.3,
+              weight: 69.2,
+              waist: 75,
+              hips: 94,
+              thigh: 55,
+              highlights: [
+                { id: 1, label: "Body fat", value: "-0.7%" },
+                { id: 2, label: "Lean mass", value: "+0.6 kg" },
+                { id: 3, label: "Waist", value: "-2 cm" },
+              ],
+            },
+          ],
+        });
+
+        const goalsTopCompleted = document.getElementById("goals-top-completed");
+        const goalsCard = document.getElementById("goals-card-content");
+        const scanCard = document.getElementById("scan-card-content");
+
+        function clamp(value, min, max) {
+          return Math.min(Math.max(value, min), max);
+        }
+
+        function formatGoalValue(goal, value) {
+          if (goal.unit === "kg") return value.toFixed(1).replace(".0", "") + " kg";
+          const minutes = Math.floor(value);
+          const seconds = Math.round((value - minutes) * 60);
+          return (
+            String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0")
+          );
+        }
+
+        function getGoalProgress(goal) {
+          if (goal.unit === "time") {
+            return clamp(
+              ((goal.start - goal.current) / (goal.start - goal.target)) * 100,
+              0,
+              100,
+            );
+          }
+          return clamp(
+            ((goal.current - goal.start) / (goal.target - goal.start)) * 100,
+            0,
+            100,
+          );
+        }
+
+        function getGoalRemaining(goal) {
+          if (goal.unit === "time") {
+            const remaining = Math.max(goal.current - goal.target, 0);
+            const minutes = Math.floor(remaining);
+            const seconds = Math.round((remaining - minutes) * 60);
+            return (
+              String(minutes).padStart(1, "0") +
+              ":" +
+              String(seconds).padStart(2, "0") +
+              " to target"
+            );
+          }
+          return (goal.target - goal.current).toFixed(1).replace(".0", "") + " kg to target";
+        }
+
+        function getLatestScan() {
+          return store.get().scanSessions[store.get().scanSessions.length - 1] || null;
+        }
+
+        function getPreviousScan() {
+          const scans = store.get().scanSessions;
+          return scans.length > 1 ? scans[scans.length - 2] : null;
+        }
+
+        function renderGoalsSkeleton() {
+          return (
+            '<div class="rssc-m-skeleton-card" data-comment="goals-loading">' +
+            '<div class="rssc-m-skeleton rssc-m-skeleton-line rssc-m-skeleton-line--lg" data-comment="goals-loading-line-1"></div>' +
+            '<div class="rssc-m-skeleton rssc-m-skeleton-line rssc-m-skeleton-line--sm" data-comment="goals-loading-line-2"></div>' +
+            '<div class="rssc-m-skeleton" style="height: 88px;" data-comment="goals-loading-block-1"></div>' +
+            '<div class="rssc-m-skeleton" style="height: 88px;" data-comment="goals-loading-block-2"></div>' +
+            "</div>"
+          );
+        }
+
+        function renderScansSkeleton() {
+          return (
+            '<div class="rssc-m-skeleton-card" data-comment="scan-loading">' +
+            '<div class="rssc-m-skeleton" style="height: 72px;" data-comment="scan-loading-block-1"></div>' +
+            '<div class="rssc-m-skeleton" style="height: 116px;" data-comment="scan-loading-block-2"></div>' +
+            '<div class="rssc-m-skeleton" style="height: 70px;" data-comment="scan-loading-block-3"></div>' +
+            "</div>"
+          );
+        }
+
+        function renderGoalItem(goal) {
+          const progress = getGoalProgress(goal);
+          const percent = Math.round(progress);
+          return (
+            '<div class="rssc-m-goal-item" data-comment="goal-item-' +
+            goal.id +
+            '">' +
+            '<div class="rssc-m-goal-item-head" data-comment="goal-item-' +
+            goal.id +
+            '-head">' +
+            '<div data-comment="goal-item-' +
+            goal.id +
+            '-copy">' +
+            '<div class="rssc-m-goal-item-title" data-comment="goal-item-' +
+            goal.id +
+            '-title">' +
+            goal.name +
+            "</div>" +
+            '<div class="rssc-m-goal-item-note" data-comment="goal-item-' +
+            goal.id +
+            '-note">' +
+            goal.monthlyChange +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-goal-item-target" data-comment="goal-item-' +
+            goal.id +
+            '-target">' +
+            formatGoalValue(goal, goal.current) +
+            " → " +
+            formatGoalValue(goal, goal.target) +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-progress-track" data-comment="goal-item-' +
+            goal.id +
+            '-track">' +
+            '<div class="rssc-m-progress-fill" data-comment="goal-item-' +
+            goal.id +
+            '-fill" style="width:' +
+            progress +
+            '%;"></div>' +
+            "</div>" +
+            '<div class="rssc-m-goal-item-meta" data-comment="goal-item-' +
+            goal.id +
+            '-meta">' +
+            '<span class="rssc-m-goal-item-complete" data-comment="goal-item-' +
+            goal.id +
+            '-progress">' +
+            percent +
+            "% complete</span>" +
+            '<span data-comment="goal-item-' +
+            goal.id +
+            '-remaining">' +
+            getGoalRemaining(goal) +
+            "</span>" +
+            "</div>" +
+            '<div class="rssc-m-goal-item-note" style="margin-top:8px;" data-comment="goal-item-' +
+            goal.id +
+            '-cadence">' +
+            goal.cadence +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        function renderGoalsCard() {
+          const {
+            isLoadingGoals,
+            goals,
+            relatedMovementGoals,
+            relatedBodyGoals,
+            completedMilestones,
+          } = store.get();
+
+          if (isLoadingGoals) {
+            goalsTopCompleted.innerHTML = "";
+            goalsCard.innerHTML = renderGoalsSkeleton();
+            return;
+          }
+
+          if (!goals.length) {
+            goalsTopCompleted.innerHTML = "";
+            goalsCard.innerHTML =
+              '<div class="rssc-m-empty-state" data-comment="goals-empty-state">No goals set yet. Your coach can add the first target here.</div>';
+            return;
+          }
+
+          goalsTopCompleted.innerHTML =
+            '<div class="rssc-m-chip-row" data-comment="goals-completed-list">' +
+            completedMilestones
+              .map(function (item) {
+                return (
+                  '<span class="rssc-m-chip" data-comment="goals-completed-' +
+                  item.id +
+                  '">' +
+                  '<span data-comment="goals-completed-' +
+                  item.id +
+                  '-icon">✓</span>' +
+                  '<span data-comment="goals-completed-' +
+                  item.id +
+                  '-label">' +
+                  item.label +
+                  "</span>" +
+                  "</span>"
+                );
+              })
+              .join("") +
+            "</div>";
+
+          goalsCard.innerHTML =
+            '<div class="rssc-m-goals-stack" data-comment="goals-stack">' +
+            '<div class="rssc-m-subsection" data-comment="goals-primary-section">' +
+            '<div class="rssc-m-goal-list" data-comment="goals-active-list">' +
+            goals.map(renderGoalItem).join("") +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-subsection" data-comment="goals-related-section">' +
+            '<div class="rssc-m-section-title" style="margin-bottom:0;" data-comment="goals-related-section-title">Related goals</div>' +
+            '<div class="rssc-m-goal-list" data-comment="goals-related-cards">' +
+            '<div class="rssc-m-related-card" data-comment="goals-related-movements-card">' +
+            '<div class="rssc-m-subsection-title" data-comment="goals-related-movements-title">Movement goals</div>' +
+            '<div class="rssc-m-related-list" data-comment="goals-related-movements-list">' +
+            relatedMovementGoals
+              .map(function (item) {
+                return (
+                  '<div class="rssc-m-related-row" data-comment="goals-related-movement-' +
+                  item.id +
+                  '">' +
+                  '<div data-comment="goals-related-movement-' +
+                  item.id +
+                  '-copy">' +
+                  '<div class="rssc-m-related-name" data-comment="goals-related-movement-' +
+                  item.id +
+                  '-name">' +
+                  item.name +
+                  "</div>" +
+                  '<div class="rssc-m-related-copy" data-comment="goals-related-movement-' +
+                  item.id +
+                  '-progress">' +
+                  item.progress +
+                  "</div>" +
+                  "</div>" +
+                  '<span class="rssc-m-card-kicker" style="padding:4px 8px;" data-comment="goals-related-movement-' +
+                  item.id +
+                  '-badge">Moving</span>' +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-related-card" data-comment="goals-related-body-card">' +
+            '<div class="rssc-m-subsection-title" data-comment="goals-related-body-title">Body goals</div>' +
+            '<div class="rssc-m-related-list" data-comment="goals-related-body-list">' +
+            relatedBodyGoals
+              .map(function (item) {
+                return (
+                  '<div class="rssc-m-related-row" data-comment="goals-related-body-' +
+                  item.id +
+                  '">' +
+                  '<div data-comment="goals-related-body-' +
+                  item.id +
+                  '-copy">' +
+                  '<div class="rssc-m-related-name" data-comment="goals-related-body-' +
+                  item.id +
+                  '-name">' +
+                  item.name +
+                  "</div>" +
+                  '<div class="rssc-m-related-copy" data-comment="goals-related-body-' +
+                  item.id +
+                  '-progress">' +
+                  item.progress +
+                  "</div>" +
+                  "</div>" +
+                  '<span class="rssc-m-card-kicker" style="padding:4px 8px;" data-comment="goals-related-body-' +
+                  item.id +
+                  '-badge">Body</span>' +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+        }
+
+        function renderTrend(metricKey, label, unit, invert) {
+          const scans = store.get().scanSessions;
+          if (!scans.length) return "";
+          const values = scans.map(function (scan) {
+            return scan[metricKey];
+          });
+          const min = Math.min.apply(null, values);
+          const max = Math.max.apply(null, values);
+          const points = values
+            .map(function (value, index) {
+              const x = scans.length === 1 ? 12 : 12 + (index * 136) / (scans.length - 1);
+              const ratio = max === min ? 0.5 : (value - min) / (max - min);
+              const y = invert ? 58 - ratio * 38 : 20 + (1 - ratio) * 38;
+              return { x: x, y: y, value: value };
+            })
+            .map(function (point) {
+              return point.x.toFixed(1) + "," + point.y.toFixed(1);
+            })
+            .join(" ");
+          const latest = values[values.length - 1];
+          const first = values[0];
+          const change = invert ? first - latest : latest - first;
+          const deltaPrefix = change >= 0 ? "+" : "";
+          return (
+            '<div class="rssc-m-trend-card" data-comment="scan-trend-' +
+            metricKey +
+            '">' +
+            '<div class="rssc-m-trend-label" data-comment="scan-trend-' +
+            metricKey +
+            '-label">' +
+            label +
+            "</div>" +
+            '<svg class="rssc-m-trend-svg" viewBox="0 0 160 72" aria-hidden="true" data-comment="scan-trend-' +
+            metricKey +
+            '-chart">' +
+            '<polyline points="' +
+            points +
+            '" fill="none" stroke="#3d5afe" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>' +
+            scans
+              .map(function (scan, index) {
+                const x =
+                  scans.length === 1 ? 12 : 12 + (index * 136) / (scans.length - 1);
+                const ratio = max === min ? 0.5 : (scan[metricKey] - min) / (max - min);
+                const y = invert ? 58 - ratio * 38 : 20 + (1 - ratio) * 38;
+                return (
+                  '<circle cx="' +
+                  x.toFixed(1) +
+                  '" cy="' +
+                  y.toFixed(1) +
+                  '" r="4" fill="#ffffff" stroke="#3d5afe" stroke-width="2"></circle>'
+                );
+              })
+              .join("") +
+            "</svg>" +
+            '<div class="rssc-m-trend-foot" data-comment="scan-trend-' +
+            metricKey +
+            '-foot">' +
+            '<span data-comment="scan-trend-' +
+            metricKey +
+            '-latest">' +
+            latest.toFixed(1).replace(".0", "") +
+            unit +
+            "</span>" +
+            '<span data-comment="scan-trend-' +
+            metricKey +
+            '-delta">' +
+            deltaPrefix +
+            change.toFixed(1).replace(".0", "") +
+            unit +
+            "</span>" +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        function renderScanCard() {
+          const { isLoadingScans, scanSessions, scanError } = store.get();
+
+          if (isLoadingScans) {
+            scanCard.innerHTML = renderScansSkeleton();
+            return;
+          }
+
+          if (scanError) {
+            scanCard.innerHTML =
+              '<div class="rssc-m-inline-alert" data-comment="scan-error-state">' +
+              scanError +
+              "</div>";
+            return;
+          }
+
+          if (!scanSessions.length) {
+            scanCard.innerHTML =
+              '<div class="rssc-m-empty-state" data-comment="scan-empty-state">No scan sessions yet. When the first scan is added from admin, it will appear here.</div>';
+            return;
+          }
+
+          const latest = getLatestScan();
+          const previous = getPreviousScan();
+          const bodyFatDelta = previous ? latest.bodyFat - previous.bodyFat : 0;
+          const leanMassDelta = previous ? latest.leanMass - previous.leanMass : 0;
+
+          scanCard.innerHTML =
+            '<div class="rssc-m-card-head" data-comment="scan-card-head">' +
+            '<div data-comment="scan-card-copy">' +
+            '<div class="rssc-m-card-title" data-comment="scan-card-title">Scan results</div>' +
+            '<div class="rssc-m-card-sub" data-comment="scan-card-sub">Quarterly body scans make the smaller changes visible, even when the scale feels flat.</div>' +
+            "</div>" +
+            '<div class="rssc-m-card-kicker" data-comment="scan-card-kicker">Every 3–4 mo</div>' +
+            "</div>" +
+            '<div class="rssc-m-scan-summary" data-comment="scan-summary">' +
+            '<div class="rssc-m-scan-metric" data-comment="scan-summary-body-fat">' +
+            '<div class="rssc-m-scan-metric-label" data-comment="scan-summary-body-fat-label">Body fat</div>' +
+            '<div class="rssc-m-scan-metric-value" data-comment="scan-summary-body-fat-value">' +
+            latest.bodyFat.toFixed(1) +
+            "%</div>" +
+            '<div class="rssc-m-scan-metric-delta ' +
+            (bodyFatDelta <= 0
+              ? "rssc-m-scan-metric-delta--up"
+              : "rssc-m-scan-metric-delta--down") +
+            '" data-comment="scan-summary-body-fat-delta">' +
+            (bodyFatDelta <= 0 ? "" : "+") +
+            bodyFatDelta.toFixed(1).replace(".0", "") +
+            "% vs previous</div>" +
+            "</div>" +
+            '<div class="rssc-m-scan-metric" data-comment="scan-summary-lean-mass">' +
+            '<div class="rssc-m-scan-metric-label" data-comment="scan-summary-lean-mass-label">Lean mass</div>' +
+            '<div class="rssc-m-scan-metric-value" data-comment="scan-summary-lean-mass-value">' +
+            latest.leanMass.toFixed(1).replace(".0", "") +
+            " kg</div>" +
+            '<div class="rssc-m-scan-metric-delta ' +
+            (leanMassDelta >= 0
+              ? "rssc-m-scan-metric-delta--up"
+              : "rssc-m-scan-metric-delta--down") +
+            '" data-comment="scan-summary-lean-mass-delta">' +
+            (leanMassDelta >= 0 ? "+" : "") +
+            leanMassDelta.toFixed(1).replace(".0", "") +
+            " kg vs previous</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-trend-grid" data-comment="scan-trends">' +
+            renderTrend("bodyFat", "Body fat", "%", true) +
+            renderTrend("leanMass", "Lean mass", " kg", false) +
+            "</div>" +
+            '<div class="rssc-m-card-divider" data-comment="scan-divider-1"></div>' +
+            '<div class="rssc-m-subsection" data-comment="scan-history">' +
+            '<div class="rssc-m-subsection-title" data-comment="scan-history-title">Scan history</div>' +
+            '<div class="rssc-m-history-list" data-comment="scan-history-list">' +
+            scanSessions
+              .slice()
+              .reverse()
+              .map(function (scan) {
+                return (
+                  '<div class="rssc-m-history-row" data-comment="scan-history-row-' +
+                  scan.id +
+                  '">' +
+                  '<div data-comment="scan-history-row-' +
+                  scan.id +
+                  '-copy">' +
+                  '<div class="rssc-m-history-date" data-comment="scan-history-row-' +
+                  scan.id +
+                  '-date">' +
+                  scan.label +
+                  "</div>" +
+                  '<div class="rssc-m-history-copy" data-comment="scan-history-row-' +
+                  scan.id +
+                  '-location">' +
+                  scan.location +
+                  "</div>" +
+                  '<div class="rssc-m-history-stats" data-comment="scan-history-row-' +
+                  scan.id +
+                  '-stats">' +
+                  '<span data-comment="scan-history-row-' +
+                  scan.id +
+                  '-fat">Fat ' +
+                  scan.bodyFat.toFixed(1) +
+                  "%</span>" +
+                  '<span data-comment="scan-history-row-' +
+                  scan.id +
+                  '-lean">Lean ' +
+                  scan.leanMass.toFixed(1).replace(".0", "") +
+                  " kg</span>" +
+                  "</div>" +
+                  "</div>" +
+                  '<a class="rssc-m-btn rssc-m-btn--secondary" href="member-scan.html?scan=' +
+                  scan.id +
+                  '" data-comment="scan-history-row-' +
+                  scan.id +
+                  '-btn">View</a>' +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>" +
+            "</div>";
+        }
+
+        function renderAll() {
+          renderGoalsCard();
+          renderScanCard();
+        }
+
+        store.subscribe(renderAll);
+        renderAll();
+
+        window.setTimeout(function () {
+          store.set(function (state) {
+            return {
+              ...state,
+              isLoadingGoals: false,
+              isLoadingScans: false,
+            };
+          });
+        }, 240);
+      })();
+    </script>
+    <script>
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home",
+            label: "Home",
+            href: "member.html",
+            icon: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+          },
+          {
+            id: "classes",
+            label: "Classes",
+            href: "member-classes.html",
+            icon: '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
+          },
+          {
+            id: "goals",
+            label: "Goals",
+            href: "member-goals.html",
+            icon: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+          },
+          {
+            id: "log",
+            label: "Log",
+            href: "member-scores.html",
+            icon: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
+          },
+          {
+            id: "profile",
+            label: "Profile",
+            href: "member-profile.html",
+            icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' +
+              item.href +
+              '" class="rssc-m-nav-item' +
+              (active ? " rssc-m-nav-item--active" : "") +
+              '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' +
+              item.id +
+              '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' +
+              (active ? "2.25" : "1.75") +
+              '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' +
+              item.label +
+              "</span>" +
+              "</a>"
+            );
+          }).join("");
+        }
+
+        renderMemberNav("goals");
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise Stronger — Classes</title>
+
+    <style>
+      /* ─── Design tokens ─────────────────────────────────────────────── */
+      :root {
+        --rssc-color-bg-canvas: #f7f7f5;
+        --rssc-color-bg-surface: #ffffff;
+        --rssc-color-text-primary: #171717;
+        --rssc-color-text-secondary: #4b4a45;
+        --rssc-color-text-tertiary: #8c8a80;
+        --rssc-color-border-subtle: #e8e8e3;
+        --rssc-color-border-default: #ddddd6;
+      }
+
+      /* ─── Reset ─────────────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "General Sans", Inter, system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--rssc-color-text-primary);
+        background: var(--rssc-color-bg-canvas);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+      }
+
+      /* ─── Shell ─────────────────────────────────────────────────────── */
+      .rssc-m-root {
+        min-height: 100dvh;
+        background: #edede8;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .rssc-m-shell {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100dvh;
+        background: #fafaf8;
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media (min-width: 500px) {
+        .rssc-m-shell {
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.06),
+            0 8px 40px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .rssc-m-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 52px;
+        background: #fafaf8;
+        border-bottom: 1px solid #eaeae5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.015em;
+      }
+
+      .rssc-m-wordmark-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        background: #eef2ff;
+        color: #3347e6;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-topbar-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 16px 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* ─── Nav ───────────────────────────────────────────────────────── */
+      .rssc-m-bottomnav {
+        position: sticky;
+        bottom: 0;
+        z-index: 20;
+        height: 64px;
+        background: #fafaf8;
+        border-top: 1px solid #eaeae5;
+        display: flex;
+        align-items: stretch;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        color: #a8a59e;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: color 0.12s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-nav-item--active {
+        color: #3d5afe;
+      }
+
+      .rssc-m-nav-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      /* ─── Page header ────────────────────────────────────────────────── */
+      .rssc-m-page-heading {
+        font-size: 22px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.02em;
+      }
+
+      /* ─── Date nav ───────────────────────────────────────────────────── */
+      .rssc-m-date-nav {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0;
+        background: #f0f0ec;
+        border-radius: 10px;
+        padding: 3px;
+      }
+
+      .rssc-m-date-tab {
+        height: 32px;
+        border: none;
+        background: none;
+        border-radius: 8px;
+        min-width: 0;
+        padding: 0;
+        font-size: 12px;
+        font-weight: 600;
+        color: #8c8a80;
+        cursor: pointer;
+        transition: background 0.12s, color 0.12s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-date-tab--active {
+        background: #ffffff;
+        color: #171717;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      /* ─── Date label ─────────────────────────────────────────────────── */
+      .rssc-m-date-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #8c8a80;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* ─── Classes list ───────────────────────────────────────────────── */
+      .rssc-m-classes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        background: #eaeae5;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #eaeae5;
+      }
+
+      .rssc-m-class-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        background: #ffffff;
+        min-height: 64px;
+        transition: background 0.1s;
+      }
+
+      .rssc-m-class-row--booked {
+        background: #f8f9ff;
+      }
+
+      .rssc-m-class-row--full {
+        opacity: 0.55;
+      }
+
+      .rssc-m-class-row--past {
+        opacity: 0.45;
+      }
+
+      .rssc-m-class-time {
+        font-size: 15px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.01em;
+        min-width: 44px;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-class-row--past .rssc-m-class-time {
+        color: #a8a59e;
+      }
+
+      .rssc-m-class-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .rssc-m-class-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #171717;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .rssc-m-class-meta {
+        font-size: 12px;
+        color: #8c8a80;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .rssc-m-class-meta--low {
+        color: #d97706;
+        font-weight: 600;
+      }
+
+      .rssc-m-class-action {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+      }
+
+      /* ─── Book button ────────────────────────────────────────────────── */
+      .rssc-m-book-btn {
+        height: 34px;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: none;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.12s, transform 0.08s;
+        -webkit-tap-highlight-color: transparent;
+        white-space: nowrap;
+      }
+
+      .rssc-m-book-btn:active {
+        transform: scale(0.95);
+        background: #2a3fc9;
+      }
+
+      .rssc-m-book-btn:disabled {
+        background: #e8e8e3;
+        color: #a8a59e;
+        cursor: default;
+      }
+
+      /* ─── Booked state ───────────────────────────────────────────────── */
+      .rssc-m-booked-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        height: 34px;
+        padding: 0 12px;
+        border-radius: 8px;
+        background: #e8f5e9;
+        color: #2e7d32;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .rssc-m-cancel-btn {
+        border: none;
+        background: none;
+        padding: 0;
+        font-size: 11px;
+        font-weight: 600;
+        color: #a8a59e;
+        cursor: pointer;
+        text-align: right;
+        -webkit-tap-highlight-color: transparent;
+        transition: color 0.12s;
+      }
+
+      .rssc-m-cancel-btn:hover {
+        color: #4b4a45;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rssc-m-root" data-comment="member-root">
+      <div class="rssc-m-shell" data-comment="member-shell">
+        <header class="rssc-m-topbar" data-comment="member-topbar">
+          <span class="rssc-m-wordmark" data-comment="member-wordmark">
+            <span
+              class="rssc-m-wordmark-icon"
+              aria-hidden="true"
+              data-comment="member-wordmark-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M14.4 14.4 9.6 9.6" />
+                <path
+                  d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"
+                />
+                <path d="m21.5 21.5-1.4-1.4" />
+                <path d="M3.9 3.9 2.5 2.5" />
+                <path
+                  d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"
+                />
+              </svg>
+            </span>
+            Rise Stronger
+          </span>
+          <a
+            href="member-profile.html"
+            class="rssc-m-topbar-avatar"
+            aria-label="Profile"
+            data-comment="member-topbar-avatar"
+            >SC</a
+          >
+        </header>
+
+        <main class="rssc-m-content" data-comment="member-content">
+          <h1 class="rssc-m-page-heading" data-comment="classes-heading">
+            Classes
+          </h1>
+
+          <!-- Date switcher -->
+          <div class="rssc-m-date-nav" role="tablist" data-comment="classes-date-nav">
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="0"
+              data-comment="classes-tab-mo"
+            >Mo</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="1"
+              data-comment="classes-tab-tu"
+            >Tu</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="2"
+              data-comment="classes-tab-we"
+            >We</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="3"
+              data-comment="classes-tab-th"
+            >Th</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="4"
+              data-comment="classes-tab-fr"
+            >Fr</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="5"
+              data-comment="classes-tab-sa"
+            >Sa</button>
+            <button
+              class="rssc-m-date-tab"
+              role="tab"
+              aria-selected="false"
+              data-day="6"
+              data-comment="classes-tab-su"
+            >Su</button>
+          </div>
+
+          <!-- Date label + class list (JS-rendered) -->
+          <div data-comment="classes-day-section">
+            <div class="rssc-m-date-label" id="classes-day-label" data-comment="classes-day-label">
+              Wednesday, April 9
+            </div>
+          </div>
+
+          <div class="rssc-m-classes-list" id="classes-list" data-comment="classes-list"></div>
+        </main>
+
+        <nav
+          class="rssc-m-bottomnav"
+          aria-label="Main navigation"
+          data-comment="member-nav"
+        ></nav>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        function createStore(initialState) {
+          let state = structuredClone(initialState);
+          const listeners = new Set();
+          return {
+            get: () => state,
+            set(updater) {
+              state =
+                typeof updater === "function"
+                  ? updater(state)
+                  : { ...state, ...updater };
+              listeners.forEach((fn) => fn(state));
+            },
+            subscribe(fn) {
+              listeners.add(fn);
+              return () => listeners.delete(fn);
+            },
+          };
+        }
+
+        const DAY_TABS = [
+          { key: "mon", shortLabel: "Mo" },
+          { key: "tue", shortLabel: "Tu" },
+          { key: "wed", shortLabel: "We" },
+          { key: "thu", shortLabel: "Th" },
+          { key: "fri", shortLabel: "Fr" },
+          { key: "sat", shortLabel: "Sa" },
+          { key: "sun", shortLabel: "Su" },
+        ];
+
+        // Seed data — one schedule per weekday tab
+        const ALL_CLASSES = {
+          mon: [
+            { id: "mon-0600", time: "06:00", name: "CrossFit", coach: "Bronwyn K.", capacity: 12, booked: 10 },
+            { id: "mon-0915", time: "09:15", name: "CrossFit", coach: "Mike R.", capacity: 12, booked: 6 },
+            { id: "mon-1730", time: "17:30", name: "CrossFit", coach: "Sarah T.", capacity: 12, booked: 9 },
+          ],
+          tue: [
+            { id: "tue-0600", time: "06:00", name: "CrossFit", coach: "Mike R.", capacity: 12, booked: 8 },
+            { id: "tue-1200", time: "12:00", name: "Open Gym", coach: "Sarah T.", capacity: 12, booked: 5 },
+            { id: "tue-1730", time: "17:30", name: "Conditioning", coach: "Bronwyn K.", capacity: 10, booked: 7 },
+          ],
+          wed: [
+            { id: "wed-0600", time: "06:00", name: "CrossFit", coach: "Bronwyn K.", capacity: 12, booked: 11 },
+            { id: "wed-0915", time: "09:15", name: "CrossFit", coach: "Mike R.", capacity: 12, booked: 5 },
+            { id: "wed-1200", time: "12:00", name: "Open Gym", coach: "Sarah T.", capacity: 12, booked: 6 },
+            { id: "wed-1730", time: "17:30", name: "CrossFit", coach: "Sarah T.", capacity: 12, booked: 8 },
+          ],
+          thu: [
+            { id: "thu-0600", time: "06:00", name: "CrossFit", coach: "Mike R.", capacity: 12, booked: 7 },
+            { id: "thu-0915", time: "09:15", name: "Weightlifting", coach: "Bronwyn K.", capacity: 8, booked: 3 },
+            { id: "thu-1730", time: "17:30", name: "CrossFit", coach: "Bronwyn K.", capacity: 12, booked: 4 },
+          ],
+          fri: [
+            { id: "fri-0600", time: "06:00", name: "CrossFit", coach: "Sarah T.", capacity: 12, booked: 9 },
+            { id: "fri-0915", time: "09:15", name: "Open Gym", coach: "Mike R.", capacity: 12, booked: 2 },
+            { id: "fri-1200", time: "12:00", name: "CrossFit", coach: "Sarah T.", capacity: 12, booked: 12 },
+            { id: "fri-1730", time: "17:30", name: "CrossFit", coach: "Bronwyn K.", capacity: 12, booked: 6 },
+          ],
+          sat: [
+            { id: "sat-0900", time: "09:00", name: "CrossFit", coach: "Mike R.", capacity: 16, booked: 10 },
+            { id: "sat-1030", time: "10:30", name: "CrossFit", coach: "Bronwyn K.", capacity: 16, booked: 8 },
+          ],
+          sun: [
+            { id: "sun-1000", time: "10:00", name: "Open Gym", coach: "Staffed Floor", capacity: 20, booked: 6 },
+            { id: "sun-1130", time: "11:30", name: "Mobility", coach: "Sarah T.", capacity: 14, booked: 5 },
+          ],
+        };
+
+        const now = new Date();
+        const realWeekday = now.getDay();
+        const todayTabIndex = realWeekday === 0 ? 6 : realWeekday - 1;
+        const startOfToday = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+        );
+        const startOfWeek = new Date(startOfToday);
+        startOfWeek.setDate(startOfToday.getDate() - todayTabIndex);
+
+        function getTabDate(dayIndex) {
+          const date = new Date(startOfWeek);
+          date.setDate(startOfWeek.getDate() + dayIndex);
+          return date;
+        }
+
+        function getDayKey(dayIndex) {
+          return DAY_TABS[dayIndex].key;
+        }
+
+        function formatDayLabel(dayIndex) {
+          return getTabDate(dayIndex).toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          });
+        }
+
+        function syncActiveTab(dayIndex) {
+          document.querySelectorAll(".rssc-m-date-tab").forEach(function (tab) {
+            const isActive = parseInt(tab.getAttribute("data-day"), 10) === dayIndex;
+            tab.classList.toggle("rssc-m-date-tab--active", isActive);
+            tab.setAttribute("aria-selected", isActive ? "true" : "false");
+          });
+        }
+
+        // Sarah pre-booked today's 09:15 if it exists in the current weekday schedule
+        const todayBookedSeed = getDayKey(todayTabIndex) + "-0915";
+        const store = createStore({
+          activeDay: todayTabIndex,
+          booked: new Set(
+            (ALL_CLASSES[getDayKey(todayTabIndex)] || []).some(function (cls) {
+              return cls.id === todayBookedSeed;
+            })
+              ? [todayBookedSeed]
+              : [],
+          ),
+        });
+
+        function bookClass(id) {
+          store.set((s) => {
+            const next = new Set(s.booked);
+            next.add(id);
+            return { ...s, booked: next };
+          });
+        }
+
+        function cancelClass(id) {
+          store.set((s) => {
+            const next = new Set(s.booked);
+            next.delete(id);
+            return { ...s, booked: next };
+          });
+        }
+
+        function isPast(timeStr, dayIndex) {
+          if (dayIndex !== todayTabIndex) return false;
+          const [h, m] = timeStr.split(":").map(Number);
+          return h * 60 + m < now.getHours() * 60 + now.getMinutes();
+        }
+
+        function renderClasses() {
+          const { activeDay, booked } = store.get();
+          const classes = ALL_CLASSES[getDayKey(activeDay)] || [];
+          const container = document.getElementById("classes-list");
+          const label = document.getElementById("classes-day-label");
+
+          label.textContent = formatDayLabel(activeDay);
+          syncActiveTab(activeDay);
+
+          container.innerHTML = classes.map(function (cls) {
+            const isBooked = booked.has(cls.id);
+            const spotsLeft = cls.capacity - cls.booked;
+            const isFull = spotsLeft <= 0 && !isBooked;
+            const past = isPast(cls.time, activeDay);
+
+            let rowClass = "rssc-m-class-row";
+            if (isBooked) rowClass += " rssc-m-class-row--booked";
+            else if (isFull) rowClass += " rssc-m-class-row--full";
+            if (past) rowClass += " rssc-m-class-row--past";
+
+            const spotsText = isFull
+              ? "Full"
+              : spotsLeft === 1
+                ? "1 spot left"
+                : spotsLeft + " spots";
+
+            const metaClass = spotsLeft === 1 && !isBooked && !isFull
+              ? "rssc-m-class-meta rssc-m-class-meta--low"
+              : "rssc-m-class-meta";
+
+            let actionHtml;
+            if (past && !isBooked) {
+              actionHtml = "";
+            } else if (isBooked) {
+              actionHtml =
+                '<div class="rssc-m-class-action" data-comment="class-' + cls.id + '-action">' +
+                  '<div class="rssc-m-booked-badge" data-comment="class-' + cls.id + '-booked">' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' +
+                    "Booked" +
+                  "</div>" +
+                  (!past
+                    ? '<button class="rssc-m-cancel-btn" data-cancel-id="' + cls.id + '" data-comment="class-' + cls.id + '-cancel">Cancel</button>'
+                    : "") +
+                "</div>";
+            } else if (isFull) {
+              actionHtml =
+                '<div class="rssc-m-class-action" data-comment="class-' + cls.id + '-action">' +
+                  '<button class="rssc-m-book-btn" disabled data-comment="class-' + cls.id + '-book">Full</button>' +
+                "</div>";
+            } else {
+              actionHtml =
+                '<div class="rssc-m-class-action" data-comment="class-' + cls.id + '-action">' +
+                  '<button class="rssc-m-book-btn" data-book-id="' + cls.id + '" data-comment="class-' + cls.id + '-book">Book</button>' +
+                "</div>";
+            }
+
+            return (
+              '<div class="' + rowClass + '" data-comment="class-row-' + cls.id + '">' +
+                '<span class="rssc-m-class-time" data-comment="class-' + cls.id + '-time">' + cls.time + "</span>" +
+                '<div class="rssc-m-class-info" data-comment="class-' + cls.id + '-info">' +
+                  '<span class="rssc-m-class-name" data-comment="class-' + cls.id + '-name">' + cls.name + "</span>" +
+                  '<span class="' + metaClass + '" data-comment="class-' + cls.id + '-meta">' + cls.coach + " · " + spotsText + "</span>" +
+                "</div>" +
+                actionHtml +
+              "</div>"
+            );
+          }).join("");
+        }
+
+        // Booking / cancelling via event delegation
+        document.getElementById("classes-list").addEventListener("click", function (e) {
+          const bookBtn = e.target.closest("[data-book-id]");
+          if (bookBtn) { bookClass(bookBtn.getAttribute("data-book-id")); return; }
+          const cancelBtn = e.target.closest("[data-cancel-id]");
+          if (cancelBtn) { cancelClass(cancelBtn.getAttribute("data-cancel-id")); }
+        });
+
+        // Date tab switching
+        document.querySelector('[data-comment="classes-date-nav"]').addEventListener("click", function (e) {
+          const tab = e.target.closest("[data-day]");
+          if (!tab) return;
+          const day = parseInt(tab.getAttribute("data-day"), 10);
+          store.set({ activeDay: day });
+        });
+
+        store.subscribe(renderClasses);
+        renderClasses();
+      })();
+    </script>
+
+    <script>
+      // ─── MemberNav component ─────────────────────────────────────────────
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home", label: "Home", href: "member.html",
+            icon: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+          },
+          {
+            id: "classes", label: "Classes", href: "member-classes.html",
+            icon: `<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>`,
+          },
+          {
+            id: "goals", label: "Goals", href: "member-goals.html",
+            icon: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`,
+          },
+          {
+            id: "log", label: "Log", href: "member-scores.html",
+            icon: `<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>`,
+          },
+          {
+            id: "profile", label: "Profile", href: "member-profile.html",
+            icon: `<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' + item.href + '"' +
+              ' class="rssc-m-nav-item' + (active ? " rssc-m-nav-item--active" : "") + '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' + item.id + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+              ' stroke-width="' + (active ? "2.25" : "1.75") + '"' +
+              ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' + item.label + "</span>" +
+              "</a>"
+            );
+          }).join("");
+        }
+
+        renderMemberNav("classes");
+      })();
+    </script>
+  </body>
+</html>

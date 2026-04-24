@@ -249,6 +249,14 @@
         color: #171717;
       }
 
+      .rssc-m-score-input-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #6b6963;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
       .rssc-m-score-input-row {
         display: flex;
         align-items: center;
@@ -434,6 +442,101 @@
         min-width: 44px;
         text-align: right;
       }
+
+      /* ─── Workout description (Part B) ──────────────────────────────── */
+      .rssc-m-wod-desc {
+        font-size: 12px;
+        line-height: 18px;
+        color: #8c8a80;
+        white-space: pre-line;
+      }
+
+      /* ─── Post-save feedback ─────────────────────────────────────────── */
+      .rssc-m-score-feedback {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-top: 8px;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #ecece7;
+        background: #f7f7f5;
+        text-align: left;
+      }
+
+      .rssc-m-score-feedback-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rssc-m-score-feedback-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #8c8a80;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .rssc-m-score-feedback-value {
+        font-size: 13px;
+        font-weight: 600;
+        color: #171717;
+        text-align: right;
+      }
+
+      .rssc-m-score-delta {
+        font-size: 13px;
+        font-weight: 600;
+        color: #16a34a;
+      }
+
+      .rssc-m-score-delta--worse {
+        color: #dc2626;
+      }
+
+      .rssc-m-score-delta--neutral {
+        color: #8c8a80;
+      }
+
+      .rssc-m-score-goal-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rssc-m-score-goal-text {
+        font-size: 13px;
+        color: #6b6963;
+        text-align: right;
+      }
+
+      .rssc-m-score-goal-bar-wrap {
+        width: 100%;
+        height: 5px;
+        background: #eaeae5;
+        border-radius: 99px;
+        overflow: hidden;
+      }
+
+      .rssc-m-score-goal-bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: #3d5afe;
+        transition: width 0.4s ease;
+      }
+
+      .rssc-m-score-goal-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+        flex: 1;
+        max-width: 208px;
+      }
     </style>
   </head>
   <body>
@@ -520,118 +623,7 @@
           class="rssc-m-bottomnav"
           aria-label="Main navigation"
           data-comment="member-nav"
-        >
-          <a
-            href="member.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-today"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M14.4 14.4 9.6 9.6" />
-              <path
-                d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"
-              />
-              <path d="m21.5 21.5-1.4-1.4" />
-              <path d="M3.9 3.9 2.5 2.5" />
-              <path
-                d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"
-              />
-            </svg>
-            <span class="rssc-m-nav-label">Today</span>
-          </a>
-          <a
-            href="member-scores.html"
-            class="rssc-m-nav-item rssc-m-nav-item--active"
-            aria-current="page"
-            data-comment="member-nav-scores"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"
-              />
-              <path d="M11 12 5.12 2.2" />
-              <path d="m13 12 5.88-9.8" />
-              <path d="M8 7h8" />
-              <circle cx="12" cy="17" r="5" />
-              <path d="M12 18v-2h-.5" />
-            </svg>
-            <span class="rssc-m-nav-label">Scores</span>
-          </a>
-          <a
-            href="member-leaderboard.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-leaders"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-              <path d="M4 22h16" />
-              <path
-                d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
-              />
-              <path
-                d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
-              />
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-            </svg>
-            <span class="rssc-m-nav-label">Leaders</span>
-          </a>
-          <a
-            href="member-profile.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-profile"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span class="rssc-m-nav-label">Profile</span>
-          </a>
-        </nav>
+        ></nav>
       </div>
     </div>
 
@@ -660,14 +652,29 @@
 
         // ─── Seed data (from pages/member/data.ts + admin/programming/data.ts) ──
         const TODAY_SHORT = "Apr 9";
+        const DEADLIFT_GOAL = {
+          movementId: "m-004",
+          previousResultKg: 65,
+          previousDateDisplay: "Feb 28",
+          goalStartKg: 60,
+          goalTargetKg: 80,
+        };
 
         // Today's workout (2026-04-09): Deadlift + For time 21-15-9
         const WORKOUT = {
           partA: {
             movementId: "m-004",
             movementName: "Deadlift",
+            scoreType: "weight",
+            inputLabel: "Weight lifted",
+            unitLabel: "kg",
           },
-          partB: "For time:\n21-15-9\nThrusters (43/30 kg)\nBurpees",
+          partB: {
+            scoreType: "time",
+            label: "For time",
+            inputLabel: "Finish time",
+            description: "21-15-9\nThrusters (43/30 kg)\nBurpees",
+          },
         };
 
         const PERSONAL_RECORDS = [
@@ -678,35 +685,160 @@
           { movementId: "m-009", movementName: "Power Clean",  valueKg: 42.5, display: "42.5 kg", dateDisplay: "Mar 19" },
         ];
 
-        const DEADLIFT_PR = PERSONAL_RECORDS.find(
-          (p) => p.movementId === "m-004",
-        );
-
         // ─── Store ───────────────────────────────────────────────────────
         const store = createStore({
           weightKg: "",
+          reps: "",
           timeMins: "",
           timeSecs: "",
           saved: false,
           newPR: false,
           prs: PERSONAL_RECORDS,
+          savedFeedback: null,
         });
 
         // ─── Derived state ───────────────────────────────────────────────
-        function isPRWeight(weightKg) {
-          const n = parseFloat(weightKg) || 0;
-          return n > DEADLIFT_PR.valueKg;
+        function formatMetricValue(value) {
+          if (!Number.isFinite(value)) return "0";
+          return Number.isInteger(value) ? String(value) : value.toFixed(1);
+        }
+
+        function formatKg(value) {
+          return formatMetricValue(value) + " kg";
+        }
+
+        function clamp(value, min, max) {
+          return Math.min(max, Math.max(min, value));
+        }
+
+        function getMovementPR(prs, movementId) {
+          return prs.find((pr) => pr.movementId === movementId) || null;
+        }
+
+        function getLoggedWeight(weightKg) {
+          const value = parseFloat(weightKg);
+          return Number.isFinite(value) && value > 0 ? value : null;
+        }
+
+        function isPRWeight(weightKg, prs) {
+          const loggedWeight = getLoggedWeight(weightKg);
+          const currentPR = getMovementPR(prs, DEADLIFT_GOAL.movementId);
+          return Boolean(
+            loggedWeight &&
+              currentPR &&
+              loggedWeight > currentPR.valueKg,
+          );
+        }
+
+        function buildSavedFeedback(loggedWeight, currentPR) {
+          if (!loggedWeight || !currentPR) {
+            const goalPercent = Math.round(
+              (clamp(
+                currentPR ? currentPR.valueKg : DEADLIFT_GOAL.goalStartKg,
+                DEADLIFT_GOAL.goalStartKg,
+                DEADLIFT_GOAL.goalTargetKg,
+              ) /
+                DEADLIFT_GOAL.goalTargetKg) *
+                100,
+            );
+            return {
+              prText: "Add Part A weight to confirm today's PR.",
+              prVariant: "neutral",
+              deltaText:
+                "Progress vs previous appears once a deadlift weight is logged.",
+              deltaVariant: "neutral",
+              goalText:
+                goalPercent +
+                "% of " +
+                formatKg(DEADLIFT_GOAL.goalTargetKg) +
+                " goal",
+              goalPercent,
+            };
+          }
+
+          const prDelta = loggedWeight - currentPR.valueKg;
+          const previousDelta = loggedWeight - DEADLIFT_GOAL.previousResultKg;
+          const goalPercent = Math.round(
+            (clamp(loggedWeight, 0, DEADLIFT_GOAL.goalTargetKg) /
+              DEADLIFT_GOAL.goalTargetKg) *
+              100,
+          );
+          const goalRemaining = Math.max(
+            0,
+            DEADLIFT_GOAL.goalTargetKg - loggedWeight,
+          );
+
+          let prText = "Matched your current PR";
+          let prVariant = "neutral";
+
+          if (prDelta > 0) {
+            prText = "Yes, +" + formatKg(prDelta) + " over current PR";
+            prVariant = "better";
+          } else if (prDelta < 0) {
+            prText = formatKg(Math.abs(prDelta)) + " below current PR";
+          }
+
+          let deltaText =
+            "Matched your last result from " +
+            DEADLIFT_GOAL.previousDateDisplay;
+          let deltaVariant = "neutral";
+
+          if (previousDelta > 0) {
+            deltaText =
+              "+" +
+              formatKg(previousDelta) +
+              " vs " +
+              formatKg(DEADLIFT_GOAL.previousResultKg) +
+              " on " +
+              DEADLIFT_GOAL.previousDateDisplay;
+            deltaVariant = "better";
+          } else if (previousDelta < 0) {
+            deltaText =
+              formatKg(Math.abs(previousDelta)) +
+              " below " +
+              formatKg(DEADLIFT_GOAL.previousResultKg) +
+              " on " +
+              DEADLIFT_GOAL.previousDateDisplay;
+            deltaVariant = "worse";
+          }
+
+          let goalText =
+            goalPercent +
+            "% of " +
+            formatKg(DEADLIFT_GOAL.goalTargetKg) +
+            " goal";
+
+          if (goalRemaining > 0) {
+            goalText += " · " + formatKg(goalRemaining) + " to go";
+          } else {
+            goalText += " · goal reached";
+          }
+
+          return {
+            prText,
+            prVariant,
+            deltaText,
+            deltaVariant,
+            goalText,
+            goalPercent,
+          };
         }
 
         function canSave(s) {
           return (
-            s.weightKg !== "" || s.timeMins !== "" || s.timeSecs !== ""
+            s.weightKg !== "" ||
+            s.reps !== "" ||
+            s.timeMins !== "" ||
+            s.timeSecs !== ""
           );
         }
 
         // ─── Actions ─────────────────────────────────────────────────────
         function setWeight(v) {
           store.set({ weightKg: v });
+        }
+        function setReps(v) {
+          store.set({ reps: v });
         }
         function setTimeMins(v) {
           store.set({ timeMins: v });
@@ -719,20 +851,23 @@
           const s = store.get();
           if (!canSave(s)) return;
 
-          const pr = isPRWeight(s.weightKg);
-          const weightNum = parseFloat(s.weightKg) || 0;
+          const currentPR = getMovementPR(s.prs, DEADLIFT_GOAL.movementId);
+          const weightNum = getLoggedWeight(s.weightKg);
+          const pr = isPRWeight(s.weightKg, s.prs);
+          const savedFeedback = buildSavedFeedback(weightNum, currentPR);
 
           store.set((prev) => ({
             ...prev,
             saved: true,
             newPR: pr,
+            savedFeedback,
             prs: pr
               ? prev.prs.map((p) =>
-                  p.movementId === "m-004"
+                  p.movementId === DEADLIFT_GOAL.movementId
                     ? {
                         ...p,
                         valueKg: weightNum,
-                        display: weightNum + " kg",
+                        display: formatKg(weightNum),
                         dateDisplay: TODAY_SHORT,
                       }
                     : p,
@@ -744,9 +879,11 @@
         function handleLogAnother() {
           store.set({
             weightKg: "",
+            reps: "",
             timeMins: "",
             timeSecs: "",
             saved: false,
+            savedFeedback: null,
           });
         }
 
@@ -825,6 +962,164 @@
           );
         }
 
+        function createFeedbackValue(text, variant, dataComment) {
+          let className = "rssc-m-score-feedback-value";
+          if (variant === "better") className += " rssc-m-score-delta";
+          else if (variant === "worse")
+            className += " rssc-m-score-delta rssc-m-score-delta--worse";
+          else if (variant === "neutral")
+            className += " rssc-m-score-delta rssc-m-score-delta--neutral";
+
+          return el("span", {
+            className,
+            "data-comment": dataComment,
+            textContent: text,
+          });
+        }
+
+        function createScoreInputLabel(text, dataComment) {
+          return el("div", {
+            className: "rssc-m-score-input-label",
+            "data-comment": dataComment,
+            textContent: text,
+          });
+        }
+
+        function renderWeightInputControls(part, s) {
+          const weightInput = el("input", {
+            className: "rssc-m-score-input rssc-m-score-input--wide",
+            type: "text",
+            inputmode: "decimal",
+            placeholder: "0",
+            value: s.weightKg,
+            "aria-label": "Weight in kg",
+            id: "scores-weight-input",
+            "data-comment": "scores-weight-input",
+          });
+          weightInput.addEventListener("input", function () {
+            setWeight(weightInput.value);
+          });
+          const unit = el("span", {
+            className: "rssc-m-score-input-unit",
+            "data-comment": "scores-weight-unit",
+            textContent: part.unitLabel || "kg",
+          });
+          const inputRow = el(
+            "div",
+            {
+              className: "rssc-m-score-input-row",
+              "data-comment": "scores-weight-row",
+            },
+            [weightInput, unit],
+          );
+
+          return [
+            createScoreInputLabel(
+              part.inputLabel || "Weight",
+              "scores-weight-input-label",
+            ),
+            inputRow,
+          ];
+        }
+
+        function renderRepsInputControls(part, s) {
+          const repsInput = el("input", {
+            className: "rssc-m-score-input rssc-m-score-input--wide",
+            type: "text",
+            inputmode: "numeric",
+            placeholder: "0",
+            value: s.reps,
+            "aria-label": "Reps completed",
+            id: "scores-reps-input",
+            "data-comment": "scores-reps-input",
+          });
+          repsInput.addEventListener("input", function () {
+            setReps(repsInput.value);
+          });
+          const unit = el("span", {
+            className: "rssc-m-score-input-unit",
+            "data-comment": "scores-reps-unit",
+            textContent: "reps",
+          });
+          const inputRow = el(
+            "div",
+            {
+              className: "rssc-m-score-input-row",
+              "data-comment": "scores-reps-row",
+            },
+            [repsInput, unit],
+          );
+
+          return [
+            createScoreInputLabel(
+              part.inputLabel || "Reps completed",
+              "scores-reps-input-label",
+            ),
+            inputRow,
+          ];
+        }
+
+        function renderTimeInputControls(part, s) {
+          const minsInput = el("input", {
+            className: "rssc-m-score-input",
+            type: "text",
+            inputmode: "numeric",
+            placeholder: "0",
+            value: s.timeMins,
+            "aria-label": "Minutes",
+            id: "scores-time-mins",
+            "data-comment": "scores-time-mins",
+          });
+          minsInput.addEventListener("input", function () {
+            setTimeMins(minsInput.value);
+          });
+          const sep = el("span", {
+            className: "rssc-m-time-sep",
+            "data-comment": "scores-time-sep",
+            textContent: ":",
+          });
+          const secsInput = el("input", {
+            className: "rssc-m-score-input",
+            type: "text",
+            inputmode: "numeric",
+            placeholder: "00",
+            value: s.timeSecs,
+            "aria-label": "Seconds",
+            id: "scores-time-secs",
+            "data-comment": "scores-time-secs",
+          });
+          secsInput.addEventListener("input", function () {
+            setTimeSecs(secsInput.value);
+          });
+          const unit = el("span", {
+            className: "rssc-m-score-input-unit",
+            "data-comment": "scores-time-unit",
+            textContent: "min : sec",
+          });
+          const timeRow = el(
+            "div",
+            {
+              className: "rssc-m-time-inputs",
+              "data-comment": "scores-time-row",
+            },
+            [minsInput, sep, secsInput, unit],
+          );
+
+          return [
+            createScoreInputLabel(
+              part.inputLabel || "Time",
+              "scores-time-input-label",
+            ),
+            timeRow,
+          ];
+        }
+
+        function renderScoreInputControls(part, s) {
+          if (part.scoreType === "weight") return renderWeightInputControls(part, s);
+          if (part.scoreType === "reps") return renderRepsInputControls(part, s);
+          return renderTimeInputControls(part, s);
+        }
+
         // ─── Render: score form ──────────────────────────────────────────
         function renderScoreForm() {
           const s = store.get();
@@ -849,43 +1144,18 @@
               "data-comment": "scores-part-a-movement",
               textContent: WORKOUT.partA.movementName,
             });
-            const weightInput = el("input", {
-              className: "rssc-m-score-input rssc-m-score-input--wide",
-              type: "text",
-              inputmode: "decimal",
-              placeholder: "0",
-              value: s.weightKg,
-              "aria-label": "Weight in kg",
-              id: "scores-weight-input",
-              "data-comment": "scores-weight-input",
-            });
-            weightInput.addEventListener("input", function () {
-              setWeight(weightInput.value);
-            });
-            const unit = el("span", {
-              className: "rssc-m-score-input-unit",
-              "data-comment": "scores-weight-unit",
-              textContent: "kg",
-            });
-            const inputRow = el(
-              "div",
-              {
-                className: "rssc-m-score-input-row",
-                "data-comment": "scores-weight-row",
-              },
-              [weightInput, unit],
-            );
-            const pr = isPRWeight(s.weightKg);
+            const currentPR = getMovementPR(s.prs, DEADLIFT_GOAL.movementId);
+            const pr = isPRWeight(s.weightKg, s.prs);
             const hint = el("div", {
               className:
                 "rssc-m-pr-hint" + (pr ? " rssc-m-pr-hint--new" : ""),
               "data-comment": "scores-pr-hint",
               textContent: pr
-                ? "New PR! Current: " + DEADLIFT_PR.display
+                ? "New PR! Current: " + currentPR.display
                 : "Current PR: " +
-                  DEADLIFT_PR.display +
+                  currentPR.display +
                   " · " +
-                  DEADLIFT_PR.dateDisplay,
+                  currentPR.dateDisplay,
             });
             children.push(
               el(
@@ -894,7 +1164,12 @@
                   className: "rssc-m-score-part",
                   "data-comment": "scores-part-a",
                 },
-                [label, movement, inputRow, hint],
+                [
+                  label,
+                  movement,
+                  ...renderScoreInputControls(WORKOUT.partA, s),
+                  hint,
+                ],
               ),
             );
           }
@@ -911,52 +1186,13 @@
                 className: "rssc-m-score-part-label",
                 "data-comment": "scores-part-b-label",
               },
-              [badge, document.createTextNode("For time")],
+              [badge, document.createTextNode(WORKOUT.partB.label)],
             );
-            const minsInput = el("input", {
-              className: "rssc-m-score-input",
-              type: "text",
-              inputmode: "numeric",
-              placeholder: "0",
-              value: s.timeMins,
-              "aria-label": "Minutes",
-              id: "scores-time-mins",
-              "data-comment": "scores-time-mins",
+            const description = el("div", {
+              className: "rssc-m-wod-desc",
+              "data-comment": "scores-part-b-desc",
+              textContent: WORKOUT.partB.description,
             });
-            minsInput.addEventListener("input", function () {
-              setTimeMins(minsInput.value);
-            });
-            const sep = el("span", {
-              className: "rssc-m-time-sep",
-              "data-comment": "scores-time-sep",
-              textContent: ":",
-            });
-            const secsInput = el("input", {
-              className: "rssc-m-score-input",
-              type: "text",
-              inputmode: "numeric",
-              placeholder: "00",
-              value: s.timeSecs,
-              "aria-label": "Seconds",
-              id: "scores-time-secs",
-              "data-comment": "scores-time-secs",
-            });
-            secsInput.addEventListener("input", function () {
-              setTimeSecs(secsInput.value);
-            });
-            const unit = el("span", {
-              className: "rssc-m-score-input-unit",
-              "data-comment": "scores-time-unit",
-              textContent: "min : sec",
-            });
-            const timeRow = el(
-              "div",
-              {
-                className: "rssc-m-time-inputs",
-                "data-comment": "scores-time-row",
-              },
-              [minsInput, sep, secsInput, unit],
-            );
             children.push(
               el(
                 "div",
@@ -964,7 +1200,11 @@
                   className: "rssc-m-score-part",
                   "data-comment": "scores-part-b",
                 },
-                [label, timeRow],
+                [
+                  label,
+                  description,
+                  ...renderScoreInputControls(WORKOUT.partB, s),
+                ],
               ),
             );
           }
@@ -985,6 +1225,7 @@
         function renderScoreSaved() {
           const s = store.get();
           const children = [];
+          const feedback = s.savedFeedback;
 
           const iconWrap = el(
             "div",
@@ -1006,6 +1247,7 @@
 
           const subParts = [];
           if (s.weightKg) subParts.push(s.weightKg + " kg");
+          if (s.reps) subParts.push(s.reps + " reps");
           if (s.timeMins || s.timeSecs) {
             const mins = s.timeMins || "0";
             const secs = (s.timeSecs || "0").padStart(2, "0");
@@ -1034,6 +1276,112 @@
               ],
             );
             children.push(banner);
+          }
+
+          if (feedback) {
+            const feedbackRows = [];
+
+            feedbackRows.push(
+              el(
+                "div",
+                {
+                  className: "rssc-m-score-feedback-row",
+                  "data-comment": "scores-feedback-pr-row",
+                },
+                [
+                  el("span", {
+                    className: "rssc-m-score-feedback-label",
+                    "data-comment": "scores-feedback-pr-label",
+                    textContent: "PR achieved",
+                  }),
+                  createFeedbackValue(
+                    feedback.prText,
+                    feedback.prVariant,
+                    "scores-feedback-pr-value",
+                  ),
+                ],
+              ),
+            );
+
+            feedbackRows.push(
+              el(
+                "div",
+                {
+                  className: "rssc-m-score-feedback-row",
+                  "data-comment": "scores-feedback-delta-row",
+                },
+                [
+                  el("span", {
+                    className: "rssc-m-score-feedback-label",
+                    "data-comment": "scores-feedback-delta-label",
+                    textContent: "Vs previous",
+                  }),
+                  createFeedbackValue(
+                    feedback.deltaText,
+                    feedback.deltaVariant,
+                    "scores-feedback-delta-value",
+                  ),
+                ],
+              ),
+            );
+
+            feedbackRows.push(
+              el(
+                "div",
+                {
+                  className: "rssc-m-score-goal-row",
+                  "data-comment": "scores-feedback-goal-row",
+                },
+                [
+                  el("span", {
+                    className: "rssc-m-score-feedback-label",
+                    "data-comment": "scores-feedback-goal-label",
+                    textContent: "Goal",
+                  }),
+                  el(
+                    "div",
+                    {
+                      className: "rssc-m-score-goal-copy",
+                      "data-comment": "scores-feedback-goal-copy",
+                    },
+                    [
+                      el("div", {
+                        className: "rssc-m-score-goal-text",
+                        "data-comment": "scores-feedback-goal-text",
+                        textContent: feedback.goalText,
+                      }),
+                      el(
+                        "div",
+                        {
+                          className: "rssc-m-score-goal-bar-wrap",
+                          "data-comment": "scores-feedback-goal-bar-wrap",
+                        },
+                        [
+                          el("div", {
+                            className: "rssc-m-score-goal-bar-fill",
+                            "data-comment": "scores-feedback-goal-bar-fill",
+                            style: {
+                              width: clamp(feedback.goalPercent, 0, 100) + "%",
+                            },
+                          }),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+
+            children.push(
+              el(
+                "div",
+                {
+                  className: "rssc-m-score-feedback",
+                  "data-comment": "scores-feedback",
+                },
+                feedbackRows,
+              ),
+            );
           }
 
           const logAnotherBtn = el("button", {
@@ -1111,6 +1459,7 @@
           if (
             a &&
             (a.id === "scores-weight-input" ||
+              a.id === "scores-reps-input" ||
               a.id === "scores-time-mins" ||
               a.id === "scores-time-secs")
           ) {
@@ -1146,6 +1495,55 @@
 
         renderScoreSection();
         renderPRList();
+      })();
+    </script>
+    <script>
+      // ─── MemberNav component ─────────────────────────────────────────────
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home", label: "Home", href: "member.html",
+            icon: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+          },
+          {
+            id: "classes", label: "Classes", href: "member-classes.html",
+            icon: `<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>`,
+          },
+          {
+            id: "goals", label: "Goals", href: "member-goals.html",
+            icon: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`,
+          },
+          {
+            id: "log", label: "Log", href: "member-scores.html",
+            icon: `<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>`,
+          },
+          {
+            id: "profile", label: "Profile", href: "member-profile.html",
+            icon: `<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' + item.href + '"' +
+              ' class="rssc-m-nav-item' + (active ? " rssc-m-nav-item--active" : "") + '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' + item.id + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+              ' stroke-width="' + (active ? "2.25" : "1.75") + '"' +
+              ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' + item.label + "</span>" +
+              "</a>"
+            );
+          }).join("");
+        }
+
+        renderMemberNav("log");
       })();
     </script>
   </body>

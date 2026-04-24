@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rise Stronger — Scan Result</title>
+
+    <style>
+      :root {
+        --rssc-color-bg-canvas: #f7f7f5;
+        --rssc-color-bg-surface: #ffffff;
+        --rssc-color-bg-muted: #f4f4f0;
+        --rssc-color-text-primary: #171717;
+        --rssc-color-text-secondary: #4b4a45;
+        --rssc-color-text-tertiary: #8c8a80;
+        --rssc-color-border-subtle: #e8e8e3;
+        --rssc-color-border-strong: #d8d8d1;
+        --rssc-color-accent: #3d5afe;
+        --rssc-color-accent-soft: #eef2ff;
+        --rssc-color-success: #347a48;
+        --rssc-color-success-soft: #edf7ef;
+        --rssc-color-danger: #8f3c2d;
+        --rssc-color-danger-soft: #fdf2ef;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: "General Sans", Inter, system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--rssc-color-text-primary);
+        background: var(--rssc-color-bg-canvas);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      select,
+      textarea,
+      a {
+        font: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        margin: 0;
+      }
+
+      .rssc-m-root {
+        min-height: 100dvh;
+        background: #edede8;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .rssc-m-shell {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        min-height: 100dvh;
+        background: #fafaf8;
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media (min-width: 500px) {
+        .rssc-m-shell {
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.06),
+            0 8px 40px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .rssc-m-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 52px;
+        background: #fafaf8;
+        border-bottom: 1px solid #eaeae5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.015em;
+      }
+
+      .rssc-m-wordmark-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        background: #eef2ff;
+        color: #3347e6;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-topbar-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 18px 16px 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .rssc-m-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--rssc-color-text-secondary);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .rssc-m-page-header {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .rssc-m-page-title {
+        font-size: 28px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        font-weight: 700;
+      }
+
+      .rssc-m-page-subtitle {
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-section-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #a8a59e;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 10px;
+      }
+
+      .rssc-m-card {
+        background: var(--rssc-color-bg-surface);
+        border: 1px solid #eaeae5;
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .rssc-m-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .rssc-m-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .rssc-m-card-sub {
+        margin-top: 4px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: var(--rssc-color-accent-soft);
+        color: var(--rssc-color-accent);
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .rssc-m-metric {
+        padding: 12px;
+        border-radius: 16px;
+        background: var(--rssc-color-bg-muted);
+      }
+
+      .rssc-m-metric-label {
+        font-size: 12px;
+        color: var(--rssc-color-text-tertiary);
+      }
+
+      .rssc-m-metric-value {
+        margin-top: 4px;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .rssc-m-metric-delta {
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .rssc-m-metric-delta--up {
+        color: var(--rssc-color-success);
+      }
+
+      .rssc-m-metric-delta--down {
+        color: var(--rssc-color-danger);
+      }
+
+      .rssc-m-divider {
+        height: 1px;
+        background: var(--rssc-color-border-subtle);
+        margin: 16px 0;
+      }
+
+      .rssc-m-highlight-list,
+      .rssc-m-measure-list,
+      .rssc-m-history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .rssc-m-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .rssc-m-row-label {
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-row-value {
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .rssc-m-note-card {
+        padding: 14px;
+        border-radius: 16px;
+        background: var(--rssc-color-bg-muted);
+      }
+
+      .rssc-m-history-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid var(--rssc-color-border-subtle);
+      }
+
+      .rssc-m-history-item--active {
+        border-color: rgba(61, 90, 254, 0.24);
+        background: #f7f8ff;
+      }
+
+      .rssc-m-history-date {
+        font-weight: 700;
+      }
+
+      .rssc-m-history-copy {
+        margin-top: 2px;
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-link-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 72px;
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 12px;
+        border: 1px solid var(--rssc-color-border-strong);
+        color: var(--rssc-color-text-secondary);
+        text-decoration: none;
+        font-weight: 700;
+        background: #fff;
+      }
+
+      .rssc-m-empty-state {
+        padding: 18px 14px;
+        border-radius: 16px;
+        background: var(--rssc-color-bg-muted);
+        color: var(--rssc-color-text-secondary);
+      }
+
+      .rssc-m-inline-alert {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid #efcfc7;
+        background: #fdf2ef;
+        color: #8f3c2d;
+      }
+
+      .rssc-m-bottomnav {
+        position: sticky;
+        bottom: 0;
+        z-index: 20;
+        height: 64px;
+        background: #fafaf8;
+        border-top: 1px solid #eaeae5;
+        display: flex;
+        align-items: stretch;
+        flex-shrink: 0;
+      }
+
+      .rssc-m-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        color: #a8a59e;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: color 0.12s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-nav-item--active {
+        color: #3d5afe;
+      }
+
+      .rssc-m-nav-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rssc-m-root">
+      <div class="rssc-m-shell">
+        <header class="rssc-m-topbar" data-comment="scan-topbar">
+          <div class="rssc-m-wordmark" data-comment="scan-topbar-brand">
+            <span class="rssc-m-wordmark-icon" data-comment="scan-topbar-brand-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M14.4 14.4 9.6 9.6" />
+                <path
+                  d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" />
+                <path d="m21.5 21.5-1.4-1.4" />
+                <path d="M3.9 3.9 2.5 2.5" />
+                <path
+                  d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" />
+              </svg>
+            </span>
+            <span data-comment="scan-topbar-brand-text">Rise Stronger</span>
+          </div>
+          <a
+            href="member-profile.html"
+            class="rssc-m-topbar-avatar"
+            data-comment="scan-topbar-avatar"
+            >SC</a
+          >
+        </header>
+
+        <main class="rssc-m-content" data-comment="scan-content">
+          <a
+            href="member-goals.html"
+            class="rssc-m-back-link"
+            data-comment="scan-back-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+            <span data-comment="scan-back-link-text">Back to Goals</span>
+          </a>
+
+          <div class="rssc-m-page-header" data-comment="scan-page-header">
+            <h1 class="rssc-m-page-title" id="scan-page-title" data-comment="scan-page-title">
+              Scan Result
+            </h1>
+            <p
+              class="rssc-m-page-subtitle"
+              id="scan-page-subtitle"
+              data-comment="scan-page-subtitle">
+              Full scan breakdown and how it changed from the previous session.
+            </p>
+          </div>
+
+          <section data-comment="scan-overview-section">
+            <div class="rssc-m-section-title" data-comment="scan-overview-section-title">
+              Overview
+            </div>
+            <div class="rssc-m-card" data-component="card" data-comment="scan-overview-card">
+              <div id="scan-overview-card" data-comment="scan-overview-card-content"></div>
+            </div>
+          </section>
+
+          <section data-comment="scan-measurements-section">
+            <div class="rssc-m-section-title" data-comment="scan-measurements-section-title">
+              Measurements
+            </div>
+            <div class="rssc-m-card" data-component="card" data-comment="scan-measurements-card">
+              <div id="scan-measurements-card" data-comment="scan-measurements-card-content"></div>
+            </div>
+          </section>
+
+          <section data-comment="scan-history-section">
+            <div class="rssc-m-section-title" data-comment="scan-history-section-title">
+              Scan History
+            </div>
+            <div class="rssc-m-card" data-component="card" data-comment="scan-history-card">
+              <div id="scan-history-card" data-comment="scan-history-card-content"></div>
+            </div>
+          </section>
+        </main>
+
+        <nav class="rssc-m-bottomnav" data-comment="member-nav"></nav>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const SCAN_SESSIONS = [
+          {
+            id: 101,
+            date: "2025-01-16",
+            label: "Jan 16, 2025",
+            location: "InBody studio check",
+            bodyFat: 26.4,
+            leanMass: 43.2,
+            weight: 68.1,
+            waist: 81,
+            hips: 97,
+            thigh: 57,
+            highlights: [
+              { id: 1, label: "Baseline scan", value: "Starting point" },
+              { id: 2, label: "Coach note", value: "Focus on strength first" },
+            ],
+          },
+          {
+            id: 102,
+            date: "2025-04-28",
+            label: "Apr 28, 2025",
+            location: "InBody studio check",
+            bodyFat: 25.2,
+            leanMass: 44.0,
+            weight: 68.6,
+            waist: 79,
+            hips: 96,
+            thigh: 57,
+            highlights: [
+              { id: 1, label: "Body fat", value: "-1.2%" },
+              { id: 2, label: "Lean mass", value: "+0.8 kg" },
+            ],
+          },
+          {
+            id: 103,
+            date: "2025-08-19",
+            label: "Aug 19, 2025",
+            location: "Quarterly scan",
+            bodyFat: 24.5,
+            leanMass: 44.8,
+            weight: 69.1,
+            waist: 78,
+            hips: 95,
+            thigh: 56,
+            highlights: [
+              { id: 1, label: "Waist", value: "-1 cm" },
+              { id: 2, label: "Lean mass", value: "+0.8 kg" },
+            ],
+          },
+          {
+            id: 104,
+            date: "2025-12-11",
+            label: "Dec 11, 2025",
+            location: "Quarterly scan",
+            bodyFat: 23.8,
+            leanMass: 45.7,
+            weight: 69.4,
+            waist: 77,
+            hips: 95,
+            thigh: 56,
+            highlights: [
+              { id: 1, label: "Body fat", value: "-0.7%" },
+              { id: 2, label: "Lean mass", value: "+0.9 kg" },
+            ],
+          },
+          {
+            id: 105,
+            date: "2026-04-08",
+            label: "Apr 8, 2026",
+            location: "Quarterly scan",
+            bodyFat: 23.1,
+            leanMass: 46.3,
+            weight: 69.2,
+            waist: 75,
+            hips: 94,
+            thigh: 55,
+            highlights: [
+              { id: 1, label: "Body fat", value: "-0.7%" },
+              { id: 2, label: "Lean mass", value: "+0.6 kg" },
+              { id: 3, label: "Waist", value: "-2 cm" },
+            ],
+          },
+        ];
+
+        function getScanId() {
+          const params = new URLSearchParams(window.location.search);
+          const id = Number(params.get("scan"));
+          return Number.isFinite(id) ? id : SCAN_SESSIONS[SCAN_SESSIONS.length - 1].id;
+        }
+
+        function findScan(scanId) {
+          return (
+            SCAN_SESSIONS.find(function (scan) {
+              return scan.id === scanId;
+            }) || SCAN_SESSIONS[SCAN_SESSIONS.length - 1]
+          );
+        }
+
+        function findPreviousScan(scanId) {
+          const index = SCAN_SESSIONS.findIndex(function (scan) {
+            return scan.id === scanId;
+          });
+          if (index <= 0) return null;
+          return SCAN_SESSIONS[index - 1];
+        }
+
+        function formatDelta(value, unit, positiveIsGood) {
+          if (value === 0) return "No change";
+          const prefix = value > 0 ? "+" : "";
+          const magnitude = prefix + value.toFixed(1).replace(".0", "") + unit;
+          const className =
+            (value > 0 && positiveIsGood) || (value < 0 && !positiveIsGood)
+              ? "rssc-m-metric-delta rssc-m-metric-delta--up"
+              : "rssc-m-metric-delta rssc-m-metric-delta--down";
+          return '<div class="' + className + '">' + magnitude + " vs previous</div>";
+        }
+
+        function renderRow(label, value, key) {
+          return (
+            '<div class="rssc-m-row" data-comment="scan-measure-' +
+            key +
+            '">' +
+            '<span class="rssc-m-row-label" data-comment="scan-measure-' +
+            key +
+            '-label">' +
+            label +
+            "</span>" +
+            '<span class="rssc-m-row-value" data-comment="scan-measure-' +
+            key +
+            '-value">' +
+            value +
+            "</span>" +
+            "</div>"
+          );
+        }
+
+        function renderOverview(scan, previous) {
+          const bodyFatDiff = previous ? scan.bodyFat - previous.bodyFat : 0;
+          const leanMassDiff = previous ? scan.leanMass - previous.leanMass : 0;
+          const weightDiff = previous ? scan.weight - previous.weight : 0;
+
+          return (
+            '<div class="rssc-m-card-head" data-comment="scan-overview-head">' +
+            '<div data-comment="scan-overview-copy">' +
+            '<div class="rssc-m-card-title" data-comment="scan-overview-title">' +
+            scan.label +
+            "</div>" +
+            '<div class="rssc-m-card-sub" data-comment="scan-overview-sub">' +
+            scan.location +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-kicker" data-comment="scan-overview-kicker">Full result</div>' +
+            "</div>" +
+            '<div class="rssc-m-summary-grid" data-comment="scan-overview-grid">' +
+            '<div class="rssc-m-metric" data-comment="scan-overview-body-fat">' +
+            '<div class="rssc-m-metric-label" data-comment="scan-overview-body-fat-label">Body fat</div>' +
+            '<div class="rssc-m-metric-value" data-comment="scan-overview-body-fat-value">' +
+            scan.bodyFat.toFixed(1) +
+            "%</div>" +
+            formatDelta(bodyFatDiff, "%", false) +
+            "</div>" +
+            '<div class="rssc-m-metric" data-comment="scan-overview-lean-mass">' +
+            '<div class="rssc-m-metric-label" data-comment="scan-overview-lean-mass-label">Lean mass</div>' +
+            '<div class="rssc-m-metric-value" data-comment="scan-overview-lean-mass-value">' +
+            scan.leanMass.toFixed(1).replace(".0", "") +
+            " kg</div>" +
+            formatDelta(leanMassDiff, " kg", true) +
+            "</div>" +
+            '<div class="rssc-m-metric" data-comment="scan-overview-weight">' +
+            '<div class="rssc-m-metric-label" data-comment="scan-overview-weight-label">Body weight</div>' +
+            '<div class="rssc-m-metric-value" data-comment="scan-overview-weight-value">' +
+            scan.weight.toFixed(1).replace(".0", "") +
+            " kg</div>" +
+            formatDelta(weightDiff, " kg", true) +
+            "</div>" +
+            '<div class="rssc-m-note-card" data-comment="scan-overview-highlights">' +
+            '<div class="rssc-m-card-title" style="font-size:15px;" data-comment="scan-overview-highlights-title">Highlights</div>' +
+            '<div class="rssc-m-highlight-list" style="margin-top:10px;" data-comment="scan-overview-highlights-list">' +
+            scan.highlights
+              .map(function (item) {
+                return (
+                  '<div class="rssc-m-row" data-comment="scan-overview-highlight-' +
+                  item.id +
+                  '">' +
+                  '<span class="rssc-m-row-label" data-comment="scan-overview-highlight-' +
+                  item.id +
+                  '-label">' +
+                  item.label +
+                  "</span>" +
+                  '<span class="rssc-m-row-value" data-comment="scan-overview-highlight-' +
+                  item.id +
+                  '-value">' +
+                  item.value +
+                  "</span>" +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>" +
+            "</div>" +
+            "</div>"
+          );
+        }
+
+        function renderMeasurements(scan, previous) {
+          const waistDelta = previous ? scan.waist - previous.waist : 0;
+          const hipsDelta = previous ? scan.hips - previous.hips : 0;
+          const thighDelta = previous ? scan.thigh - previous.thigh : 0;
+
+          return (
+            '<div class="rssc-m-card-head" data-comment="scan-measurements-head">' +
+            '<div data-comment="scan-measurements-copy">' +
+            '<div class="rssc-m-card-title" data-comment="scan-measurements-title">Full measurements</div>' +
+            '<div class="rssc-m-card-sub" data-comment="scan-measurements-sub">Compare composition and tape measurements for this session.</div>' +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-measure-list" data-comment="scan-measurements-list">' +
+            renderRow("Body fat", scan.bodyFat.toFixed(1) + "%", "body-fat") +
+            renderRow("Lean mass", scan.leanMass.toFixed(1).replace(".0", "") + " kg", "lean-mass") +
+            renderRow("Body weight", scan.weight.toFixed(1).replace(".0", "") + " kg", "weight") +
+            renderRow(
+              "Waist",
+              scan.waist + " cm" + (previous ? " (" + (waistDelta > 0 ? "+" : "") + waistDelta + " cm)" : ""),
+              "waist",
+            ) +
+            renderRow(
+              "Hips",
+              scan.hips + " cm" + (previous ? " (" + (hipsDelta > 0 ? "+" : "") + hipsDelta + " cm)" : ""),
+              "hips",
+            ) +
+            renderRow(
+              "Thigh",
+              scan.thigh + " cm" + (previous ? " (" + (thighDelta > 0 ? "+" : "") + thighDelta + " cm)" : ""),
+              "thigh",
+            ) +
+            "</div>"
+          );
+        }
+
+        function renderHistory(scanId) {
+          return (
+            '<div class="rssc-m-card-head" data-comment="scan-history-head">' +
+            '<div data-comment="scan-history-copy">' +
+            '<div class="rssc-m-card-title" data-comment="scan-history-title">All scan sessions</div>' +
+            '<div class="rssc-m-card-sub" data-comment="scan-history-sub">Scans are usually spaced a few months apart, so each one should feel meaningful.</div>' +
+            "</div>" +
+            "</div>" +
+            '<div class="rssc-m-history-list" data-comment="scan-history-list">' +
+            SCAN_SESSIONS.slice()
+              .reverse()
+              .map(function (scan) {
+                const activeClass =
+                  scan.id === scanId ? " rssc-m-history-item--active" : "";
+                return (
+                  '<div class="rssc-m-history-item' +
+                  activeClass +
+                  '" data-comment="scan-history-item-' +
+                  scan.id +
+                  '">' +
+                  '<div data-comment="scan-history-item-' +
+                  scan.id +
+                  '-copy">' +
+                  '<div class="rssc-m-history-date" data-comment="scan-history-item-' +
+                  scan.id +
+                  '-date">' +
+                  scan.label +
+                  "</div>" +
+                  '<div class="rssc-m-history-copy" data-comment="scan-history-item-' +
+                  scan.id +
+                  '-location">' +
+                  scan.location +
+                  "</div>" +
+                  "</div>" +
+                  '<a class="rssc-m-link-btn" href="member-scan.html?scan=' +
+                  scan.id +
+                  '" data-comment="scan-history-item-' +
+                  scan.id +
+                  '-link">View</a>' +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>"
+          );
+        }
+
+        const overviewCard = document.getElementById("scan-overview-card");
+        const measurementsCard = document.getElementById("scan-measurements-card");
+        const historyCard = document.getElementById("scan-history-card");
+        const pageTitle = document.getElementById("scan-page-title");
+        const pageSubtitle = document.getElementById("scan-page-subtitle");
+
+        const activeScanId = getScanId();
+        const activeScan = findScan(activeScanId);
+        const previousScan = findPreviousScan(activeScan.id);
+
+        if (!activeScan) {
+          overviewCard.innerHTML =
+            '<div class="rssc-m-inline-alert" data-comment="scan-not-found-alert">That scan could not be found. Showing the latest available result instead.</div>';
+        }
+
+        pageTitle.textContent = activeScan.label;
+        pageSubtitle.textContent =
+          activeScan.location +
+          (previousScan ? " • compared with " + previousScan.label : " • first recorded scan");
+        overviewCard.innerHTML = renderOverview(activeScan, previousScan);
+        measurementsCard.innerHTML = renderMeasurements(activeScan, previousScan);
+        historyCard.innerHTML = renderHistory(activeScan.id);
+      })();
+    </script>
+    <script>
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home",
+            label: "Home",
+            href: "member.html",
+            icon: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+          },
+          {
+            id: "classes",
+            label: "Classes",
+            href: "member-classes.html",
+            icon: '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
+          },
+          {
+            id: "goals",
+            label: "Goals",
+            href: "member-goals.html",
+            icon: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+          },
+          {
+            id: "log",
+            label: "Log",
+            href: "member-scores.html",
+            icon: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
+          },
+          {
+            id: "profile",
+            label: "Profile",
+            href: "member-profile.html",
+            icon: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' +
+              item.href +
+              '" class="rssc-m-nav-item' +
+              (active ? " rssc-m-nav-item--active" : "") +
+              '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' +
+              item.id +
+              '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' +
+              (active ? "2.25" : "1.75") +
+              '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' +
+              item.label +
+              "</span>" +
+              "</a>"
+            );
+          }).join("");
+        }
+
+        renderMemberNav("goals");
+      })();
+    </script>
+  </body>
+</html>

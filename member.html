@@ -438,6 +438,234 @@
         color: #a8a59e;
         cursor: not-allowed;
       }
+      /* ─── WOD simplified + actions ──────────────────────────────────── */
+      .rssc-m-wod-part-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .rssc-m-wod-type-tag {
+        font-size: 11px;
+        font-weight: 700;
+        color: #a8a59e;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 10px;
+      }
+
+      .rssc-m-wod-actions {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid #f0f0eb;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .rssc-m-wod-log-btn {
+        flex: 1;
+        height: 42px;
+        border-radius: 10px;
+        border: none;
+        background: #3d5afe;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.12s, transform 0.1s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .rssc-m-wod-log-btn:active {
+        transform: scale(0.98);
+      }
+
+      .rssc-m-wod-notes-link {
+        flex-shrink: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6b6963;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      /* ─── Home class summary ─────────────────────────────────────────── */
+      .rssc-m-home-class-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .rssc-m-home-class-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .rssc-m-booked-badge {
+        font-size: 11px;
+        font-weight: 700;
+        color: #16a34a;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .rssc-m-home-class-details {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .rssc-m-home-class-time {
+        font-size: 18px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.02em;
+      }
+
+      .rssc-m-home-class-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #171717;
+      }
+
+      .rssc-m-home-class-meta {
+        font-size: 12px;
+        color: #8c8a80;
+      }
+
+      .rssc-m-home-class-link {
+        flex-shrink: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: #a8a59e;
+        text-decoration: none;
+      }
+
+      /* ─── Goals progress ─────────────────────────────────────────────── */
+      .rssc-m-goals-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .rssc-m-goal-item {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .rssc-m-goal-item--sep {
+        padding-top: 14px;
+        margin-top: 14px;
+        border-top: 1px solid #f0f0eb;
+      }
+
+      .rssc-m-goal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .rssc-m-goal-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #171717;
+      }
+
+      .rssc-m-goal-val {
+        font-size: 12px;
+        color: #8c8a80;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .rssc-m-goal-track {
+        height: 5px;
+        border-radius: 3px;
+        background: #f0f0eb;
+        overflow: hidden;
+      }
+
+      .rssc-m-goal-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: #3d5afe;
+      }
+
+      .rssc-m-goal-fill--green {
+        background: #16a34a;
+      }
+
+      .rssc-m-goal-foot {
+        font-size: 11px;
+        color: #a8a59e;
+      }
+
+      .rssc-m-milestone {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid #f0f0eb;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: #6b6963;
+      }
+
+      .rssc-m-milestone svg {
+        flex-shrink: 0;
+        color: #d97706;
+      }
+
+      /* ─── Progress / scan summary ────────────────────────────────────── */
+      .rssc-m-progress-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .rssc-m-progress-stat-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #a8a59e;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+
+      .rssc-m-progress-stat-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .rssc-m-progress-stat-main {
+        font-size: 16px;
+        font-weight: 700;
+        color: #171717;
+        letter-spacing: -0.01em;
+      }
+
+      .rssc-m-progress-delta {
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .rssc-m-progress-delta--down {
+        color: #16a34a;
+      }
+
+      .rssc-m-progress-delta--up {
+        color: #16a34a;
+      }
+
+      .rssc-m-progress-divider {
+        height: 1px;
+        background: #f0f0eb;
+        margin: 14px 0;
+      }
     </style>
   </head>
   <body>
@@ -485,14 +713,14 @@
         </header>
 
         <main class="rssc-m-content" data-comment="member-content">
+
+          <!-- Date + block context -->
           <div data-comment="home-today-section">
             <div class="rssc-m-today-date" data-comment="home-today-date">
               Wednesday, April 9
             </div>
             <div class="rssc-m-today-meta" data-comment="home-today-meta">
-              <span
-                class="rssc-m-block-badge"
-                data-comment="home-today-block"
+              <span class="rssc-m-block-badge" data-comment="home-today-block"
                 >Block 2 · Strength</span
               >
               <span
@@ -503,10 +731,9 @@
             </div>
           </div>
 
+          <!-- Flags (contextual) -->
           <div class="rssc-m-flags-strip" data-comment="home-flags-strip">
-            <span
-              class="rssc-m-flags-strip-label"
-              data-comment="home-flags-label"
+            <span class="rssc-m-flags-strip-label" data-comment="home-flags-label"
               >Your flags:</span
             >
             <span
@@ -522,11 +749,15 @@
             >
           </div>
 
+          <!-- 1 + 4: Today's Workout (simplified) + Quick Log Score -->
           <div data-comment="home-wod-section">
             <div class="rssc-m-section-title" data-comment="home-wod-title">
               Today's Workout
             </div>
             <div class="rssc-m-card" data-comment="home-wod-card">
+              <div class="rssc-m-wod-type-tag" data-comment="home-wod-type">
+                CrossFit
+              </div>
               <div class="rssc-m-wod-parts" data-comment="home-wod-parts">
                 <div class="rssc-m-wod-part" data-comment="home-wod-part-a">
                   <div class="rssc-m-wod-part-row">
@@ -535,27 +766,23 @@
                       data-comment="home-wod-part-a-badge"
                       >A</span
                     >
-                    <span
-                      class="rssc-m-wod-movement"
-                      data-comment="home-wod-part-a-movement"
-                      >Deadlift</span
+                    <div
+                      class="rssc-m-wod-part-body"
+                      data-comment="home-wod-part-a-body"
                     >
+                      <span
+                        class="rssc-m-wod-movement"
+                        data-comment="home-wod-part-a-movement"
+                        >Deadlift</span
+                      >
+                      <span
+                        class="rssc-m-wod-prescription"
+                        data-comment="home-wod-part-a-prescription"
+                        >3 sets × 5 reps @ 80% 1RM</span
+                      >
+                    </div>
                   </div>
-                  <div
-                    class="rssc-m-wod-prescription"
-                    data-comment="home-wod-part-a-prescription"
-                  >
-                    3 sets × 5 reps @ 80% 1RM
-                  </div>
-                  <p
-                    class="rssc-m-wod-cues"
-                    data-comment="home-wod-part-a-cues"
-                  >
-                    Pull from the floor with full reset each rep. No
-                    touch-and-go.
-                  </p>
                 </div>
-
                 <div
                   class="rssc-m-wod-part rssc-m-wod-part--b"
                   data-comment="home-wod-part-b"
@@ -566,157 +793,206 @@
                       data-comment="home-wod-part-b-badge"
                       >B</span
                     >
-                    <span
-                      class="rssc-m-wod-movement"
-                      data-comment="home-wod-part-b-movement"
-                      >Conditioning</span
+                    <div
+                      class="rssc-m-wod-part-body"
+                      data-comment="home-wod-part-b-body"
+                    >
+                      <span
+                        class="rssc-m-wod-movement"
+                        data-comment="home-wod-part-b-movement"
+                        >Conditioning</span
+                      >
+                      <span
+                        class="rssc-m-wod-prescription"
+                        data-comment="home-wod-part-b-prescription"
+                        >For time · 21-15-9 · Thrusters / Burpees</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="rssc-m-wod-actions" data-comment="home-wod-actions">
+                <button
+                  class="rssc-m-wod-log-btn"
+                  type="button"
+                  data-comment="home-wod-log-btn"
+                  onclick="window.location.href='member-scores.html'"
+                >
+                  Log Score
+                </button>
+                <a
+                  href="member-scores.html"
+                  class="rssc-m-wod-notes-link"
+                  data-comment="home-wod-notes-link"
+                  >View Notes</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 2: Booked / available class -->
+          <div data-comment="home-class-section">
+            <div class="rssc-m-section-title" data-comment="home-class-title">
+              Your Class
+            </div>
+            <div id="home-class-card" data-comment="home-class-card"></div>
+          </div>
+
+          <!-- 3 + 6 + 7 + 8: Goals progress + current goals + progress status + next milestone -->
+          <div data-comment="home-goals-section">
+            <div class="rssc-m-section-title" data-comment="home-goals-title">
+              Goals
+            </div>
+            <div class="rssc-m-card" data-comment="home-goals-card">
+              <div class="rssc-m-goals-list" data-comment="home-goals-list">
+                <div class="rssc-m-goal-item" data-comment="home-goal-1">
+                  <div class="rssc-m-goal-header" data-comment="home-goal-1-header">
+                    <span class="rssc-m-goal-name" data-comment="home-goal-1-name"
+                      >Back Squat</span
+                    >
+                    <span class="rssc-m-goal-val" data-comment="home-goal-1-val"
+                      >80 → 100 kg</span
                     >
                   </div>
-                  <pre
-                    class="rssc-m-wod-partb-text"
-                    data-comment="home-wod-part-b-text"
+                  <div
+                    class="rssc-m-goal-track"
+                    data-comment="home-goal-1-track"
                   >
-For time:
-21-15-9
-Thrusters (43/30 kg)
-Burpees</pre
+                    <div
+                      class="rssc-m-goal-fill"
+                      style="width: 80%"
+                      data-comment="home-goal-1-fill"
+                    ></div>
+                  </div>
+                  <div class="rssc-m-goal-foot" data-comment="home-goal-1-foot">
+                    80% complete
+                  </div>
+                </div>
+                <div
+                  class="rssc-m-goal-item rssc-m-goal-item--sep"
+                  data-comment="home-goal-2"
+                >
+                  <div class="rssc-m-goal-header" data-comment="home-goal-2-header">
+                    <span class="rssc-m-goal-name" data-comment="home-goal-2-name"
+                      >5 km Run</span
+                    >
+                    <span class="rssc-m-goal-val" data-comment="home-goal-2-val"
+                      >29:42 → 25:00</span
+                    >
+                  </div>
+                  <div
+                    class="rssc-m-goal-track"
+                    data-comment="home-goal-2-track"
+                  >
+                    <div
+                      class="rssc-m-goal-fill rssc-m-goal-fill--green"
+                      style="width: 60%"
+                      data-comment="home-goal-2-fill"
+                    ></div>
+                  </div>
+                  <div class="rssc-m-goal-foot" data-comment="home-goal-2-foot">
+                    60% complete
+                  </div>
+                </div>
+              </div>
+              <div class="rssc-m-milestone" data-comment="home-milestone">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  data-comment="home-milestone-icon"
+                >
+                  <path
+                    d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
+                  />
+                  <line x1="4" x2="4" y1="22" y2="15" />
+                </svg>
+                <span data-comment="home-milestone-text"
+                  >Next: Beat your deadlift PR · This Friday</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 + 7: Scan / progress summary + progress status -->
+          <div data-comment="home-progress-section">
+            <div
+              class="rssc-m-section-title"
+              data-comment="home-progress-title"
+            >
+              Progress
+            </div>
+            <div class="rssc-m-card" data-comment="home-progress-card">
+              <div class="rssc-m-progress-stat" data-comment="home-progress-scan">
+                <div
+                  class="rssc-m-progress-stat-label"
+                  data-comment="home-progress-scan-label"
+                >
+                  Body scan · April 1
+                </div>
+                <div
+                  class="rssc-m-progress-stat-row"
+                  data-comment="home-progress-scan-row"
+                >
+                  <span
+                    class="rssc-m-progress-stat-main"
+                    data-comment="home-progress-scan-fat"
+                    >Body fat 18.2%</span
+                  >
+                  <span
+                    class="rssc-m-progress-delta rssc-m-progress-delta--down"
+                    data-comment="home-progress-scan-delta"
+                    >↓ 0.4% since March</span
+                  >
+                </div>
+              </div>
+              <div
+                class="rssc-m-progress-divider"
+                data-comment="home-progress-divider"
+              ></div>
+              <div
+                class="rssc-m-progress-stat"
+                data-comment="home-progress-attendance"
+              >
+                <div
+                  class="rssc-m-progress-stat-label"
+                  data-comment="home-progress-attendance-label"
+                >
+                  April attendance
+                </div>
+                <div
+                  class="rssc-m-progress-stat-row"
+                  data-comment="home-progress-attendance-row"
+                >
+                  <span
+                    class="rssc-m-progress-stat-main"
+                    data-comment="home-progress-attendance-count"
+                    >12 classes</span
+                  >
+                  <span
+                    class="rssc-m-progress-delta rssc-m-progress-delta--up"
+                    data-comment="home-progress-attendance-delta"
+                    >↑ 3 more than March</span
                   >
                 </div>
               </div>
             </div>
           </div>
 
-          <div data-comment="home-classes-section">
-            <div
-              class="rssc-m-section-title"
-              data-comment="home-classes-title"
-            >
-              Book a Class
-            </div>
-            <div
-              class="rssc-m-classes"
-              id="classes-list"
-              data-comment="home-classes-list"
-            ></div>
-          </div>
         </main>
 
         <nav
           class="rssc-m-bottomnav"
           aria-label="Main navigation"
           data-comment="member-nav"
-        >
-          <a
-            href="member.html"
-            class="rssc-m-nav-item rssc-m-nav-item--active"
-            aria-current="page"
-            data-comment="member-nav-today"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M14.4 14.4 9.6 9.6" />
-              <path
-                d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"
-              />
-              <path d="m21.5 21.5-1.4-1.4" />
-              <path d="M3.9 3.9 2.5 2.5" />
-              <path
-                d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"
-              />
-            </svg>
-            <span class="rssc-m-nav-label">Today</span>
-          </a>
-          <a
-            href="member-scores.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-scores"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"
-              />
-              <path d="M11 12 5.12 2.2" />
-              <path d="m13 12 5.88-9.8" />
-              <path d="M8 7h8" />
-              <circle cx="12" cy="17" r="5" />
-              <path d="M12 18v-2h-.5" />
-            </svg>
-            <span class="rssc-m-nav-label">Scores</span>
-          </a>
-          <a
-            href="member-leaderboard.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-leaders"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-              <path d="M4 22h16" />
-              <path
-                d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
-              />
-              <path
-                d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
-              />
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-            </svg>
-            <span class="rssc-m-nav-label">Leaders</span>
-          </a>
-          <a
-            href="member-profile.html"
-            class="rssc-m-nav-item"
-            data-comment="member-nav-profile"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <span class="rssc-m-nav-label">Profile</span>
-          </a>
-        </nav>
+        ></nav>
       </div>
     </div>
 
@@ -797,103 +1073,102 @@ Burpees</pre
           return svg;
         }
 
-        function renderClassCard(cls, index) {
-          const { booked } = store.get();
-          const isBooked = booked.has(cls.id);
-          const spotsLeft = cls.capacity - cls.booked;
-          const isFull = spotsLeft <= 0 && !isBooked;
-
-          let metaClass = "rssc-m-class-meta";
-          if (spotsLeft === 1 && !isBooked) metaClass += " rssc-m-class-spots--low";
-          else if (isFull) metaClass += " rssc-m-class-spots--full";
-
-          const spotsText = isBooked
-            ? cls.capacity + " spots"
-            : isFull
-              ? "Full"
-              : spotsLeft === 1
-                ? "1 spot left"
-                : spotsLeft + " spots";
-
-          const dc = "home-class-" + (index + 1);
-
-          let action;
-          if (isBooked) {
-            action = el(
-              "div",
-              {
-                className: "rssc-m-book-btn rssc-m-book-btn--booked",
-                "aria-label": "Booked",
-                "data-comment": dc + "-book",
-              },
-              [makeCheckIcon(), document.createTextNode("Booked")],
-            );
-          } else if (isFull) {
-            action = el("button", {
-              className: "rssc-m-book-btn rssc-m-book-btn--full",
-              disabled: "",
-              "data-comment": dc + "-book",
-              textContent: "Full",
-            });
+        function renderHomeClass() {
+          const { classes, booked } = store.get();
+          const container = document.getElementById("home-class-card");
+          const bookedCls = classes.find(function (c) { return booked.has(c.id); });
+          var html = "";
+          if (bookedCls) {
+            const spotsLeft = bookedCls.capacity - bookedCls.booked;
+            html =
+              '<div class="rssc-m-class-card" data-comment="home-class-booked">' +
+                '<span class="rssc-m-class-time" data-comment="home-class-booked-time">' + bookedCls.time + "</span>" +
+                '<div class="rssc-m-class-info" data-comment="home-class-booked-info">' +
+                  '<span class="rssc-m-class-name" data-comment="home-class-booked-name">' + bookedCls.name + "</span>" +
+                  '<span class="rssc-m-class-meta" data-comment="home-class-booked-meta">' + bookedCls.coach + " · " + spotsLeft + " spots left</span>" +
+                "</div>" +
+                '<div class="rssc-m-book-btn rssc-m-book-btn--booked" aria-label="Booked" data-comment="home-class-booked-status">' +
+                  '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' +
+                  "Booked" +
+                "</div>" +
+              "</div>";
           } else {
-            action = el("button", {
-              className: "rssc-m-book-btn",
-              "data-book-id": cls.id,
-              "aria-label": "Book " + cls.time + " class",
-              "data-comment": dc + "-book",
-              textContent: "Book",
-            });
+            const available = classes.find(function (c) { return !booked.has(c.id) && c.booked < c.capacity; });
+            if (available) {
+              const spotsLeft = available.capacity - available.booked;
+              html =
+                '<div class="rssc-m-class-card" data-comment="home-class-available">' +
+                  '<span class="rssc-m-class-time" data-comment="home-class-available-time">' + available.time + "</span>" +
+                  '<div class="rssc-m-class-info" data-comment="home-class-available-info">' +
+                    '<span class="rssc-m-class-name" data-comment="home-class-available-name">' + available.name + "</span>" +
+                    '<span class="rssc-m-class-meta" data-comment="home-class-available-meta">' + available.coach + " · " + spotsLeft + " spots left</span>" +
+                  "</div>" +
+                  '<button class="rssc-m-book-btn" data-book-id="' + available.id + '" aria-label="Book ' + available.time + ' class" data-comment="home-class-available-book">Book</button>' +
+                "</div>";
+            }
           }
-
-          const time = el("span", {
-            className: "rssc-m-class-time",
-            "data-comment": dc + "-time",
-            textContent: cls.time,
-          });
-
-          const name = el("span", {
-            className: "rssc-m-class-name",
-            "data-comment": dc + "-name",
-            textContent: cls.name,
-          });
-
-          const meta = el("span", {
-            className: metaClass,
-            "data-comment": dc + "-meta",
-            textContent: cls.coach + " · " + spotsText,
-          });
-
-          const info = el(
-            "div",
-            { className: "rssc-m-class-info", "data-comment": dc + "-info" },
-            [name, meta],
-          );
-
-          return el(
-            "div",
-            { className: "rssc-m-class-card", "data-comment": dc },
-            [time, info, action],
-          );
-        }
-
-        function renderClasses() {
-          const { classes } = store.get();
-          const container = document.getElementById("classes-list");
-          container.replaceChildren(
-            ...classes.map((cls, i) => renderClassCard(cls, i)),
-          );
+          if (html) container.innerHTML = html;
         }
 
         document
-          .getElementById("classes-list")
+          .getElementById("home-class-card")
           .addEventListener("click", function (e) {
             const btn = e.target.closest("[data-book-id]");
             if (!btn) return;
             bookClass(btn.getAttribute("data-book-id"));
           });
 
-        store.subscribe(renderClasses);
-        renderClasses();
+        store.subscribe(renderHomeClass);
+        renderHomeClass();
+      })();
+    </script>
+    <script>
+      // ─── MemberNav component ─────────────────────────────────────────────
+      (function () {
+        var NAV_ITEMS = [
+          {
+            id: "home", label: "Home", href: "member.html",
+            icon: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+          },
+          {
+            id: "classes", label: "Classes", href: "member-classes.html",
+            icon: `<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>`,
+          },
+          {
+            id: "goals", label: "Goals", href: "member-goals.html",
+            icon: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`,
+          },
+          {
+            id: "log", label: "Log", href: "member-scores.html",
+            icon: `<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>`,
+          },
+          {
+            id: "profile", label: "Profile", href: "member-profile.html",
+            icon: `<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+          },
+        ];
+
+        function renderMemberNav(activePage) {
+          var nav = document.querySelector('[data-comment="member-nav"]');
+          nav.innerHTML = NAV_ITEMS.map(function (item) {
+            var active = item.id === activePage;
+            return (
+              '<a href="' + item.href + '"' +
+              ' class="rssc-m-nav-item' + (active ? " rssc-m-nav-item--active" : "") + '"' +
+              (active ? ' aria-current="page"' : "") +
+              ' data-comment="member-nav-' + item.id + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+              ' stroke-width="' + (active ? "2.25" : "1.75") + '"' +
+              ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              item.icon +
+              "</svg>" +
+              '<span class="rssc-m-nav-label">' + item.label + "</span>" +
+              "</a>"
+            );
+          }).join("");
+        }
+
+        renderMemberNav("home");
       })();
     </script>
   </body>

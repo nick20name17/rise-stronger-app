@@ -974,6 +974,24 @@
         font-size: 14px;
         font-weight: 500;
         color: #171717;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .rssc-admin-flag-last-seen {
+        font-size: 11px;
+        font-weight: 500;
+        color: #a8a59e;
+        background: #f1f1ee;
+        padding: 1px 7px;
+        border-radius: 99px;
+        white-space: nowrap;
+      }
+
+      .rssc-admin-flag-last-seen--warning {
+        color: #c88719;
+        background: #fff7e8;
       }
 
       .rssc-admin-flag-note {
@@ -1477,21 +1495,21 @@
                     <div class="rssc-admin-flag-row" data-comment="home-flag-1">
                       <div class="rssc-admin-flag-dot rssc-admin-flag-dot--warning" data-comment="home-flag-1-dot"></div>
                       <div class="rssc-admin-flag-info" data-comment="home-flag-1-info">
-                        <span class="rssc-admin-flag-name" data-comment="home-flag-1-name">Jordan Mitchell</span>
+                        <span class="rssc-admin-flag-name" data-comment="home-flag-1-name">Jordan Mitchell<span class="rssc-admin-flag-last-seen rssc-admin-flag-last-seen--warning">19 days ago</span></span>
                         <span class="rssc-admin-flag-note" data-comment="home-flag-1-note">Attendance dropping — 2 classes in last 14 days</span>
                       </div>
                     </div>
                     <div class="rssc-admin-flag-row" data-comment="home-flag-2">
                       <div class="rssc-admin-flag-dot rssc-admin-flag-dot--info" data-comment="home-flag-2-dot"></div>
                       <div class="rssc-admin-flag-info" data-comment="home-flag-2-info">
-                        <span class="rssc-admin-flag-name" data-comment="home-flag-2-name">Sarah Chen</span>
+                        <span class="rssc-admin-flag-name" data-comment="home-flag-2-name">Sarah Chen<span class="rssc-admin-flag-last-seen">today</span></span>
                         <span class="rssc-admin-flag-note" data-comment="home-flag-2-note">Postpartum · 3rd class today</span>
                       </div>
                     </div>
                     <div class="rssc-admin-flag-row" data-comment="home-flag-3">
                       <div class="rssc-admin-flag-dot rssc-admin-flag-dot--danger" data-comment="home-flag-3-dot"></div>
                       <div class="rssc-admin-flag-info" data-comment="home-flag-3-info">
-                        <span class="rssc-admin-flag-name" data-comment="home-flag-3-name">Marcus Webb</span>
+                        <span class="rssc-admin-flag-name" data-comment="home-flag-3-name">Marcus Webb<span class="rssc-admin-flag-last-seen">3 days ago</span></span>
                         <span class="rssc-admin-flag-note" data-comment="home-flag-3-note">Payment failed · needs follow-up</span>
                       </div>
                     </div>

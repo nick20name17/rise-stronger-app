@@ -173,8 +173,6 @@
       .rssc-trigger-preview-row{display:flex;flex-direction:column;gap:1px;}
       .rssc-trigger-preview-name{font-size:13px;font-weight:500;color:#171717;}
       .rssc-trigger-preview-note{font-size:11px;color:#8c8a80;line-height:15px;}
-      .rssc-trigger-actions{display:flex;gap:6px;flex-wrap:wrap;padding-top:8px;border-top:1px solid #f1f1ee;}
-      .rssc-trigger-action-chip{display:inline-flex;align-items:center;padding:3px 9px;border:1px solid #e8e8e3;border-radius:99px;font-size:11px;font-weight:500;color:#4b4a45;background:#fcfcfb;}
 
       /* Report tabs */
       .rssc-tabs{display:inline-flex;align-items:center;gap:6px;padding:4px;border-radius:999px;background:#fcfcfb;border:1px solid #e8e8e3;}
@@ -184,7 +182,16 @@
 
       /* Report filters + action queue */
       .rssc-reports-filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-      .rssc-reports-filters .rssc-select-native{min-height:32px;padding:0 32px 0 12px;font-size:12px;line-height:16px;border-radius:10px;width:auto;min-width:160px;}
+      .rssc-flt{position:relative;}
+      .rssc-flt__trigger{display:inline-flex;align-items:center;gap:6px;padding:0 10px 0 12px;min-height:32px;border:1px solid #e8e8e3;border-radius:10px;background:#fff;font-family:inherit;font-size:12px;color:var(--rssc-color-text-primary);cursor:pointer;white-space:nowrap;transition:border-color 120ms cubic-bezier(0.2,0,0,1),box-shadow 120ms cubic-bezier(0.2,0,0,1);}
+      .rssc-flt__trigger:hover{border-color:#ddddd6;}
+      .rssc-flt__trigger[data-open="true"]{border-color:var(--rssc-color-border-focus);box-shadow:var(--rssc-focus-shadow);}
+      .rssc-flt__chevron{flex-shrink:0;color:#8c8a80;}
+      .rssc-flt__menu{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:100%;background:#fff;border:1px solid #e8e8e3;border-radius:12px;box-shadow:0 4px 6px -2px rgba(23,23,23,.06),0 12px 24px -4px rgba(23,23,23,.12);z-index:60;padding:4px;}
+      .rssc-flt__menu[data-open="true"]{display:block;}
+      .rssc-flt__option{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;border-radius:8px;cursor:pointer;color:var(--rssc-color-text-primary);white-space:nowrap;}
+      .rssc-flt__option:hover{background:#f5f5f2;}
+      .rssc-flt__option[data-selected="true"]{font-weight:500;}
       .rssc-reports-saved-chips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
       .rssc-reports-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 10px;border:1px solid #c7d2fe;background:#eef2ff;color:#3d5afe;border-radius:999px;font-size:12px;font-weight:500;cursor:pointer;}
       .rssc-reports-chip:hover{background:#ddde6ff;}
@@ -225,6 +232,18 @@
       .rssc-action-modal-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8c8a80;}
       .rssc-action-modal-text{font-size:13px;color:#4b4a45;line-height:19px;}
       .rssc-action-modal-signal{padding:12px;background:#fcfcfb;border:1px solid #f1f1ee;border-radius:10px;font-size:13px;color:#4b4a45;line-height:19px;}
+      .rssc-action-note-zone{display:none;flex-direction:column;gap:12px;border-top:1px solid #f1f1ee;padding-top:16px;}
+      .rssc-action-note-zone[data-open="true"]{display:flex;}
+      .rssc-textarea-shell{display:flex;align-items:flex-start;gap:8px;width:100%;min-height:80px;padding:10px 12px;border-radius:12px;border:1px solid #e8e8e3;background:#fff;transition:border-color 120ms,box-shadow 120ms;}
+      .rssc-textarea-shell:focus-within{border-color:#3d5afe;box-shadow:0 0 0 3px rgba(61,90,254,.12);}
+      .rssc-textarea-element{width:100%;border:0;outline:0;background:transparent;color:#171717;font-family:inherit;font-size:14px;line-height:20px;padding:0;resize:none;}
+      .rssc-action-note-footer{display:flex;justify-content:flex-end;}
+      .rssc-action-note-log{display:flex;flex-direction:column;gap:0;border-top:1px solid #f1f1ee;padding-top:12px;}
+      .rssc-action-note-log-header{font-size:11px;font-weight:600;color:#8c8a80;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+      .rssc-action-note-entry{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-bottom:1px solid #f5f5f3;}
+      .rssc-action-note-entry:last-child{border-bottom:none;}
+      .rssc-action-note-meta{font-size:11px;color:#8c8a80;}
+      .rssc-action-note-text{font-size:13px;color:#4b4a45;line-height:18px;}
 
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:767px){.rssc-app-shell{grid-template-columns:1fr;}.rssc-app-shell__sidebar{display:none;}.rssc-app-header{padding:0 16px;}.rssc-page-layout{padding:20px 16px;}.rssc-admin-menu-btn{display:flex;}.rssc-admin-search{display:none;}}
@@ -240,8 +259,8 @@
           <a href="home.html" class="rssc-nav-item" data-comment="admin-drawer-nav-home"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="rssc-nav-item__label">Home</span></span></a>
           <a href="admin-members.html" class="rssc-nav-item" data-comment="admin-drawer-nav-members"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="rssc-nav-item__label">Members</span></span></a>
           <a href="admin-classes.html" class="rssc-nav-item" data-comment="admin-drawer-nav-classes"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span class="rssc-nav-item__label">Classes</span></span></a>
-          <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-drawer-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
           <a href="admin-programming.html" class="rssc-nav-item" data-comment="admin-drawer-nav-programming"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg><span class="rssc-nav-item__label">Programming</span></span></a>
+          <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-drawer-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
           <a href="admin-reports.html" class="rssc-nav-item" data-active="true" aria-current="page" data-comment="admin-drawer-nav-reports"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg><span class="rssc-nav-item__label">Reports</span></span></a>
         </div>
         <div class="rssc-app-sidebar__section"><div class="rssc-admin-sidebar-footer">
@@ -259,8 +278,8 @@
             <a href="home.html" class="rssc-nav-item" data-comment="admin-nav-home"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="rssc-nav-item__label">Home</span></span></a>
             <a href="admin-members.html" class="rssc-nav-item" data-comment="admin-nav-members"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="rssc-nav-item__label">Members</span></span></a>
             <a href="admin-classes.html" class="rssc-nav-item" data-comment="admin-nav-classes"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span class="rssc-nav-item__label">Classes</span></span></a>
-            <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
             <a href="admin-programming.html" class="rssc-nav-item" data-comment="admin-nav-programming"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg><span class="rssc-nav-item__label">Programming</span></span></a>
+            <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
             <a href="admin-reports.html" class="rssc-nav-item" data-active="true" aria-current="page" data-comment="admin-nav-reports"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg><span class="rssc-nav-item__label">Reports</span></span></a>
           </div>
           <div class="rssc-app-sidebar__section"><div class="rssc-admin-sidebar-footer">
@@ -326,15 +345,6 @@
                   <span class="rssc-trigger-value" data-comment="reports-trigger-at-risk-value">8</span>
                 </div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-at-risk-desc">Attendance dropped, churn likely.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-at-risk-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-at-risk-preview-1"><span class="rssc-trigger-preview-name">Jordan Mitchell</span><span class="rssc-trigger-preview-note">Attendance dropped below 2 visits / week</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-at-risk-preview-2"><span class="rssc-trigger-preview-name">Natalie Brooks</span><span class="rssc-trigger-preview-note">Still active, but attendance rhythm is softening</span></div>
-                </div>
-                <div class="rssc-trigger-actions" data-comment="reports-trigger-at-risk-actions">
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-1">Call list</span>
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-2">Message</span>
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-at-risk-action-3">Schedule follow-up</span>
-                </div>
               </div>
 
               <div class="rssc-trigger-card" data-comment="reports-trigger-hold-returns">
@@ -347,15 +357,6 @@
                   <span class="rssc-trigger-value" data-comment="reports-trigger-hold-returns-value">5</span>
                 </div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-hold-returns-desc">Holds ending, no outreach yet.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-hold-returns-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-preview-1"><span class="rssc-trigger-preview-name">Tom Bracken</span><span class="rssc-trigger-preview-note">Return date in 4 days and no outreach logged</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-preview-2"><span class="rssc-trigger-preview-name">Erica James</span><span class="rssc-trigger-preview-note">Hold approval needs restart reminder</span></div>
-                </div>
-                <div class="rssc-trigger-actions" data-comment="reports-trigger-hold-returns-actions">
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-1">Check in</span>
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-2">Offer return</span>
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-action-3">Book first class</span>
-                </div>
               </div>
 
               <div class="rssc-trigger-card" data-comment="reports-trigger-morning-dip">
@@ -368,14 +369,6 @@
                   <span class="rssc-trigger-value" data-comment="reports-trigger-morning-dip-value">-14%</span>
                 </div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-morning-dip-desc">06:00 bookings down vs last month.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-morning-dip-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-morning-dip-preview-1"><span class="rssc-trigger-preview-name">Mon 06:00 CrossFit</span><span class="rssc-trigger-preview-note">8/12 booked (down from average 11/12)</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-morning-dip-preview-2"><span class="rssc-trigger-preview-name">Fri 06:00 CrossFit</span><span class="rssc-trigger-preview-note">7/12 booked trending below baseline</span></div>
-                </div>
-                <div class="rssc-trigger-actions" data-comment="reports-trigger-morning-dip-actions">
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-1">Re-survey</span>
-                  <span class="rssc-trigger-action-chip" data-comment="reports-trigger-morning-dip-action-2">Trial new time</span>
-                </div>
               </div>
             </div>
 
@@ -384,31 +377,16 @@
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-failed-payments-label">Billing recovery</span><span class="rssc-badge rssc-badge--danger" data-comment="reports-trigger-failed-payments-priority"><span>Act now</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-failed-payments-title">Failed payments</span><span class="rssc-trigger-value" data-comment="reports-trigger-failed-payments-value">4</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-failed-payments-desc">Members who need recovery before billing quietly slips.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-failed-payments-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-failed-payments-preview-1"><span class="rssc-trigger-preview-name">Marcus Webb</span><span class="rssc-trigger-preview-note">Retry due tomorrow and still unresolved</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-failed-payments-preview-2"><span class="rssc-trigger-preview-name">Billing queue</span><span class="rssc-trigger-preview-note">2 members need personal follow-up today</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-1">Call members</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-2">Retry plan</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-failed-payments-action-3">Pause access</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-cancels-pending">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-cancels-pending-label">Save or confirm</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-cancels-pending-priority"><span>This week</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-cancels-pending-title">Cancels pending</span><span class="rssc-trigger-value" data-comment="reports-trigger-cancels-pending-value">3</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-cancels-pending-desc">Cancellation requests that still need Katie's conversation and capture.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-cancels-pending-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-cancels-pending-preview-1"><span class="rssc-trigger-preview-name">Alan Rivera</span><span class="rssc-trigger-preview-note">Schedule conflict may still be recoverable</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-cancels-pending-preview-2"><span class="rssc-trigger-preview-name">Open requests</span><span class="rssc-trigger-preview-note">Make sure follow-up dates are not skipped</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-1">Talk to member</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-2">Offer solution</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-cancels-pending-action-3">Log reason</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-mrr-health">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-mrr-health-label">Financial health</span><span class="rssc-badge rssc-badge--neutral" data-comment="reports-trigger-mrr-health-priority"><span>Watch closely</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-mrr-health-title">MRR health</span><span class="rssc-trigger-value" data-comment="reports-trigger-mrr-health-value">$29.4k</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-mrr-health-desc">Useful as a health signal only when it points toward a real retention or billing action.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-mrr-health-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-mrr-health-preview-1"><span class="rssc-trigger-preview-name">Down 1.8%</span><span class="rssc-trigger-preview-note">Look for churn and failed payments before broader changes</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-mrr-health-preview-2"><span class="rssc-trigger-preview-name">QuickBooks sync</span><span class="rssc-trigger-preview-note">Healthy, so signal likely reflects member movement</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-1">Review causes</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-2">Open cancels</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-mrr-health-action-3">Open billing queue</span></div>
               </div>
             </div>
 
@@ -417,30 +395,16 @@
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-new-prs-label">Celebrate</span><span class="rssc-badge rssc-badge--success" data-comment="reports-trigger-new-prs-priority"><span>Recognize</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-new-prs-title">New PRs</span><span class="rssc-trigger-value" data-comment="reports-trigger-new-prs-value">12</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-new-prs-desc">Members who hit personal records this week — worth a shout-out.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-new-prs-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-new-prs-preview-1"><span class="rssc-trigger-preview-name">Priya Nair</span><span class="rssc-trigger-preview-note">Back Squat PR · 67.5 kg (+5 kg)</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-new-prs-preview-2"><span class="rssc-trigger-preview-name">James Okafor</span><span class="rssc-trigger-preview-note">Deadlift PR · 142.5 kg (+2.5 kg)</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-new-prs-action-1">Post to board</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-new-prs-action-2">Message member</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-skill-gap">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-skill-gap-label">Coaching signal</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-skill-gap-priority"><span>Follow up</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-skill-gap-title">Skill gap</span><span class="rssc-trigger-value" data-comment="reports-trigger-skill-gap-value">6</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-skill-gap-desc">Members whose logged scores show stalling on key movements.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-skill-gap-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-skill-gap-preview-1"><span class="rssc-trigger-preview-name">Aoife Kelly</span><span class="rssc-trigger-preview-note">Pull-up progression stuck 4 weeks</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-skill-gap-preview-2"><span class="rssc-trigger-preview-name">Sarah Chen</span><span class="rssc-trigger-preview-note">Bar muscle-up blocked since return</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-skill-gap-action-1">Book 1:1</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-skill-gap-action-2">Scale regression</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-leaderboard-reach">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-leaderboard-reach-label">Engagement</span><span class="rssc-badge rssc-badge--info" data-comment="reports-trigger-leaderboard-reach-priority"><span>This week</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-leaderboard-reach-title">Leaderboard reach</span><span class="rssc-trigger-value" data-comment="reports-trigger-leaderboard-reach-value">74%</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-leaderboard-reach-desc">Members who opted-in and are logging scores regularly.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-leaderboard-reach-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-leaderboard-reach-preview-1"><span class="rssc-trigger-preview-name">26 of 35 opted in</span><span class="rssc-trigger-preview-note">Up from 68% last month</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-leaderboard-reach-action-1">Nudge opt-ins</span></div>
               </div>
             </div>
 
@@ -449,37 +413,45 @@
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-check-ins-due-label">Outreach</span><span class="rssc-badge rssc-badge--warning" data-comment="reports-trigger-check-ins-due-priority"><span>Today</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-check-ins-due-title">Check-ins due</span><span class="rssc-trigger-value" data-comment="reports-trigger-check-ins-due-value">5</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-check-ins-due-desc">Scheduled member outreach that Katie needs to close today.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-check-ins-due-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-check-ins-due-preview-1"><span class="rssc-trigger-preview-name">Jordan Mitchell</span><span class="rssc-trigger-preview-note">At-risk follow-up · overdue 1 day</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-check-ins-due-preview-2"><span class="rssc-trigger-preview-name">Mia Thornton</span><span class="rssc-trigger-preview-note">Injury recheck scheduled for today</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-check-ins-due-action-1">Call list</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-check-ins-due-action-2">Mark done</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-hold-returns-followup">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-hold-returns-followup-label">Return queue</span><span class="rssc-badge rssc-badge--info" data-comment="reports-trigger-hold-returns-followup-priority"><span>This week</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-hold-returns-followup-title">Hold returns</span><span class="rssc-trigger-value" data-comment="reports-trigger-hold-returns-followup-value">2</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-hold-returns-followup-desc">Holds ending soon — confirm restart before billing resumes.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-hold-returns-followup-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-hold-returns-followup-preview-1"><span class="rssc-trigger-preview-name">Tom Bracken</span><span class="rssc-trigger-preview-note">Hold ends May 5 · restart not confirmed</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-followup-action-1">Call member</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-hold-returns-followup-action-2">Extend hold</span></div>
               </div>
               <div class="rssc-trigger-card" data-comment="reports-trigger-milestones">
                 <div class="rssc-trigger-top"><span class="rssc-trigger-label" data-comment="reports-trigger-milestones-label">Milestone</span><span class="rssc-badge rssc-badge--success" data-comment="reports-trigger-milestones-priority"><span>Celebrate</span></span></div>
                 <div class="rssc-trigger-heading"><span class="rssc-trigger-title" data-comment="reports-trigger-milestones-title">Member milestones</span><span class="rssc-trigger-value" data-comment="reports-trigger-milestones-value">3</span></div>
                 <div class="rssc-trigger-desc" data-comment="reports-trigger-milestones-desc">Anniversaries and class-count milestones this week.</div>
-                <div class="rssc-trigger-preview" data-comment="reports-trigger-milestones-preview">
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-milestones-preview-1"><span class="rssc-trigger-preview-name">James Okafor</span><span class="rssc-trigger-preview-note">5 years with the gym</span></div>
-                  <div class="rssc-trigger-preview-row" data-comment="reports-trigger-milestones-preview-2"><span class="rssc-trigger-preview-name">Elena Vasquez</span><span class="rssc-trigger-preview-note">Hits 250 classes</span></div>
-                </div>
-                <div class="rssc-trigger-actions"><span class="rssc-trigger-action-chip" data-comment="reports-trigger-milestones-action-1">Send card</span><span class="rssc-trigger-action-chip" data-comment="reports-trigger-milestones-action-2">Post shout-out</span></div>
               </div>
             </div>
 
             <div class="rssc-reports-filters" data-comment="reports-filters">
-              <select id="reports-range" class="rssc-select-native" data-comment="reports-filter-range"><option value="7d">Last 7 days</option><option value="30d" selected>Last 30 days</option><option value="90d">Last 90 days</option></select>
-              <select id="reports-primary" class="rssc-select-native" data-comment="reports-filter-primary"><option value="">All</option></select>
-              <select id="reports-secondary" class="rssc-select-native" data-comment="reports-filter-secondary"><option value="">All</option></select>
+              <div class="rssc-flt" id="flt-range" data-comment="reports-filter-range">
+                <button type="button" class="rssc-flt__trigger" data-comment="reports-filter-range-trigger">
+                  <span class="rssc-flt__label" data-comment="reports-filter-range-label">Last 30 days</span>
+                  <svg class="rssc-flt__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="rssc-flt__menu" data-comment="reports-filter-range-menu">
+                  <div class="rssc-flt__option" data-value="7d" data-comment="reports-filter-range-opt-7d">Last 7 days</div>
+                  <div class="rssc-flt__option" data-value="30d" data-selected="true" data-comment="reports-filter-range-opt-30d">Last 30 days</div>
+                  <div class="rssc-flt__option" data-value="90d" data-comment="reports-filter-range-opt-90d">Last 90 days</div>
+                </div>
+              </div>
+              <div class="rssc-flt" id="flt-primary" data-comment="reports-filter-primary">
+                <button type="button" class="rssc-flt__trigger" data-comment="reports-filter-primary-trigger">
+                  <span class="rssc-flt__label" data-comment="reports-filter-primary-label">All class types</span>
+                  <svg class="rssc-flt__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="rssc-flt__menu" data-comment="reports-filter-primary-menu"></div>
+              </div>
+              <div class="rssc-flt" id="flt-secondary" data-comment="reports-filter-secondary">
+                <button type="button" class="rssc-flt__trigger" data-comment="reports-filter-secondary-trigger">
+                  <span class="rssc-flt__label" data-comment="reports-filter-secondary-label">All risk levels</span>
+                  <svg class="rssc-flt__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="rssc-flt__menu" data-comment="reports-filter-secondary-menu"></div>
+              </div>
               <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="reports-save-filter-btn" data-comment="reports-save-filter-btn"><span class="rssc-button__label">Save filter</span></button>
               <div class="rssc-reports-saved-chips" id="reports-saved-chips" data-comment="reports-saved-chips"></div>
             </div>
@@ -590,6 +562,13 @@
             <span class="rssc-action-modal-label" data-comment="reports-action-modal-next-label">Next step</span>
             <span class="rssc-action-modal-text" id="action-modal-next" data-comment="reports-action-modal-next">—</span>
             <span class="rssc-action-modal-text" id="action-modal-next-meta" style="color:#8c8a80;font-size:12px;" data-comment="reports-action-modal-next-meta">—</span>
+          </div>
+          <div class="rssc-action-note-zone" id="action-note-zone" data-comment="reports-action-note-zone">
+            <div class="rssc-textarea-shell" data-comment="action-note-shell"><textarea id="action-note-input" class="rssc-textarea-element" rows="3" placeholder="Add a note visible to admin and coaches…" data-comment="action-note-input"></textarea></div>
+            <div class="rssc-action-note-footer" data-comment="action-note-footer"><button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="action-note-save" disabled data-comment="action-note-save"><span class="rssc-button__label" id="action-note-save-label">Save note</span></button></div>
+            <div id="action-note-log" class="rssc-action-note-log" style="display:none" data-comment="action-note-log">
+              <div class="rssc-action-note-log-header" data-comment="action-note-log-header">Previous notes</div>
+            </div>
           </div>
         </div>
         <div class="rssc-modal-footer" id="action-modal-footer" data-comment="reports-action-modal-footer"></div>
@@ -725,36 +704,61 @@
           });
         });
 
-        // Filter dropdowns
+        // Custom filter dropdowns
+        function fltBuild(wrapperId,options,currentValue,onChange){
+          const wrap=document.getElementById(wrapperId);
+          if(!wrap)return;
+          const trigger=wrap.querySelector(".rssc-flt__trigger");
+          const label=wrap.querySelector(".rssc-flt__label");
+          const menu=wrap.querySelector(".rssc-flt__menu");
+          // Build options
+          menu.innerHTML=options.map((o)=>`<div class="rssc-flt__option" data-value="${o.value}"${o.value===currentValue?' data-selected="true"':''}>${o.label}</div>`).join("");
+          // Set label
+          const sel=options.find((o)=>o.value===currentValue);
+          label.textContent=sel?sel.label:options[0].label;
+          // Option click
+          menu.querySelectorAll(".rssc-flt__option").forEach((opt)=>{
+            opt.addEventListener("click",()=>{
+              const v=opt.dataset.value;
+              menu.querySelectorAll(".rssc-flt__option").forEach((o)=>o.removeAttribute("data-selected"));
+              opt.setAttribute("data-selected","true");
+              label.textContent=opt.textContent;
+              fltClose(wrap);
+              onChange(v);
+            });
+          });
+          // Toggle on trigger click
+          trigger.onclick=(e)=>{e.stopPropagation();fltToggle(wrap);};
+        }
+        function fltToggle(wrap){
+          const open=wrap.querySelector(".rssc-flt__menu").dataset.open==="true";
+          document.querySelectorAll(".rssc-flt__menu[data-open='true']").forEach((m)=>{m.removeAttribute("data-open");m.closest(".rssc-flt").querySelector(".rssc-flt__trigger").removeAttribute("data-open");});
+          if(!open){wrap.querySelector(".rssc-flt__menu").setAttribute("data-open","true");wrap.querySelector(".rssc-flt__trigger").setAttribute("data-open","true");}
+        }
+        function fltClose(wrap){
+          wrap.querySelector(".rssc-flt__menu").removeAttribute("data-open");
+          wrap.querySelector(".rssc-flt__trigger").removeAttribute("data-open");
+        }
+        document.addEventListener("click",()=>{
+          document.querySelectorAll(".rssc-flt__menu[data-open='true']").forEach((m)=>{m.removeAttribute("data-open");m.closest(".rssc-flt").querySelector(".rssc-flt__trigger").removeAttribute("data-open");});
+        });
+
         function populateFilterSelects(){
           const s=store.get();
           const def=REPORTS[s.report];
-          const primary=document.getElementById("reports-primary");
-          const secondary=document.getElementById("reports-secondary");
-          const primPh=(def.primaryOptions[0]&&def.primaryOptions[0].label)?"All":"All";
-          // Use placeholder labels from React: primaryFilterPlaceholder (inline hardcoded variants)
           const primPlaceholders={attendance:"All class types",revenue:"All revenue lines",performance:"All movement groups",followups:"All queues"};
           const secPlaceholders={attendance:"All risk levels",revenue:"All statuses",performance:"All signal types",followups:"All owners"};
-          primary.replaceChildren(
-            el("option",{value:"",textContent:primPlaceholders[s.report]}),
-            ...def.primaryOptions.map((o)=>el("option",{value:o.value,textContent:o.label})),
-          );
-          secondary.replaceChildren(
-            el("option",{value:"",textContent:secPlaceholders[s.report]}),
-            ...def.secondaryOptions.map((o)=>el("option",{value:o.value,textContent:o.label})),
-          );
-          primary.value=s.primary||"";
-          secondary.value=s.secondary||"";
-          document.getElementById("reports-range").value=s.range;
+          const rangeOpts=[{value:"7d",label:"Last 7 days"},{value:"30d",label:"Last 30 days"},{value:"90d",label:"Last 90 days"}];
+          const primOpts=[{value:"",label:primPlaceholders[s.report]},...def.primaryOptions];
+          const secOpts=[{value:"",label:secPlaceholders[s.report]},...def.secondaryOptions];
+          fltBuild("flt-range",rangeOpts,s.range,(v)=>store.set({range:v}));
+          fltBuild("flt-primary",primOpts,s.primary||"",(v)=>store.set({primary:v}));
+          fltBuild("flt-secondary",secOpts,s.secondary||"",(v)=>store.set({secondary:v}));
           document.getElementById("reports-queue-th-metric").textContent=def.metricColumnLabel;
           document.getElementById("reports-queue-th-next").textContent=def.nextStepColumnLabel;
           document.getElementById("reports-queue-title").textContent=def.queueTitle;
           document.getElementById("reports-queue-desc").textContent=def.queueDescription;
         }
-
-        document.getElementById("reports-range").addEventListener("change",(e)=>store.set({range:e.target.value}));
-        document.getElementById("reports-primary").addEventListener("change",(e)=>store.set({primary:e.target.value}));
-        document.getElementById("reports-secondary").addEventListener("change",(e)=>store.set({secondary:e.target.value}));
 
         // Render queue table
         function renderQueue(){
@@ -839,25 +843,74 @@
           closeSaveFilterModal();
         });
 
+        // Notes localStorage helpers
+        function notesKey(title){return"rssc_notes_"+title.toLowerCase().replace(/\s+/g,"-");}
+        function loadNotes(title){try{return JSON.parse(localStorage.getItem(notesKey(title))||"[]");}catch{return[];}}
+        function saveNote(title,text){
+          const notes=loadNotes(title);
+          const now=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+          notes.unshift({text,date:now,author:"Katie (GM)"});
+          localStorage.setItem(notesKey(title),JSON.stringify(notes));
+          return notes[0];
+        }
+
         // Action modal
         const actionModal=document.getElementById("action-modal");
+        const noteInput=document.getElementById("action-note-input");
+        const noteSaveBtn=document.getElementById("action-note-save");
+        const noteSaveLabel=document.getElementById("action-note-save-label");
+        const noteZone=document.getElementById("action-note-zone");
+        const noteLog=document.getElementById("action-note-log");
+
+        noteInput.addEventListener("input",()=>{noteSaveBtn.disabled=!noteInput.value.trim();noteSaveLabel.textContent="Save note";});
+
+        function renderNoteLog(title){
+          const notes=loadNotes(title);
+          if(!notes.length){noteLog.style.display="none";return;}
+          noteLog.style.display="flex";
+          const header=noteLog.querySelector(".rssc-action-note-log-header");
+          // remove old entries
+          noteLog.querySelectorAll(".rssc-action-note-entry").forEach((e)=>e.remove());
+          notes.forEach((n)=>{
+            const entry=el("div",{className:"rssc-action-note-entry"},[
+              el("span",{className:"rssc-action-note-meta",textContent:n.date+" · "+n.author}),
+              el("span",{className:"rssc-action-note-text",textContent:n.text}),
+            ]);
+            header.after(entry);
+          });
+        }
+
+        let _modalTitle="";
         function openActionModal(row){
+          _modalTitle=row.title;
           document.getElementById("action-modal-title").textContent=row.title;
           document.getElementById("action-modal-subtitle").textContent=row.subtitle;
           document.getElementById("action-modal-signal").textContent=row.signal;
           document.getElementById("action-modal-next").textContent=row.nextStep;
           document.getElementById("action-modal-next-meta").textContent=row.nextStepMeta;
+          // reset note zone
+          noteZone.removeAttribute("data-open");
+          noteInput.value="";noteSaveBtn.disabled=true;noteSaveLabel.textContent="Save note";
+          renderNoteLog(row.title);
+          // footer buttons
           const footer=document.getElementById("action-modal-footer");
           const closeBtn=el("button",{type:"button",className:"rssc-button rssc-button--secondary rssc-button--sm","data-comment":"reports-action-modal-close-btn"},[el("span",{className:"rssc-button__label",textContent:"Close"})]);
           closeBtn.addEventListener("click",closeActionModal);
-          const actionBtns=row.actions.map((a,i)=>{
-            const b=el("button",{type:"button",className:"rssc-button rssc-button--sm","data-comment":"reports-action-modal-action-"+(i+1)},[el("span",{className:"rssc-button__label",textContent:a})]);
-            b.addEventListener("click",closeActionModal);
-            return b;
-          });
-          footer.replaceChildren(closeBtn,...actionBtns);
+          const noteBtn=el("button",{type:"button",className:"rssc-button rssc-button--secondary rssc-button--sm","data-comment":"reports-action-modal-note-btn"},[el("span",{className:"rssc-button__label",textContent:"Add note"})]);
+          noteBtn.addEventListener("click",()=>{noteZone.setAttribute("data-open","true");noteInput.focus();});
+          const profileBtn=el("button",{type:"button",className:"rssc-button rssc-button--sm","data-comment":"reports-action-modal-profile-btn"},[el("span",{className:"rssc-button__label",textContent:"Profile"})]);
+          profileBtn.addEventListener("click",()=>{window.location.href="admin-member-profile.html";});
+          footer.replaceChildren(closeBtn,noteBtn,profileBtn);
           actionModal.setAttribute("data-open","true");document.body.style.overflow="hidden";
         }
+        noteSaveBtn.addEventListener("click",()=>{
+          const text=noteInput.value.trim();if(!text)return;
+          saveNote(_modalTitle,text);
+          noteInput.value="";noteSaveBtn.disabled=true;
+          noteSaveLabel.textContent="Saved ✓";
+          setTimeout(()=>{noteSaveLabel.textContent="Save note";},2000);
+          renderNoteLog(_modalTitle);
+        });
         function closeActionModal(){actionModal.setAttribute("data-open","false");document.body.style.overflow="";}
         document.getElementById("action-modal-close").addEventListener("click",closeActionModal);
         actionModal.addEventListener("click",(e)=>{if(e.target===actionModal)closeActionModal();});

@@ -230,6 +230,137 @@
       .rssc-button--submit-danger{background:#dc2626;color:#fff;border-color:transparent;}
       .rssc-button--submit-danger:hover:not(:disabled){background:#b91c1c;}
 
+      /* Engagement health badge */
+      .rssc-engagement-badge{display:inline-flex;align-items:center;gap:4px;}
+      .rssc-engagement-badge svg{flex-shrink:0;}
+
+      /* Goals */
+      .rssc-profile-goals-list{display:flex;flex-direction:column;}
+      .rssc-profile-goal-item{display:flex;flex-direction:column;gap:7px;padding:14px 0;}
+      .rssc-profile-goal-item + .rssc-profile-goal-item{border-top:1px solid #f1f1ee;}
+      .rssc-profile-goal-item:first-child{padding-top:0;}
+      .rssc-profile-goal-item:last-child{padding-bottom:0;}
+      .rssc-profile-goal-header{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+      .rssc-profile-goal-name{font-size:14px;font-weight:600;color:#171717;}
+      .rssc-profile-goal-trail{display:flex;align-items:center;gap:10px;}
+      .rssc-profile-goal-range{font-size:12px;color:#8c8a80;font-variant-numeric:tabular-nums;}
+      .rssc-profile-goal-edit{appearance:none;border:none;background:transparent;padding:0;font-family:inherit;font-size:12px;font-weight:500;color:#3d5afe;cursor:pointer;}
+      .rssc-profile-goal-edit:hover{color:#2f4af6;}
+      .rssc-profile-goal-bar-wrap{height:5px;background:#f0f0eb;border-radius:99px;overflow:hidden;}
+      .rssc-profile-goal-bar-fill{height:100%;border-radius:99px;background:#3d5afe;}
+      .rssc-profile-goal-foot{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+      .rssc-profile-goal-pct{font-size:12px;font-weight:600;color:#4b4a45;}
+      .rssc-profile-goal-remain{font-size:12px;color:#8c8a80;}
+      .rssc-profile-goal-meta{font-size:11px;color:#a8a59e;font-style:italic;}
+      .rssc-profile-goal-scan-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#2e7ccf;background:#eef6ff;padding:1px 7px;border-radius:6px;margin-top:2px;width:fit-content;}
+      .rssc-profile-milestones-wrap{display:flex;flex-direction:column;gap:8px;padding-top:4px;border-top:1px solid #f1f1ee;}
+      .rssc-profile-milestones-label{font-size:11px;font-weight:600;color:#8c8a80;text-transform:uppercase;letter-spacing:.06em;}
+      .rssc-profile-milestones{display:flex;flex-wrap:wrap;gap:6px;}
+      .rssc-profile-milestone{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;color:#28a164;background:#edf9f0;padding:3px 10px;border-radius:999px;}
+
+      /* Scan */
+      .rssc-scan-delta{font-size:11px;font-weight:500;padding:1px 6px;border-radius:6px;white-space:nowrap;}
+      .rssc-scan-delta--good{color:#28a164;background:#edf9f0;}
+      .rssc-scan-delta--bad{color:#d14343;background:#fff0f0;}
+      .rssc-scan-delta--neutral{color:#8c8a80;background:#f1f1ee;}
+      .rssc-profile-scan-metric{display:flex;flex-direction:column;gap:4px;}
+      .rssc-profile-scan-val-row{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+      .rssc-profile-scan-list{display:flex;flex-direction:column;border-top:1px solid #f1f1ee;}
+      .rssc-profile-scan-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f1f1ee;}
+      .rssc-profile-scan-row:last-child{border-bottom:none;}
+      .rssc-profile-scan-row--active .rssc-profile-att-name{color:#3d5afe;}
+      .rssc-profile-scan-date{font-size:12px;color:#8c8a80;min-width:72px;font-variant-numeric:tabular-nums;}
+      .rssc-profile-scan-loc{flex:1;font-size:13px;color:#171717;font-weight:500;}
+      .rssc-profile-scan-view{font-size:12px;font-weight:500;color:#3d5afe;text-decoration:none;white-space:nowrap;}
+      .rssc-profile-scan-view:hover{color:#2f4af6;}
+
+      /* Movement PRs */
+      .rssc-profile-pr-list{display:flex;flex-direction:column;border-top:1px solid #f1f1ee;}
+      .rssc-profile-pr-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f1f1ee;}
+      .rssc-profile-pr-row:last-child{border-bottom:none;}
+      .rssc-profile-pr-movement{flex:1;font-size:13px;color:#171717;font-weight:500;}
+      .rssc-profile-pr-value{font-size:13px;font-weight:700;color:#171717;text-align:right;}
+      .rssc-profile-pr-date{font-size:12px;color:#a8a59e;min-width:44px;text-align:right;}
+
+      /* Scan drawer */
+      .rssc-scan-overlay{position:fixed;inset:0;background:rgba(23,23,23,.35);z-index:100;display:none;}
+      .rssc-scan-overlay[data-open="true"]{display:block;animation:rssc-modal-fade-in 160ms both;}
+      .rssc-scan-drawer{position:fixed;top:0;right:0;bottom:0;width:700px;max-width:100vw;background:#fff;border-left:1px solid #e8e8e3;z-index:101;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 260ms cubic-bezier(0.2,0,0,1);box-shadow:-4px 0 32px rgba(23,23,23,.1);}
+      .rssc-scan-drawer[data-open="true"]{transform:translateX(0);}
+      .rssc-scan-drawer-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid #f1f1ee;flex-shrink:0;}
+      .rssc-scan-drawer-heading{display:flex;flex-direction:column;gap:3px;min-width:0;}
+      .rssc-scan-drawer-title{font-size:17px;font-weight:600;color:#171717;letter-spacing:-.01em;}
+      .rssc-scan-drawer-meta{font-size:13px;color:#8c8a80;}
+      .rssc-scan-drawer-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+      .rssc-scan-score{display:inline-flex;align-items:baseline;gap:3px;padding:5px 12px;border-radius:10px;background:#f0f9ff;border:1px solid #bae6fd;}
+      .rssc-scan-score-num{font-size:20px;font-weight:700;color:#0369a1;letter-spacing:-.02em;}
+      .rssc-scan-score-lbl{font-size:11px;color:#7dd3fc;font-weight:500;}
+      .rssc-scan-drawer-body{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:24px;}
+
+      /* Drawer section */
+      .rssc-scan-section{display:flex;flex-direction:column;gap:10px;}
+      .rssc-scan-section-label{font-size:11px;font-weight:700;color:#8c8a80;text-transform:uppercase;letter-spacing:.06em;}
+
+      /* Key metrics */
+      .rssc-scan-comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+      .rssc-scan-comp-cell{display:flex;flex-direction:column;gap:3px;padding:12px;background:#f7f7f5;border:1px solid #f0f0eb;border-radius:10px;}
+      .rssc-scan-comp-label{font-size:11px;color:#8c8a80;}
+      .rssc-scan-comp-val{font-size:18px;font-weight:700;color:#171717;letter-spacing:-.02em;line-height:1.2;}
+      .rssc-scan-comp-delta{font-size:11px;font-weight:500;}
+      .rssc-scan-comp-delta--good{color:#28a164;}
+      .rssc-scan-comp-delta--bad{color:#d14343;}
+      .rssc-scan-comp-delta--neutral{color:#a8a59e;}
+
+      /* Measurements rows */
+      .rssc-scan-meas-list{display:flex;flex-direction:column;}
+      .rssc-scan-meas-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #f5f5f3;}
+      .rssc-scan-meas-row:last-child{border-bottom:none;}
+      .rssc-scan-meas-name{font-size:13px;color:#4b4a45;font-weight:500;}
+      .rssc-scan-meas-right{display:flex;align-items:center;gap:8px;}
+      .rssc-scan-meas-val{font-size:13px;font-weight:700;color:#171717;}
+
+      /* Segmental lean mass */
+      .rssc-scan-segment-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+      .rssc-scan-segment-cell{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;background:#f7f7f5;border:1px solid #f0f0eb;border-radius:10px;}
+      .rssc-scan-segment-name{font-size:10px;color:#8c8a80;font-weight:500;text-align:center;text-transform:uppercase;letter-spacing:.04em;}
+      .rssc-scan-segment-val{font-size:15px;font-weight:700;color:#171717;letter-spacing:-.01em;}
+      .rssc-scan-segment-bar-wrap{width:100%;height:4px;background:#e8e8e3;border-radius:99px;overflow:hidden;}
+      .rssc-scan-segment-bar-fill{height:100%;border-radius:99px;background:#3d5afe;}
+      .rssc-scan-segment-delta{font-size:10px;font-weight:500;}
+      .rssc-scan-segment-delta--good{color:#28a164;}
+      .rssc-scan-segment-delta--bad{color:#d14343;}
+      .rssc-scan-segment-delta--neutral{color:#a8a59e;}
+
+      /* Visceral fat track */
+      .rssc-scan-vf-wrap{display:flex;flex-direction:column;gap:8px;}
+      .rssc-scan-vf-track-wrap{position:relative;padding-bottom:18px;}
+      .rssc-scan-vf-track{height:8px;border-radius:99px;background:linear-gradient(to right,#22c55e 0%,#22c55e 45%,#f59e0b 45%,#f59e0b 70%,#ef4444 70%,#ef4444 100%);}
+      .rssc-scan-vf-marker{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;background:#171717;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transform:translateX(-50%);}
+      .rssc-scan-vf-labels{display:flex;justify-content:space-between;font-size:10px;color:#a8a59e;}
+      .rssc-scan-vf-meta{display:flex;align-items:baseline;gap:8px;}
+      .rssc-scan-vf-val{font-size:22px;font-weight:700;color:#171717;letter-spacing:-.02em;}
+      .rssc-scan-vf-range{font-size:12px;color:#8c8a80;}
+
+      /* Body water */
+      .rssc-scan-water-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+
+      /* Progress photos */
+      .rssc-scan-photos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+      .rssc-scan-photo-slot{aspect-ratio:3/4;background:#f7f7f5;border:1.5px dashed #ddddd6;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#a8a59e;font-size:12px;cursor:pointer;transition:border-color 120ms,background 120ms;}
+      .rssc-scan-photo-slot:hover{border-color:#b8b6ad;background:#f1f1ee;}
+      .rssc-scan-photo-label{font-size:11px;font-weight:500;color:#8c8a80;}
+
+      /* Highlights */
+      .rssc-scan-highlights{display:flex;flex-direction:column;gap:6px;}
+      .rssc-scan-highlight{display:flex;flex-direction:column;gap:1px;padding:8px 12px;background:#f7f7f5;border-radius:8px;}
+      .rssc-scan-highlight-label{font-size:10px;font-weight:700;color:#8c8a80;text-transform:uppercase;letter-spacing:.05em;}
+      .rssc-scan-highlight-value{font-size:13px;color:#171717;}
+
+      /* Goal modal scan-link toggle */
+      .rssc-goal-scan-toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:#4b4a45;cursor:pointer;user-select:none;}
+      .rssc-goal-scan-toggle input[type=checkbox]{width:15px;height:15px;cursor:pointer;}
+      .rssc-goal-scan-metric-row{display:none;}
+
       @media (max-width:1279px){.rssc-admin-search{width:220px;}}
       @media (max-width:479px){.rssc-modal-row{grid-template-columns:1fr;}}
       @media (max-width:767px){
@@ -252,8 +383,8 @@
           <a href="home.html" class="rssc-nav-item" data-comment="admin-drawer-nav-home"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="rssc-nav-item__label">Home</span></span></a>
           <a href="admin-members.html" class="rssc-nav-item" data-active="true" aria-current="page" data-comment="admin-drawer-nav-members"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="rssc-nav-item__label">Members</span></span></a>
           <a href="admin-classes.html" class="rssc-nav-item" data-comment="admin-drawer-nav-classes"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span class="rssc-nav-item__label">Classes</span></span></a>
-          <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-drawer-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
           <a href="admin-programming.html" class="rssc-nav-item" data-comment="admin-drawer-nav-programming"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg><span class="rssc-nav-item__label">Programming</span></span></a>
+          <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-drawer-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
           <a href="admin-reports.html" class="rssc-nav-item" data-comment="admin-drawer-nav-reports"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg><span class="rssc-nav-item__label">Reports</span></span></a>
         </div>
         <div class="rssc-app-sidebar__section"><div class="rssc-admin-sidebar-footer">
@@ -271,8 +402,8 @@
             <a href="home.html" class="rssc-nav-item" data-comment="admin-nav-home"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span class="rssc-nav-item__label">Home</span></span></a>
             <a href="admin-members.html" class="rssc-nav-item" data-active="true" aria-current="page" data-comment="admin-nav-members"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="rssc-nav-item__label">Members</span></span></a>
             <a href="admin-classes.html" class="rssc-nav-item" data-comment="admin-nav-classes"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span class="rssc-nav-item__label">Classes</span></span></a>
-            <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
             <a href="admin-programming.html" class="rssc-nav-item" data-comment="admin-nav-programming"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg><span class="rssc-nav-item__label">Programming</span></span></a>
+            <a href="admin-billing.html" class="rssc-nav-item" data-comment="admin-nav-billing"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg><span class="rssc-nav-item__label">Billing</span></span></a>
             <a href="admin-reports.html" class="rssc-nav-item" data-comment="admin-nav-reports"><span class="rssc-nav-item__leading"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg><span class="rssc-nav-item__label">Reports</span></span></a>
           </div>
           <div class="rssc-app-sidebar__section"><div class="rssc-admin-sidebar-footer">
@@ -323,6 +454,10 @@
                   <div class="rssc-profile-heading">
                     <span data-comment="profile-name">Jordan Mitchell</span>
                     <span class="rssc-badge rssc-badge--success" data-comment="profile-status-badge"><span class="rssc-badge__dot" aria-hidden="true"></span><span>Active</span></span>
+                    <span class="rssc-badge rssc-badge--warning rssc-engagement-badge" data-comment="profile-engagement-badge" title="Engagement: attendance rate 62%, 2 classes this month, last seen 19 days ago">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                      <span>Fading</span>
+                    </span>
                     <div class="rssc-profile-flags-inline" data-comment="profile-flags-inline">
                       <span class="rssc-badge rssc-badge--warning" data-comment="profile-flag-at-risk"><span>At risk</span></span>
                     </div>
@@ -342,25 +477,6 @@
 
             <div class="rssc-profile-grid" data-comment="profile-grid">
               <div class="rssc-profile-main" data-comment="profile-main">
-                <div class="rssc-card" data-comment="profile-contact-card">
-                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-contact-title">Contact</div></div></div>
-                  <div class="rssc-profile-info-grid rssc-profile-info-grid--3">
-                    <div class="rssc-profile-field" data-comment="profile-contact-email"><span class="rssc-profile-label">Email</span><span class="rssc-profile-value">jordan.m@email.com</span></div>
-                    <div class="rssc-profile-field" data-comment="profile-contact-phone"><span class="rssc-profile-label">Phone</span><span class="rssc-profile-value">+1 555 234 5678</span></div>
-                    <div class="rssc-profile-field" data-comment="profile-contact-emergency"><span class="rssc-profile-label">Emergency contact</span><span class="rssc-profile-value">Mary Mitchell</span><span class="rssc-profile-value rssc-profile-value--muted">Spouse · +1 555 234 9999</span></div>
-                  </div>
-                </div>
-
-                <div class="rssc-card" data-comment="profile-membership-card">
-                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-membership-title">Membership</div></div><a href="admin-billing.html" class="rssc-profile-card-link" data-comment="profile-membership-link">Open billing</a></div>
-                  <div class="rssc-profile-info-grid">
-                    <div class="rssc-profile-field" data-comment="profile-membership-type"><span class="rssc-profile-label">Type</span><span class="rssc-profile-value">Regular</span></div>
-                    <div class="rssc-profile-field" data-comment="profile-membership-status"><span class="rssc-profile-label">Status</span><div style="margin-top:2px;"><span class="rssc-badge rssc-badge--success"><span class="rssc-badge__dot" aria-hidden="true"></span><span>Active</span></span></div></div>
-                    <div class="rssc-profile-field" data-comment="profile-membership-rate"><span class="rssc-profile-label">Monthly rate</span><span class="rssc-profile-value">$130/mo</span></div>
-                    <div class="rssc-profile-field" data-comment="profile-membership-next"><span class="rssc-profile-label">Next billing</span><span class="rssc-profile-value">May 1, 2026</span></div>
-                  </div>
-                </div>
-
                 <div class="rssc-card" data-comment="profile-attendance-card">
                   <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-attendance-title">Attendance</div></div></div>
                   <div class="rssc-profile-info-grid">
@@ -377,9 +493,192 @@
                     <div class="rssc-profile-attendance-row" data-comment="profile-att-row-5"><span class="rssc-profile-att-date">Mar 11</span><span class="rssc-profile-att-name">CrossFit</span><span class="rssc-profile-att-coach">Mike R.</span></div>
                   </div>
                 </div>
+                <div class="rssc-card" data-comment="profile-goals-card">
+                  <div class="rssc-card__header">
+                    <div><div class="rssc-card__title" data-comment="profile-goals-title">Goals</div></div>
+                    <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="goal-add-btn" data-comment="profile-goals-add-btn">
+                      <span class="rssc-button__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                      <span class="rssc-button__label">Add goal</span>
+                    </button>
+                  </div>
+                  <div class="rssc-profile-goals-list" data-comment="profile-goals-list">
+                    <div class="rssc-profile-goal-item" data-goal-id="1" data-comment="profile-goal-1">
+                      <div class="rssc-profile-goal-header">
+                        <span class="rssc-profile-goal-name">Deadlift</span>
+                        <div class="rssc-profile-goal-trail">
+                          <span class="rssc-profile-goal-range">55 → 80 kg</span>
+                          <button type="button" class="rssc-profile-goal-edit" data-goal-id="1" data-comment="profile-goal-1-edit">Edit</button>
+                        </div>
+                      </div>
+                      <div class="rssc-profile-goal-bar-wrap"><div class="rssc-profile-goal-bar-fill" style="width:50%"></div></div>
+                      <div class="rssc-profile-goal-foot">
+                        <span class="rssc-profile-goal-pct">50% complete</span>
+                        <span class="rssc-profile-goal-remain">· 12.5 kg to target</span>
+                      </div>
+                      <span class="rssc-profile-goal-meta">Strength cycle target for August</span>
+                    </div>
+                    <div class="rssc-profile-goal-item" data-goal-id="2" data-comment="profile-goal-2">
+                      <div class="rssc-profile-goal-header">
+                        <span class="rssc-profile-goal-name">5km Run</span>
+                        <div class="rssc-profile-goal-trail">
+                          <span class="rssc-profile-goal-range">38:00 → 26:00</span>
+                          <button type="button" class="rssc-profile-goal-edit" data-goal-id="2" data-comment="profile-goal-2-edit">Edit</button>
+                        </div>
+                      </div>
+                      <div class="rssc-profile-goal-bar-wrap"><div class="rssc-profile-goal-bar-fill" style="width:56%"></div></div>
+                      <div class="rssc-profile-goal-foot">
+                        <span class="rssc-profile-goal-pct">56% complete</span>
+                        <span class="rssc-profile-goal-remain">· 5:20 to target</span>
+                      </div>
+                      <span class="rssc-profile-goal-meta">End-of-season cardio goal</span>
+                    </div>
+                    <div class="rssc-profile-goal-item" data-goal-id="3" data-comment="profile-goal-3">
+                      <div class="rssc-profile-goal-header">
+                        <span class="rssc-profile-goal-name">Body fat</span>
+                        <div class="rssc-profile-goal-trail">
+                          <span class="rssc-profile-goal-range">26.4 → 21%</span>
+                          <button type="button" class="rssc-profile-goal-edit" data-goal-id="3" data-comment="profile-goal-3-edit">Edit</button>
+                        </div>
+                      </div>
+                      <div class="rssc-profile-goal-bar-wrap"><div class="rssc-profile-goal-bar-fill" style="width:61%"></div></div>
+                      <div class="rssc-profile-goal-foot">
+                        <span class="rssc-profile-goal-pct">61% complete</span>
+                        <span class="rssc-profile-goal-remain">· 2.1% to target</span>
+                      </div>
+                      <span class="rssc-profile-goal-scan-link" data-comment="profile-goal-3-scan-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="7" height="5" x="7" y="7" rx="1"/><rect width="7" height="5" x="10" y="12" rx="1"/></svg>
+                        Linked to body scan
+                      </span>
+                    </div>
+                  </div>
+                  <div class="rssc-profile-milestones-wrap" data-comment="profile-milestones">
+                    <span class="rssc-profile-milestones-label">Completed</span>
+                    <div class="rssc-profile-milestones">
+                      <span class="rssc-profile-milestone" data-comment="profile-milestone-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        Back squat 60 kg
+                      </span>
+                      <span class="rssc-profile-milestone" data-comment="profile-milestone-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        5km under 35 min
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rssc-card" data-comment="profile-scan-card">
+                  <div class="rssc-card__header">
+                    <div>
+                      <div class="rssc-card__title" data-comment="profile-scan-title">Body scan</div>
+                      <div style="font-size:12px;color:#8c8a80;margin-top:1px;" data-comment="profile-scan-subtitle">Apr 18, 2026 · InBody studio check</div>
+                    </div>
+                  </div>
+                  <div class="rssc-profile-info-grid" data-comment="profile-scan-metrics">
+                    <div class="rssc-profile-scan-metric" data-comment="profile-scan-bodyfat">
+                      <span class="rssc-profile-label">Body fat</span>
+                      <div class="rssc-profile-scan-val-row">
+                        <span class="rssc-profile-value">23.1%</span>
+                        <span class="rssc-scan-delta rssc-scan-delta--good" data-comment="profile-scan-bodyfat-delta">−3.3% vs Jan</span>
+                      </div>
+                    </div>
+                    <div class="rssc-profile-scan-metric" data-comment="profile-scan-lean">
+                      <span class="rssc-profile-label">Lean mass</span>
+                      <div class="rssc-profile-scan-val-row">
+                        <span class="rssc-profile-value">45.8 kg</span>
+                        <span class="rssc-scan-delta rssc-scan-delta--good" data-comment="profile-scan-lean-delta">+2.6 kg vs Jan</span>
+                      </div>
+                    </div>
+                    <div class="rssc-profile-scan-metric" data-comment="profile-scan-weight">
+                      <span class="rssc-profile-label">Weight</span>
+                      <div class="rssc-profile-scan-val-row">
+                        <span class="rssc-profile-value">65.6 kg</span>
+                        <span class="rssc-scan-delta rssc-scan-delta--good" data-comment="profile-scan-weight-delta">−2.5 kg vs Jan</span>
+                      </div>
+                    </div>
+                    <div class="rssc-profile-scan-metric" data-comment="profile-scan-waist">
+                      <span class="rssc-profile-label">Waist</span>
+                      <div class="rssc-profile-scan-val-row">
+                        <span class="rssc-profile-value">77 cm</span>
+                        <span class="rssc-scan-delta rssc-scan-delta--good" data-comment="profile-scan-waist-delta">−4 cm vs Jan</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rssc-profile-scan-list" data-comment="profile-scan-history">
+                    <div class="rssc-profile-scan-row rssc-profile-scan-row--active" data-comment="profile-scan-row-1">
+                      <span class="rssc-profile-scan-date">Apr 18, 2026</span>
+                      <span class="rssc-profile-scan-loc">InBody studio check</span>
+                      <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" data-scan-id="1" data-comment="profile-scan-row-1-view">View</button>
+                    </div>
+                    <div class="rssc-profile-scan-row" data-comment="profile-scan-row-2">
+                      <span class="rssc-profile-scan-date">Mar 14, 2026</span>
+                      <span class="rssc-profile-scan-loc">6-week check-in</span>
+                      <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" data-scan-id="2" data-comment="profile-scan-row-2-view">View</button>
+                    </div>
+                    <div class="rssc-profile-scan-row" data-comment="profile-scan-row-3">
+                      <span class="rssc-profile-scan-date">Feb 7, 2026</span>
+                      <span class="rssc-profile-scan-loc">Monthly check-in</span>
+                      <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" data-scan-id="3" data-comment="profile-scan-row-3-view">View</button>
+                    </div>
+                    <div class="rssc-profile-scan-row" data-comment="profile-scan-row-4">
+                      <span class="rssc-profile-scan-date">Jan 16, 2026</span>
+                      <span class="rssc-profile-scan-loc">Baseline scan</span>
+                      <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" data-scan-id="4" data-comment="profile-scan-row-4-view">View</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rssc-card" data-comment="profile-movement-card">
+                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-movement-title">Movement records</div></div></div>
+                  <div class="rssc-profile-pr-list" data-comment="profile-pr-list">
+                    <div class="rssc-profile-pr-row" data-comment="profile-pr-deadlift">
+                      <span class="rssc-profile-pr-movement">Deadlift</span>
+                      <span class="rssc-profile-pr-value">67.5 kg</span>
+                      <span class="rssc-profile-pr-date">Mar 12</span>
+                    </div>
+                    <div class="rssc-profile-pr-row" data-comment="profile-pr-backsquat">
+                      <span class="rssc-profile-pr-movement">Back squat</span>
+                      <span class="rssc-profile-pr-value">52.5 kg</span>
+                      <span class="rssc-profile-pr-date">Feb 18</span>
+                    </div>
+                    <div class="rssc-profile-pr-row" data-comment="profile-pr-powerclean">
+                      <span class="rssc-profile-pr-movement">Power clean</span>
+                      <span class="rssc-profile-pr-value">42.5 kg</span>
+                      <span class="rssc-profile-pr-date">Mar 19</span>
+                    </div>
+                    <div class="rssc-profile-pr-row" data-comment="profile-pr-bench">
+                      <span class="rssc-profile-pr-movement">Bench press</span>
+                      <span class="rssc-profile-pr-value">35 kg</span>
+                      <span class="rssc-profile-pr-date">Mar 3</span>
+                    </div>
+                    <div class="rssc-profile-pr-row" data-comment="profile-pr-press">
+                      <span class="rssc-profile-pr-movement">Strict press</span>
+                      <span class="rssc-profile-pr-value">27.5 kg</span>
+                      <span class="rssc-profile-pr-date">Feb 25</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="rssc-profile-rail" data-comment="profile-rail">
+                <div class="rssc-card" data-comment="profile-contact-card">
+                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-contact-title">Contact</div></div></div>
+                  <div style="display:flex;flex-direction:column;gap:12px;">
+                    <div class="rssc-profile-field" data-comment="profile-contact-email"><span class="rssc-profile-label">Email</span><span class="rssc-profile-value">jordan.m@email.com</span></div>
+                    <div class="rssc-profile-field" data-comment="profile-contact-phone"><span class="rssc-profile-label">Phone</span><span class="rssc-profile-value">+1 555 234 5678</span></div>
+                    <div class="rssc-profile-field" data-comment="profile-contact-emergency"><span class="rssc-profile-label">Emergency contact</span><span class="rssc-profile-value">Mary Mitchell</span><span class="rssc-profile-value rssc-profile-value--muted">Spouse · +1 555 234 9999</span></div>
+                  </div>
+                </div>
+
+                <div class="rssc-card" data-comment="profile-membership-card">
+                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-membership-title">Membership</div></div><a href="admin-billing.html" class="rssc-profile-card-link" data-comment="profile-membership-link">Open billing</a></div>
+                  <div class="rssc-profile-info-grid">
+                    <div class="rssc-profile-field" data-comment="profile-membership-type"><span class="rssc-profile-label">Type</span><span class="rssc-profile-value">Regular</span></div>
+                    <div class="rssc-profile-field" data-comment="profile-membership-status"><span class="rssc-profile-label">Status</span><div style="margin-top:2px;"><span class="rssc-badge rssc-badge--success"><span class="rssc-badge__dot" aria-hidden="true"></span><span>Active</span></span></div></div>
+                    <div class="rssc-profile-field" data-comment="profile-membership-rate"><span class="rssc-profile-label">Monthly rate</span><span class="rssc-profile-value">$130/mo</span></div>
+                    <div class="rssc-profile-field" data-comment="profile-membership-next"><span class="rssc-profile-label">Next billing</span><span class="rssc-profile-value">May 1, 2026</span></div>
+                  </div>
+                </div>
+
                 <div class="rssc-card" data-comment="profile-stats-card">
                   <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-stats-title">Stats</div></div></div>
                   <div class="rssc-profile-stat-grid">
@@ -387,16 +686,6 @@
                     <div class="rssc-profile-stat" data-comment="profile-stat-rate"><span class="rssc-profile-stat-value">62%</span><span class="rssc-profile-stat-label">Attendance rate</span></div>
                     <div class="rssc-profile-stat" data-comment="profile-stat-month"><span class="rssc-profile-stat-value">2</span><span class="rssc-profile-stat-label">This month</span></div>
                     <div class="rssc-profile-stat" data-comment="profile-stat-streak"><span class="rssc-profile-stat-value">—</span><span class="rssc-profile-stat-label">Current streak</span></div>
-                  </div>
-                </div>
-
-                <div class="rssc-card" data-comment="profile-flags-card">
-                  <div class="rssc-card__header"><div><div class="rssc-card__title" data-comment="profile-flags-title">Flags</div></div></div>
-                  <div class="rssc-profile-flag-list" data-comment="profile-flag-list">
-                    <div class="rssc-profile-flag-row" data-comment="profile-flag-row-at-risk">
-                      <div class="rssc-profile-flag-dot rssc-profile-flag-dot--warning"></div>
-                      <div class="rssc-profile-flag-info"><span class="rssc-profile-flag-name">At risk</span><span class="rssc-profile-flag-source">system</span></div>
-                    </div>
                   </div>
                 </div>
 
@@ -415,6 +704,81 @@
             </div>
           </div>
         </main>
+      </div>
+    </div>
+
+    <!-- Scan Detail Drawer -->
+    <div class="rssc-scan-overlay" id="scan-overlay" aria-hidden="true" data-comment="scan-overlay"></div>
+    <div class="rssc-scan-drawer" id="scan-drawer" role="dialog" aria-modal="true" aria-labelledby="scan-drawer-title" data-comment="scan-drawer">
+      <div class="rssc-scan-drawer-header" data-comment="scan-drawer-header">
+        <div class="rssc-scan-drawer-heading">
+          <span class="rssc-scan-drawer-title" id="scan-drawer-title" data-comment="scan-drawer-title">Scan</span>
+          <span class="rssc-scan-drawer-meta" id="scan-drawer-meta" data-comment="scan-drawer-meta"></span>
+        </div>
+        <div class="rssc-scan-drawer-actions">
+          <div class="rssc-scan-score" id="scan-score-badge" data-comment="scan-score-badge"></div>
+          <button class="rssc-modal-close" id="scan-drawer-close" aria-label="Close scan" type="button" data-comment="scan-drawer-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+      </div>
+      <div class="rssc-scan-drawer-body" id="scan-drawer-body" data-comment="scan-drawer-body"></div>
+    </div>
+
+    <!-- Goal Modal -->
+    <div class="rssc-modal-overlay" id="goal-modal" role="presentation" data-comment="goal-modal">
+      <div class="rssc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="goal-modal-title" data-comment="goal-modal-dialog">
+        <div class="rssc-modal-header" data-comment="goal-modal-header">
+          <span class="rssc-modal-title" id="goal-modal-title" data-comment="goal-modal-title-text">Add goal</span>
+          <button class="rssc-modal-close" id="goal-close" aria-label="Close" type="button" data-comment="goal-modal-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+        </div>
+        <form id="goal-form" novalidate data-comment="goal-modal-form">
+          <input type="hidden" id="goal-editing-id" value="" />
+          <div class="rssc-modal-body" data-comment="goal-modal-body">
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-name-field">
+              <label class="rssc-field-label" for="goal-name" data-comment="goal-name-label">Goal name</label>
+              <div class="rssc-input-shell"><input id="goal-name" class="rssc-input-element" type="text" placeholder="e.g. Deadlift, Body fat, 5km run" data-comment="goal-name-input" /></div>
+            </div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-unit-field">
+              <label class="rssc-field-label" for="goal-unit" data-comment="goal-unit-label">Unit</label>
+              <select id="goal-unit" class="rssc-select-native" data-comment="goal-unit-select">
+                <option value="kg">kg — weight / strength</option>
+                <option value="pct">% — percentage (e.g. body fat)</option>
+                <option value="time">time — min:sec (e.g. 5km run)</option>
+                <option value="reps">reps</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+            <div class="rssc-modal-row" data-comment="goal-values-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-current-field">
+                <label class="rssc-field-label" for="goal-current" data-comment="goal-current-label">Current value</label>
+                <div class="rssc-input-shell"><input id="goal-current" class="rssc-input-element" type="text" inputmode="decimal" placeholder="0" data-comment="goal-current-input" /></div>
+              </div>
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-target-field">
+                <label class="rssc-field-label" for="goal-target" data-comment="goal-target-label">Target value</label>
+                <div class="rssc-input-shell"><input id="goal-target" class="rssc-input-element" type="text" inputmode="decimal" placeholder="0" data-comment="goal-target-input" /></div>
+              </div>
+            </div>
+            <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-cadence-field">
+              <label class="rssc-field-label" for="goal-cadence" data-comment="goal-cadence-label">Notes / cadence</label>
+              <div class="rssc-input-shell"><input id="goal-cadence" class="rssc-input-element" type="text" placeholder="e.g. Strength cycle target for August" data-comment="goal-cadence-input" /></div>
+            </div>
+            <div id="goal-scan-metric-row" class="rssc-goal-scan-metric-row" data-comment="goal-scan-metric-row">
+              <div class="rssc-field-root rssc-input-root rssc-input-root--full-width" data-comment="goal-scan-metric-field">
+                <label class="rssc-field-label" for="goal-scan-metric" data-comment="goal-scan-metric-label">Link to body scan metric</label>
+                <select id="goal-scan-metric" class="rssc-select-native" data-comment="goal-scan-metric-select">
+                  <option value="">— not linked —</option>
+                  <option value="bodyfat">Body fat %</option>
+                  <option value="leanmass">Lean mass (kg)</option>
+                  <option value="weight">Weight (kg)</option>
+                </select>
+                <div class="rssc-field-message" data-comment="goal-scan-metric-helper">Progress will update automatically after each scan</div>
+              </div>
+            </div>
+          </div>
+          <div class="rssc-modal-footer" data-comment="goal-modal-footer">
+            <button type="button" class="rssc-button rssc-button--secondary rssc-button--sm" id="goal-cancel" data-comment="goal-modal-cancel"><span class="rssc-button__label">Cancel</span></button>
+            <button type="submit" class="rssc-button rssc-button--sm" id="goal-submit" disabled data-comment="goal-modal-submit"><span class="rssc-button__label" id="goal-submit-label">Save goal</span></button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -496,6 +860,297 @@
     </div>
 
     <script>
+      // Scan detail drawer
+      (function () {
+        const SCANS = [
+          {
+            id: "1", date: "Apr 18, 2026", label: "InBody studio check", prevDate: "Mar 14, 2026", score: 82,
+            weight: 65.6, bodyFat: 23.1, bodyFatMass: 15.2, leanMass: 45.8, smm: 22.6, boneMass: 2.4,
+            bmi: 23.8, bmr: 1342,
+            tbw: 32.4, icw: 21.1, ecw: 11.3,
+            visceralFat: 4,
+            segments: { rArm: 2.1, lArm: 2.0, trunk: 18.4, rLeg: 8.2, lLeg: 8.1 },
+            waist: 77, hips: 94, thigh: 58,
+            prev: { weight: 66.8, bodyFat: 24.7, bodyFatMass: 16.5, leanMass: 44.9, smm: 21.8, boneMass: 2.4,
+                    bmi: 24.2, bmr: 1318, tbw: 31.7, icw: 20.6, ecw: 11.1, visceralFat: 5,
+                    segments: { rArm: 2.0, lArm: 1.9, trunk: 18.0, rLeg: 8.0, lLeg: 7.9 },
+                    waist: 79, hips: 95, thigh: 57.5 },
+            highlights: [
+              { label: "Coach note", value: "Best improvement yet — keep the strength focus" },
+              { label: "Next milestone", value: "Push lean mass above 47 kg by July" },
+            ],
+          },
+          {
+            id: "2", date: "Mar 14, 2026", label: "6-week check-in", prevDate: "Feb 7, 2026", score: 78,
+            weight: 66.8, bodyFat: 24.7, bodyFatMass: 16.5, leanMass: 44.9, smm: 21.8, boneMass: 2.4,
+            bmi: 24.2, bmr: 1318,
+            tbw: 31.7, icw: 20.6, ecw: 11.1,
+            visceralFat: 5,
+            segments: { rArm: 2.0, lArm: 1.9, trunk: 18.0, rLeg: 8.0, lLeg: 7.9 },
+            waist: 79, hips: 95, thigh: 57.5,
+            prev: { weight: 67.4, bodyFat: 25.3, bodyFatMass: 17.1, leanMass: 44.1, smm: 21.2, boneMass: 2.3,
+                    bmi: 24.4, bmr: 1301, tbw: 31.1, icw: 20.2, ecw: 10.9, visceralFat: 5,
+                    segments: { rArm: 1.9, lArm: 1.9, trunk: 17.7, rLeg: 7.8, lLeg: 7.7 },
+                    waist: 80, hips: 96, thigh: 57 },
+            highlights: [{ label: "Coach note", value: "Consistent progress across all metrics" }],
+          },
+          {
+            id: "3", date: "Feb 7, 2026", label: "Monthly check-in", prevDate: "Jan 16, 2026", score: 75,
+            weight: 67.4, bodyFat: 25.3, bodyFatMass: 17.1, leanMass: 44.1, smm: 21.2, boneMass: 2.3,
+            bmi: 24.4, bmr: 1301,
+            tbw: 31.1, icw: 20.2, ecw: 10.9,
+            visceralFat: 5,
+            segments: { rArm: 1.9, lArm: 1.9, trunk: 17.7, rLeg: 7.8, lLeg: 7.7 },
+            waist: 80, hips: 96, thigh: 57,
+            prev: { weight: 68.1, bodyFat: 26.4, bodyFatMass: 18.0, leanMass: 43.2, smm: 20.5, boneMass: 2.3,
+                    bmi: 24.7, bmr: 1280, tbw: 30.5, icw: 19.8, ecw: 10.7, visceralFat: 6,
+                    segments: { rArm: 1.9, lArm: 1.8, trunk: 17.3, rLeg: 7.5, lLeg: 7.5 },
+                    waist: 81, hips: 97, thigh: 57 },
+            highlights: [{ label: "Coach note", value: "Good start — strength phase is working" }],
+          },
+          {
+            id: "4", date: "Jan 16, 2026", label: "Baseline scan", prevDate: null, score: 71,
+            weight: 68.1, bodyFat: 26.4, bodyFatMass: 18.0, leanMass: 43.2, smm: 20.5, boneMass: 2.3,
+            bmi: 24.7, bmr: 1280,
+            tbw: 30.5, icw: 19.8, ecw: 10.7,
+            visceralFat: 6,
+            segments: { rArm: 1.9, lArm: 1.8, trunk: 17.3, rLeg: 7.5, lLeg: 7.5 },
+            waist: 81, hips: 97, thigh: 57,
+            prev: null,
+            highlights: [
+              { label: "Baseline", value: "Starting point for all future comparisons" },
+              { label: "Coach note", value: "Focus on strength first, body composition will follow" },
+            ],
+          },
+        ];
+
+        function n(v) { return v === null || v === undefined ? null : v; }
+        function fmtN(v) { return v === null ? "—" : (Number.isInteger(v) ? String(v) : v.toFixed(1)); }
+        function cdelta(curr, prev, lowerIsBetter) {
+          if (prev === null) return { text: "baseline", cls: "rssc-scan-comp-delta--neutral" };
+          const d = curr - prev;
+          const sign = d > 0 ? "+" : "";
+          const better = d === 0 ? null : (lowerIsBetter ? d < 0 : d > 0);
+          const cls = better === null ? "rssc-scan-comp-delta--neutral" : better ? "rssc-scan-comp-delta--good" : "rssc-scan-comp-delta--bad";
+          return { text: sign + fmtN(d), cls };
+        }
+        function sdelta(curr, prev, lowerIsBetter) {
+          const r = cdelta(curr, prev, lowerIsBetter);
+          return { text: r.text, cls: r.cls.replace("comp-delta", "segment-delta") };
+        }
+        function mdelta(curr, prev, lowerIsBetter) {
+          const r = cdelta(curr, prev, lowerIsBetter);
+          return { text: r.text, cls: r.cls.replace("comp-delta", "delta") };
+        }
+
+        function compCell(label, val, unit, d) {
+          return '<div class="rssc-scan-comp-cell">'
+            + '<span class="rssc-scan-comp-label">' + label + '</span>'
+            + '<span class="rssc-scan-comp-val">' + fmtN(val) + (unit ? '\u202f' + unit : '') + '</span>'
+            + '<span class="rssc-scan-comp-delta ' + d.cls + '">' + d.text + (unit && d.text !== 'baseline' ? '\u202f' + unit : '') + '</span>'
+            + '</div>';
+        }
+
+        function buildBody(scan) {
+          const p = scan.prev;
+          const pSeg = p ? p.segments : null;
+
+          // ── Body composition ──────────────────────────────────────────────
+          const compHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Body composition</span>'
+            + '<div class="rssc-scan-comp-grid">'
+            + compCell("Weight",       scan.weight,      "kg", cdelta(scan.weight,      p ? p.weight      : null, true))
+            + compCell("Body fat",     scan.bodyFat,     "%",  cdelta(scan.bodyFat,     p ? p.bodyFat     : null, true))
+            + compCell("Fat mass",     scan.bodyFatMass, "kg", cdelta(scan.bodyFatMass, p ? p.bodyFatMass : null, true))
+            + compCell("Lean mass",    scan.leanMass,    "kg", cdelta(scan.leanMass,    p ? p.leanMass    : null, false))
+            + compCell("Muscle (SMM)", scan.smm,         "kg", cdelta(scan.smm,         p ? p.smm         : null, false))
+            + compCell("Bone mass",    scan.boneMass,    "kg", cdelta(scan.boneMass,    p ? p.boneMass    : null, false))
+            + compCell("BMI",          scan.bmi,         "",   cdelta(scan.bmi,         p ? p.bmi         : null, true))
+            + compCell("BMR",          scan.bmr,         "kcal", cdelta(scan.bmr,       p ? p.bmr         : null, false))
+            + '</div></div>';
+
+          // ── Body water ────────────────────────────────────────────────────
+          const ecwRatio = (scan.ecw / scan.tbw).toFixed(3);
+          const waterHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Body water</span>'
+            + '<div class="rssc-scan-water-grid">'
+            + compCell("Total (TBW)", scan.tbw, "L", cdelta(scan.tbw, p ? p.tbw : null, false))
+            + compCell("Intracellular", scan.icw, "L", cdelta(scan.icw, p ? p.icw : null, false))
+            + compCell("Extracellular", scan.ecw, "L", cdelta(scan.ecw, p ? p.ecw : null, false))
+            + '</div>'
+            + '<div style="font-size:12px;color:#8c8a80;">ECW/TBW ratio: <strong style="color:#4b4a45;">' + ecwRatio + '</strong> <span style="color:#a8a59e;">(healthy: 0.360–0.390)</span></div>'
+            + '</div>';
+
+          // ── Segmental lean mass ───────────────────────────────────────────
+          const seg = scan.segments;
+          const segItems = [
+            { name: "R Arm",  val: seg.rArm,  prev: pSeg ? pSeg.rArm  : null, max: 3.5 },
+            { name: "L Arm",  val: seg.lArm,  prev: pSeg ? pSeg.lArm  : null, max: 3.5 },
+            { name: "Trunk",  val: seg.trunk, prev: pSeg ? pSeg.trunk : null, max: 26  },
+            { name: "R Leg",  val: seg.rLeg,  prev: pSeg ? pSeg.rLeg  : null, max: 11  },
+            { name: "L Leg",  val: seg.lLeg,  prev: pSeg ? pSeg.lLeg  : null, max: 11  },
+          ];
+          const segHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Segmental lean mass</span>'
+            + '<div class="rssc-scan-segment-grid">'
+            + segItems.map(function (s) {
+                const pct = Math.min(100, Math.round((s.val / s.max) * 100));
+                const d = sdelta(s.val, s.prev, false);
+                return '<div class="rssc-scan-segment-cell">'
+                  + '<span class="rssc-scan-segment-name">' + s.name + '</span>'
+                  + '<span class="rssc-scan-segment-val">' + fmtN(s.val) + ' kg</span>'
+                  + '<div class="rssc-scan-segment-bar-wrap"><div class="rssc-scan-segment-bar-fill" style="width:' + pct + '%"></div></div>'
+                  + '<span class="rssc-scan-segment-delta ' + d.cls + '">' + d.text + (d.text !== 'baseline' ? ' kg' : '') + '</span>'
+                  + '</div>';
+              }).join("")
+            + '</div></div>';
+
+          // ── Visceral fat ──────────────────────────────────────────────────
+          const vfPct = ((scan.visceralFat - 1) / 19 * 100).toFixed(1);
+          const vfColor = scan.visceralFat <= 9 ? '#28a164' : scan.visceralFat <= 14 ? '#f59e0b' : '#d14343';
+          const vfLabel = scan.visceralFat <= 9 ? 'Normal range (1–9)' : scan.visceralFat <= 14 ? 'Elevated (10–14)' : 'High (15–20)';
+          const vfHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Visceral fat</span>'
+            + '<div class="rssc-scan-vf-wrap">'
+            + '<div class="rssc-scan-vf-meta"><span class="rssc-scan-vf-val" style="color:' + vfColor + '">' + scan.visceralFat + '</span><span class="rssc-scan-vf-range">/ 20 · ' + vfLabel + '</span></div>'
+            + '<div class="rssc-scan-vf-track-wrap">'
+            + '<div class="rssc-scan-vf-track"></div>'
+            + '<div class="rssc-scan-vf-marker" style="left:' + vfPct + '%"></div>'
+            + '</div>'
+            + '<div class="rssc-scan-vf-labels"><span>1 Normal</span><span>10 Elevated</span><span>15 High</span><span>20</span></div>'
+            + '</div></div>';
+
+          // ── Tape measurements ─────────────────────────────────────────────
+          const measItems = [
+            { name: "Waist", val: scan.waist, prev: p ? p.waist : null, unit: "cm", lower: true },
+            { name: "Hips",  val: scan.hips,  prev: p ? p.hips  : null, unit: "cm", lower: true },
+            { name: "Thigh", val: scan.thigh, prev: p ? p.thigh : null, unit: "cm", lower: false },
+          ];
+          const measHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Tape measurements</span>'
+            + '<div class="rssc-scan-meas-list">'
+            + measItems.map(function (m) {
+                const d = mdelta(m.val, m.prev, m.lower);
+                return '<div class="rssc-scan-meas-row">'
+                  + '<span class="rssc-scan-meas-name">' + m.name + '</span>'
+                  + '<div class="rssc-scan-meas-right">'
+                  + '<span class="rssc-scan-meas-val">' + fmtN(m.val) + ' ' + m.unit + '</span>'
+                  + '<span class="rssc-scan-delta rssc-scan-delta--' + (d.cls.includes('good') ? 'good' : d.cls.includes('bad') ? 'bad' : 'neutral') + '">' + d.text + (d.text !== 'baseline' ? ' ' + m.unit : '') + '</span>'
+                  + '</div></div>';
+              }).join("")
+            + '</div></div>';
+
+          // ── Progress photos ───────────────────────────────────────────────
+          const photoSlot = function (label) {
+            return '<div class="rssc-scan-photo-slot">'
+              + '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>'
+              + '<span class="rssc-scan-photo-label">' + label + '</span>'
+              + '</div>';
+          };
+          const photosHtml = '<div class="rssc-scan-section">'
+            + '<span class="rssc-scan-section-label">Progress photos</span>'
+            + '<div class="rssc-scan-photos-grid">'
+            + photoSlot("Front") + photoSlot("Side") + photoSlot("Back")
+            + '</div></div>';
+
+          // ── Highlights ────────────────────────────────────────────────────
+          const highlightsHtml = scan.highlights.length
+            ? '<div class="rssc-scan-section"><span class="rssc-scan-section-label">Notes</span>'
+              + '<div class="rssc-scan-highlights">'
+              + scan.highlights.map(function (h) {
+                  return '<div class="rssc-scan-highlight"><span class="rssc-scan-highlight-label">' + h.label + '</span><span class="rssc-scan-highlight-value">' + h.value + '</span></div>';
+                }).join("")
+              + '</div></div>'
+            : '';
+
+          return compHtml + waterHtml + segHtml + vfHtml + measHtml + photosHtml + highlightsHtml;
+        }
+
+        const overlay  = document.getElementById("scan-overlay");
+        const drawer   = document.getElementById("scan-drawer");
+        const titleEl  = document.getElementById("scan-drawer-title");
+        const metaEl   = document.getElementById("scan-drawer-meta");
+        const scoreEl  = document.getElementById("scan-score-badge");
+        const bodyEl   = document.getElementById("scan-drawer-body");
+
+        function openScan(id) {
+          const scan = SCANS.find(function (s) { return s.id === id; });
+          if (!scan) return;
+          titleEl.textContent = "Scan — " + scan.date;
+          metaEl.textContent  = scan.label + (scan.prevDate ? " · vs " + scan.prevDate : " · Baseline");
+          scoreEl.innerHTML   = '<span class="rssc-scan-score-num">' + scan.score + '</span><span class="rssc-scan-score-lbl">InBody score</span>';
+          bodyEl.innerHTML    = buildBody(scan);
+          overlay.setAttribute("data-open", "true");
+          drawer.setAttribute("data-open", "true");
+          document.body.style.overflow = "hidden";
+        }
+        function closeScan() {
+          overlay.setAttribute("data-open", "false");
+          drawer.setAttribute("data-open", "false");
+          document.body.style.overflow = "";
+        }
+
+        document.querySelectorAll("[data-scan-id]").forEach(function (btn) {
+          btn.addEventListener("click", function () { openScan(btn.getAttribute("data-scan-id")); });
+        });
+        overlay.addEventListener("click", closeScan);
+        document.getElementById("scan-drawer-close").addEventListener("click", closeScan);
+      })();
+
+      // Goal modal
+      (function () {
+        const GOALS = [
+          { id: "1", name: "Deadlift",  unit: "kg",   current: "67.5", target: "80",    cadence: "Strength cycle target for August", scanMetric: "" },
+          { id: "2", name: "5km Run",   unit: "time",  current: "31:20", target: "26:00", cadence: "End-of-season cardio goal",         scanMetric: "" },
+          { id: "3", name: "Body fat",  unit: "pct",   current: "23.1", target: "21",    cadence: "",                                  scanMetric: "bodyfat" },
+        ];
+        const overlay   = document.getElementById("goal-modal");
+        const titleEl   = document.getElementById("goal-modal-title");
+        const editingId = document.getElementById("goal-editing-id");
+        const nameEl    = document.getElementById("goal-name");
+        const unitEl    = document.getElementById("goal-unit");
+        const currentEl = document.getElementById("goal-current");
+        const targetEl  = document.getElementById("goal-target");
+        const cadenceEl = document.getElementById("goal-cadence");
+        const scanRow   = document.getElementById("goal-scan-metric-row");
+        const scanMetEl = document.getElementById("goal-scan-metric");
+        const submitBtn = document.getElementById("goal-submit");
+        const submitLbl = document.getElementById("goal-submit-label");
+        function openModal(mode, goal) {
+          titleEl.textContent   = mode === "edit" ? "Edit goal" : "Add goal";
+          editingId.value       = goal ? goal.id        : "";
+          nameEl.value          = goal ? goal.name      : "";
+          unitEl.value          = goal ? goal.unit      : "kg";
+          currentEl.value       = goal ? goal.current   : "";
+          targetEl.value        = goal ? goal.target    : "";
+          cadenceEl.value       = goal ? goal.cadence   : "";
+          scanMetEl.value       = goal ? goal.scanMetric: "";
+          syncScanRow(); syncSubmit();
+          overlay.setAttribute("data-open", "true");
+          document.body.style.overflow = "hidden";
+          nameEl.focus();
+        }
+        function closeModal() { overlay.setAttribute("data-open", "false"); document.body.style.overflow = ""; }
+        function syncScanRow() { scanRow.style.display = unitEl.value === "pct" ? "block" : "none"; if (unitEl.value !== "pct") scanMetEl.value = ""; }
+        function syncSubmit() { submitBtn.disabled = !(nameEl.value.trim() && currentEl.value.trim() && targetEl.value.trim()); }
+        unitEl.addEventListener("change", syncScanRow);
+        [nameEl, currentEl, targetEl].forEach(function(el){ el.addEventListener("input", syncSubmit); });
+        document.getElementById("goal-add-btn").addEventListener("click", function(){ openModal("add", null); });
+        document.querySelectorAll(".rssc-profile-goal-edit").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var id = btn.getAttribute("data-goal-id");
+            openModal("edit", GOALS.find(function(g){ return g.id === id; }) || null);
+          });
+        });
+        overlay.addEventListener("click", function(e){ if(e.target === overlay) closeModal(); });
+        document.getElementById("goal-close").addEventListener("click", closeModal);
+        document.getElementById("goal-cancel").addEventListener("click", closeModal);
+        document.getElementById("goal-form").addEventListener("submit", function(e){
+          e.preventDefault(); submitBtn.disabled = true; submitLbl.textContent = "Saving…";
+          setTimeout(function(){ submitLbl.textContent = "Save goal"; closeModal(); }, 600);
+        });
+      })();
+
       // Route nav through parent viewer when iframed; else fall back.
       window.navHref = function(href){
         try {
@@ -523,18 +1178,37 @@
         const noteSave=document.getElementById("profile-note-save");
         const noteSaveLabel=document.getElementById("profile-note-save-label");
         const noteLog=document.getElementById("profile-note-log");
+
+        // shared notes key — same as in reports
+        const PROFILE_NOTES_KEY="rssc_notes_jordan-mitchell";
+        function profileLoadNotes(){try{return JSON.parse(localStorage.getItem(PROFILE_NOTES_KEY)||"[]");}catch{return[];}}
+        function profileSaveNotes(notes){localStorage.setItem(PROFILE_NOTES_KEY,JSON.stringify(notes));}
+        function makeNoteEntry(n){
+          return el("div",{className:"rssc-profile-note-entry","data-comment":"profile-note-entry-"+Date.now()},[
+            el("span",{className:"rssc-profile-note-meta",textContent:n.date+" · "+n.author}),
+            el("span",{className:"rssc-profile-note-text",textContent:n.text}),
+          ]);
+        }
+        // inject notes saved from Reports page
+        (function injectStoredNotes(){
+          const notes=profileLoadNotes();
+          if(!notes.length)return;
+          const header=noteLog.querySelector(".rssc-profile-note-log-header");
+          notes.forEach((n)=>header.after(makeNoteEntry(n)));
+        })();
+
         noteInput.addEventListener("input",function(){noteSave.disabled=!noteInput.value.trim();noteSaveLabel.textContent="Save note";});
         noteSave.addEventListener("click",function(){
           const text=noteInput.value.trim();
           if(!text)return;
           const now=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
-          const entry=el("div",{className:"rssc-profile-note-entry","data-comment":"profile-note-entry-"+Date.now()},[
-            el("span",{className:"rssc-profile-note-meta",textContent:now+" · Katie (GM)"}),
-            el("span",{className:"rssc-profile-note-text",textContent:text}),
-          ]);
-          // Insert after the "Previous notes" header
+          const note={text,date:now,author:"Katie (GM)"};
+          // persist to localStorage so Reports page also sees it
+          const existing=profileLoadNotes();
+          existing.unshift(note);
+          profileSaveNotes(existing);
           const header=noteLog.querySelector(".rssc-profile-note-log-header");
-          header.after(entry);
+          header.after(makeNoteEntry(note));
           noteInput.value="";
           noteSave.disabled=true;
           noteSaveLabel.textContent="Saved";
@@ -614,13 +1288,20 @@
         // Escape closes any open modal
         document.addEventListener("keydown", function(e){
           if (e.key !== "Escape") return;
-          ["edit-modal","hold-modal","cancel-modal"].forEach(id => {
+          ["edit-modal","hold-modal","cancel-modal","goal-modal"].forEach(id => {
             const m = document.getElementById(id);
-            if (m.getAttribute("data-open") === "true") {
+            if (m && m.getAttribute("data-open") === "true") {
               m.setAttribute("data-open","false");
               document.body.style.overflow = "";
             }
           });
+          const scanOverlay = document.getElementById("scan-overlay");
+          const scanDrawer  = document.getElementById("scan-drawer");
+          if (scanDrawer && scanDrawer.getAttribute("data-open") === "true") {
+            scanOverlay.setAttribute("data-open","false");
+            scanDrawer.setAttribute("data-open","false");
+            document.body.style.overflow = "";
+          }
         });
 
         // ── AdminShell ──
